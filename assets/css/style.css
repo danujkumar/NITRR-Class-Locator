@@ -908,9 +908,10 @@ form button[type=submit] {
 .loc-input{
   padding: 8px 10px;
   border-radius: 20px;
-  margin: 0 20px;
+  margin: 0px;
   width: 300px;
 }
+
 @media(max-width:690px){
   .loc-input{
     margin: 0.5rem 3rem;
@@ -929,7 +930,88 @@ form button[type=submit] {
   }
 }
 
+      /* buttons design */
+      .iContainer {
+        align-items: center;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        max-height: 15rem;
+        overflow-y: scroll;
+        position: absolute;
+        top: 2.8rem;
+        z-index: 1;
+      }
+      .iContainer::-webkit-scrollbar {
+        width: 15px;
+        height: 13px;
+        background-color: rgb(244, 237, 237);
+        border-radius: 0rem 1rem 1rem 0rem;
+      }
 
+      .iContainer::-webkit-scrollbar-thumb {
+        width: 2px;
+        background: red;
+        border-radius: 1rem;
+      }
+      .iContainer::-webkit-scrollbar-thumb:hover {
+        background: #b30000;
+      }
+      .ibutton {
+        padding: 5px 0px 0px 10px;
+        background-color: rgb(255, 255, 255);
+        opacity: 0.8;
+        text-align: left;
+        border: none;
+        font-size: 1.2rem;
+        outline: none;
+        width: 18rem;
+      }
+      .bigContainer {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .hcontainer {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        width: 100vw;
+        height: 2rem;
+        padding: 0.5rem 0;
+        margin-bottom: 1rem;
+      }
+      input {
+        width: 15rem;
+        height: 2rem;
+        outline: none;
+        border: none;
+        border-radius: 1rem;
+        padding: 1rem 2rem;
+        font-size: 1rem;
+      }
+      label {
+        position: absolute;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 17rem;
+        height: 2rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #5a8ea6;
+        pointer-events: none;
+      }
+
+      .fa-solid {
+        padding-right: 1rem;
+      }
+
+      input:focus ~ label > .label-name {
+        display: none;
+      }
 
 
 /* New Page */
