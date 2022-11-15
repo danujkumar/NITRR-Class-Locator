@@ -1011,3 +1011,15 @@ form button[type=submit] {
 
 /* New Page */
 
+.nav-search{
+  background-color: white;
+  padding: 0.4rem 1rem !important;
+  width: 50px !important;
+  margin: 1rem;
+  border-radius: 15px;
+}
+@media(max-width:750px){
+  #header{
+    height: 30vh;
+  }
+}
