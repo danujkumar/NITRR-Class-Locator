@@ -940,8 +940,13 @@ form button[type=submit] {
         max-height: 15rem;
         overflow-y: scroll;
         position: absolute;
-        top: 2.8rem;
+        top: 3.2rem;
         z-index: 1;
+      }
+      @media(min-width:750px){
+        .i2Container{
+          left: 18.2rem;
+        }
       }
       .iContainer::-webkit-scrollbar {
         width: 15px;
@@ -959,60 +964,50 @@ form button[type=submit] {
         background: #b30000;
       }
       .ibutton {
-        padding: 5px 0px 0px 10px;
+        padding: 7px 0px 1px 10px;
         background-color: rgb(255, 255, 255);
         opacity: 0.8;
         text-align: left;
         border: none;
-        font-size: 1.2rem;
+        font-size: 1rem;
         outline: none;
-        width: 18rem;
+        width: 268px;
       }
       .bigContainer {
         position: relative;
         display: flex;
-        flex-direction: column;
+        flex-direction: row; /*harsh*/
         align-items: center;
       }
       .hcontainer {
         position: relative;
         display: flex;
         justify-content: center;
-        width: 100vw;
+        width: 280px;
         height: 2rem;
-        padding: 0.5rem 0;
+        padding: 0.5rem 1rem;
         margin-bottom: 1rem;
       }
+      @media(max-width:750px){
+        .bigContainer{
+          flex-direction: column;
+        }
+        .iContainer{
+          top: 2.7rem;
+        }
+        .i2Container{
+          top: 5.7rem;
+        }
+      }
       input {
-        width: 15rem;
+        width: 280px;
         height: 2rem;
         outline: none;
         border: none;
         border-radius: 1rem;
-        padding: 1rem 2rem;
+        padding: 1.1rem 2rem;
         font-size: 1rem;
       }
-      label {
-        position: absolute;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        width: 17rem;
-        height: 2rem;
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: #5a8ea6;
-        pointer-events: none;
-      }
-
-      .fa-solid {
-        padding-right: 1rem;
-      }
-
-      input:focus ~ label > .label-name {
-        display: none;
-      }
-
 
 /* New Page */
 
