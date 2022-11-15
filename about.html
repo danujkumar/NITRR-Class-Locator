@@ -155,26 +155,41 @@
         </div>
         <br>
         <div class="row">
-            <div class="form">
-              <form method="POST" action="https://script.google.com/macros/s/AKfycbwqjARQYqXKp6bLpXQO7z63zY4RS6vcbAuEJl_JABxU0Uf83rrn7B5hmACPMK8sVYeY1g/exec" id="my-form">
-                <div class="row">
-                  <div class="form-group col-lg-6 my-3 mt-lg-0">
-                    <input type="email" class="form-control" name="Email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
-                  </div>
-                  <div class="form-group col-lg-6">
-                    <input type="text" name="Name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                  </div>
+          <div class="form">
+            <form method="POST"
+              action="https://script.google.com/macros/s/AKfycbwqjARQYqXKp6bLpXQO7z63zY4RS6vcbAuEJl_JABxU0Uf83rrn7B5hmACPMK8sVYeY1g/exec"
+              id="my-form">
+              <div class="row">
+                <div class="form-group col-lg-6 my-3 mt-lg-0">
+                  <input type="email" class="form-control" name="Email" id="email" placeholder="Your Email"
+                    data-rule="email" data-msg="Please enter a valid email">
                 </div>
-                <div class="form-group mt-3">
-                  <input type="text" class="form-control" name="Subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
+                <div class="form-group col-lg-6">
+                  <input type="text" name="Name" class="form-control" id="name" placeholder="Your Name"
+                    data-rule="minlen:4" data-msg="Please enter at least 4 chars">
                 </div>
-                <div class="form-group mt-3">
-                  <textarea class="form-control" name="Message" rows="5" placeholder="Message" required></textarea>
+              </div>
+              <div class="row">
+                <div class="form-group col-lg-6 my-3 mt-lg-0">
+                  <input type="text" class="form-control" name="Semester" id="semester" placeholder="Semester"
+                    data-rule="semester" data-msg="Please enter a valid semester">
                 </div>
-                <div class="text-center" id="pleasewait">Please Wait...</div>
-                <div class="text-center"><button type="submit" title="Send Message">Submit</button></div>
-              </form>
-            </div>
+                <div class="form-group col-lg-6">
+                  <input type="text" name="Branch" class="form-control" id="branch" placeholder="Branch"
+                    data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <input type="text" class="form-control" name="Topic" id="topic" placeholder="Topic"
+                  data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
+              </div>
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="Message" rows="5" placeholder="Message" required></textarea>
+              </div>
+              <div class="text-center" id="pleasewait">Please Wait...</div>
+              <div class="text-center"><button type="submit" title="Send Message">Submit</button></div>
+            </form>
+          </div>
 
         </div>
 
