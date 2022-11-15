@@ -396,12 +396,7 @@ h6 {
   background: linear-gradient(45deg, rgba(18, 2, 2, 0.8), rgba(44, 49, 49, 0.8)), url("../img/hero-bg.png") center top no-repeat;
   background-size: cover;
   position: relative;
-}
-
-@media (max-width: 1025px) {
-  #hero {
-    background-attachment: fixed;
-  }
+  background-attachment: fixed;
 }
 
 @media (max-height: 800px) {
