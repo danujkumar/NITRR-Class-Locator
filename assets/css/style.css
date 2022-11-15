@@ -1015,37 +1015,4 @@ form button[type=submit] {
 
 
 /* New Page */
-/* The grid: Three equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 33.33%;
-  padding: 6px;
-  text-align: center;
-  font-size: 16px;
-  cursor: pointer;
-  color: white;
-}
 
-.containerTab {
-  padding: 20px;
-  height: 100vh;
-  color: white;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Closable button inside the image */
-.closebtn {
-  float: right;
-  color: white;
-  font-size: 25px;
-  cursor: pointer;
-}
-.container-floor{
-  padding-top:5.6rem;
-}
