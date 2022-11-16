@@ -488,7 +488,8 @@ body {
 }
 
 .grid-container {
-    margin-top: 12rem;
+    margin-top: 8rem;
+    margin-left: 2rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     /* grid-gap: 20px; */
@@ -496,6 +497,8 @@ body {
 @media(max-width:900px){
     .grid-container{
         grid-template-columns: 1fr;
+        margin-top: 12rem;
+        margin-left: 0.1rem;
     }
     svg{
         width: 100vw;
@@ -522,7 +525,7 @@ body {
 }
 
 .card{
-    margin: 1rem;
+    margin: 1rem 2.5rem;
     color: white;
     color: #183153;
 }
