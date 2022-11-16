@@ -1,13 +1,4 @@
-/**
-* Template Name: Avilon - v4.8.1
-* Template URL: https://bootstrapmade.com/avilon-bootstrap-landing-page-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
-/*--------------------------------------------------------------
-# General
---------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 body {
   background: #fff;
   color: #666666;
@@ -393,7 +384,7 @@ h6 {
   width: 100%;
   height: 100vh;
   /* background: linear-gradient(45deg, rgba(29, 224, 153, 0.8), rgba(29, 200, 205, 0.8)), url("../img/hero-bg.png") center top no-repeat; */
-  background: linear-gradient(45deg, rgba(18, 2, 2, 0.8), rgba(44, 49, 49, 0.8)), url("../img/hero-bg.png") center top no-repeat;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url("../img/hero-bg.png") center top no-repeat;
   background-size: cover;
   position: relative;
   background-attachment: fixed;
@@ -430,6 +421,7 @@ h6 {
   font-weight: 800;
   line-height: 7vh;
   color: #fff;
+  font-family: 'Varela Round', sans-serif;
 }
 
 #hero p {
@@ -579,7 +571,7 @@ section {
 --------------------------------*/
 #call-to-action {
   overflow: hidden;
-  background: linear-gradient(rgba(18, 2, 2, 0.8), rgba(44, 49, 49, 0.8)), url(../img/apple-touch-icon.png) fixed center center;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(../img/apple-touch-icon.png) fixed center center;
   background-size: cover;
   padding: 80px 0;
 }
