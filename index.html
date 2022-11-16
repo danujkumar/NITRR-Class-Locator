@@ -66,24 +66,18 @@
       <div class="row">
         <div class="bigContainer">
           <div class="hcontainer">
-            <input type="text" placeholder="Current Location" name="search-box" value=""/>
+            <input id="current" type="text" placeholder="Current Location" name="current" value=""/>
           </div>
-          <div class="iContainer" style="display:none;">
-            <button class="ibutton">ore mining lab g1</button>
-            <button class="ibutton">general mining lab</button>
-            <button class="ibutton">rock engineering lab</button>
-            <button class="ibutton">mechanical computer lab</button>
+          <div id="currentdiv" class="iContainer">
+            
           </div>
           <div class="hcontainer">
-            <input type="text" placeholder="Final Location" name="search-box" value=""/>
+            <input id="final" type="text" placeholder="Final Location" name="search-box" value=""/>
           </div>
-          <div class="iContainer i2Container" style="display:none;">
-            <button class="ibutton">ore mining lab g1</button>
-            <button class="ibutton">general mining lab</button>
-            <button class="ibutton">rock engineering lab</button>
-            <button class="ibutton">mechanical computer lab</button>
+          <div id="finaldiv" class="iContainer i2Container">
+            
           </div>
-          <a href="#" class="btn-get-started" style="width:80px; padding:0.5rem 1rem;"><i class="bi bi-search"></i></a>
+          <a href="inner-page.html" id="search" class="btn-get-started" style="width:80px; padding:0.5rem 1rem;"><i class="bi bi-search"></i></a>
         </div>
       </div>
       <h2>Welcome to Class Locator, NITRR</h2>
@@ -271,6 +265,8 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/Suggestion-index.js" type="module"></script>
+  
 
 </body>
 
