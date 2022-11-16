@@ -1,13 +1,4 @@
-/**
-* Template Name: Avilon - v4.8.1
-* Template URL: https://bootstrapmade.com/avilon-bootstrap-landing-page-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
-/*--------------------------------------------------------------
-# General
---------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 body {
     background: #fff;
     color: #666666;
@@ -506,6 +497,7 @@ body {
     svg{
         width: 100vw;
         height: 50vh;
+        padding: 0.5rem;
     }
     .green{
         display: flex;
@@ -531,8 +523,13 @@ body {
 
 .card{
     margin: 1rem;
-    background: linear-gradient(45deg, #1de099, #1dc8cd);
     color: white;
+    color: #183153;
+}
+
+.card-title{
+    font-weight: 900;
+    font-family: 'Varela Round', sans-serif;
 }
 
 .final-logo{
