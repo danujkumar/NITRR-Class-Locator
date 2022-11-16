@@ -209,5 +209,5 @@
   });
   
   function alerty(){
-    alert("This Feature Will Be Available After 1-2 Week ! Please Be Patient...");
+    alert("This Feature Will Be Available After 1-2 Week ! Have Patience...");
   };
