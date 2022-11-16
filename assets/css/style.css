@@ -957,11 +957,11 @@ form button[type=submit] {
 
       .iContainer::-webkit-scrollbar-thumb {
         width: 2px;
-        background: red;
+        background: #AEAEAE;
         border-radius: 1rem;
       }
       .iContainer::-webkit-scrollbar-thumb:hover {
-        background: #b30000;
+        background: #AEAEAE;
       }
       .ibutton {
         padding: 7px 0px 1px 10px;
