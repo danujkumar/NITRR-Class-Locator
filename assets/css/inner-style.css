@@ -420,6 +420,9 @@ body {
         background: #AEAEAE;
         border-radius: 1rem;
       }
+      .iContainer button:hover{
+        background-color: rgb(219, 219, 219);
+      }
       .iContainer::-webkit-scrollbar-thumb:hover {
         background: #AEAEAE;
       }
