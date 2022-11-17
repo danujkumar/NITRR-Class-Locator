@@ -487,15 +487,18 @@ body {
     transition: opacity 0.5s ease-in-out;
 }
 .w-container{
-  margin-top: 10rem;
+  margin-top: 8rem;
   display: flex;
 }
 .green{
   /* background-color: green; */
   justify-content:space-around;
   text-align: center;
+  margin-top: 10rem;
 }
-
+svg{
+  padding: 2.5rem;
+}
 @media(max-width:900px){
   .w-container{
     margin-top: 12rem;
@@ -514,6 +517,7 @@ body {
       /* flex-direction: column; */
       align-items: center;
       /* padding: 0 !important; */
+      margin-top:0;
   }
 }
 
