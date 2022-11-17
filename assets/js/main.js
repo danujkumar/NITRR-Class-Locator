@@ -211,3 +211,15 @@ window.addEventListener("load", function() {
 function alerty(){
   alert("This Feature Will Be Available After 1-2 Week ! Have Patience...");
 };
+
+let button1 = document.getElementById("grounds1");
+let button2 = document.getElementById("grounds2");
+
+const removeSess = ()=>{
+  sessionStorage.removeItem("start");
+  sessionStorage.removeItem("end");
+}
+  button1.onclick = ()=>{
+    removeSess();
+  }
+ button2.onclick = ()=>{removeSess()}
