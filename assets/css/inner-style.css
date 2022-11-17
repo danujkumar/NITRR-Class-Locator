@@ -589,3 +589,13 @@ svg{
   background-color: rgb(255, 212, 60);
   color: #183153;
 }
+
+.A{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.cf-btn{
+  padding-bottom: 1rem;
+}
