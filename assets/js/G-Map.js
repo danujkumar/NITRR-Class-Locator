@@ -20,6 +20,32 @@ let makecurrent = document.getElementById("makecurrent");
 let makefinal = document.getElementById("makefinal");
 let preinfo;
 
+const Information = (buttonClicked)=>{
+  document.getElementById(buttonClicked)
+  if(preinfo != undefined)
+        {
+          if(preinfo != starting && preinfo != ending)
+            document.getElementById(preinfo).querySelector('path').style.fill = "#d3d3d3"
+            
+          if(preinfo == buttonClicked)
+          {
+            preinfo = undefined;
+            namecard[0].innerHTML = "Information"
+            details[0].innerHTML = "Press Any Room in the Map to Get It's Info Here."
+          }
+          else
+          {
+            preinfo = buttonClicked;
+            info(buttonClicked);
+          }
+        }
+        else
+        { 
+          preinfo = buttonClicked
+          info(buttonClicked)
+        }
+}
+
 for (let k in searching) {
   name.set(searching[k]["name"], k);
   detailss.set(searching[k]["details"], k);
@@ -211,7 +237,7 @@ function removeDestinationAll() {
       i != "4" &&
       i != "1"
     )
-      document.getElementById(i.toString()).style.fill = "#d4d4d4";
+      document.getElementById(i.toString()).querySelector('path').style.fill = "#d4d4d4";
   }
 }
 
@@ -243,16 +269,16 @@ const removeAlll = () => {
 };
 
 const info = (id) => {
+  console.log(document.getElementById(id));
   if(id != starting && id != ending)
-    document.getElementById(id).style.fill = "#6e6969"
+    document.getElementById(id).querySelector('path').style.fill = "#6e6969"
   namecard[0].innerHTML = searching[id]['name'];
   details[0].innerHTML = searching[id]['details'];
 };
 
 const removeinfo = ()=>{
   try {
-    
-      document.getElementById(preinfo).style.fill = "#d3d3d3"
+      document.getElementById(preinfo).querySelector('path').style.fill = "#d3d3d3"
   } catch (error) {
     
   }
@@ -486,29 +512,7 @@ for (let button of places) {
 
     let infobut = document.getElementById(button.id);
     infobut.onclick = ()=>{
-        if(preinfo != undefined)
-        {
-          if(preinfo != starting && preinfo != ending)
-            document.getElementById(preinfo).style.fill = "#d3d3d3"
-            
-          if(preinfo == infobut.id)
-          {
-            preinfo = undefined;
-            namecard[0].innerHTML = "Information"
-            details[0].innerHTML = "Press Any Room in the Map to Get It's Info Here."
-          }
-          else
-          {
-            preinfo = infobut.id
-            info(infobut.id);
-            
-          }
-        }
-        else
-        { 
-          preinfo = infobut.id
-          info(infobut.id)
-        }
+        Information(infobut.id);
     }
   }
 }
@@ -519,15 +523,15 @@ const getsetGoo = () => {
   if(starting!=null && starting!="null" && starting !="undefined" && starting != undefined)
   {
     let getsetRoom1 = document.getElementById(starting);
-  getsetRoom1.setAttribute("fill-opacity", "0.5");
-  getsetRoom1.style.fill = "#63e6beff";
+  getsetRoom1.querySelector('path').setAttribute("fill-opacity", "0.5");
+  getsetRoom1.querySelector('path').style.fill = "#63e6beff";
   starting = getsetRoom1.id;
   }
   if(ending!=null && ending!="null" && ending!="undefined" && ending!=undefined)
   {
     let getsetRoom2 = document.getElementById(ending);
-  getsetRoom2.setAttribute("fill-opacity", "0.5");
-  getsetRoom2.style.fill = "#ffd43cff";
+  getsetRoom2.querySelector('path').setAttribute("fill-opacity", "0.5");
+  getsetRoom2.querySelector('path').style.fill = "#ffd43cff";
   ending = getsetRoom2.id;
   }
   if(starting != null && ending != null && starting !="null" && ending != "null" && starting != "undefined" && ending != "undefined"
