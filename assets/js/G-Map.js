@@ -123,10 +123,15 @@ function setter() {
 }
 
 window.addEventListener("load", () => {
-  starting = sessionStorage.getItem('start').toString();
+  try {
+    starting = sessionStorage.getItem('start').toString();
   ending = sessionStorage.getItem('end').toString();
   setter();
   getsetGoo();
+  } catch (error) {
+    console.log("Direct transfer");
+  }
+  
 });
 
 const distanceCalculator = (x1, y1, x2, y2) => {
@@ -516,7 +521,6 @@ const getsetGoo = () => {
   getsetRoom1.style.fill = "#63e6beff";
   starting = getsetRoom1.id;
   }
-// console.log(ending);
   if(ending!=null && ending!="null" && ending!="undefined" && ending!=undefined)
   {
     let getsetRoom2 = document.getElementById(ending);
