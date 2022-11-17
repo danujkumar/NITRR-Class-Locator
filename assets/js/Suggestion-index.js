@@ -103,17 +103,14 @@ try {
 
   
   start = fetchId(current)
-  console.log(typeof(start))
   end = fetchId(final)
   if(start == undefined || start == null)
   {
     alert("Please select the current location.");
     search.removeAttribute("href");
-    // search.setAttribute("href","");
   }
   else
   {
-    // search.setAttribute("href","");
     search.setAttribute("href","./inner-page.html")
   }
   sessionStorage.setItem('start',start);
@@ -122,5 +119,3 @@ try {
 } catch (error) {
   
 }
-
-// const 

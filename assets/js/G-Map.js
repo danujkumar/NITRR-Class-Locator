@@ -16,6 +16,8 @@ let final = document.getElementById("final");
 let body = document.getElementsByTagName("html");
 let details = document.getElementsByClassName("card-text");
 let namecard = document.getElementsByClassName("card-title");
+let makecurrent = document.getElementById("makecurrent");
+let makefinal = document.getElementById("makefinal");
 let preinfo;
 
 for (let k in searching) {
@@ -129,7 +131,7 @@ window.addEventListener("load", () => {
   setter();
   getsetGoo();
   } catch (error) {
-    console.log("Direct transfer");
+
   }
   
 });
@@ -211,7 +213,6 @@ function removeDestinationAll() {
     )
       document.getElementById(i.toString()).style.fill = "#d4d4d4";
   }
-  
 }
 
 const removeAlll = () => {
@@ -489,7 +490,7 @@ for (let button of places) {
         {
           if(preinfo != starting && preinfo != ending)
             document.getElementById(preinfo).style.fill = "#d3d3d3"
-          
+            
           if(preinfo == infobut.id)
           {
             preinfo = undefined;
@@ -500,12 +501,13 @@ for (let button of places) {
           {
             preinfo = infobut.id
             info(infobut.id);
+            
           }
         }
         else
         { 
           preinfo = infobut.id
-          info(infobut.id)  
+          info(infobut.id)
         }
     }
   }
@@ -532,3 +534,43 @@ const getsetGoo = () => {
     && starting !=undefined && ending != undefined)
     locates();
 };
+
+makecurrent.onclick = ()=>{
+  if(preinfo != "undefined" && preinfo != "null" && preinfo != null && preinfo != undefined)
+  {
+    starting = preinfo;
+    sessionStorage.setItem("start",starting);
+    setter();
+    getsetGoo();
+    namecard[0].innerHTML = "Information"
+    details[0].innerHTML = "Press Any Room in the Map to Get It's Info Here."
+    preinfo = undefined;
+  }
+  else
+  {
+    alert("Please first select the room, you want to make as current location.")
+  }
+}
+makefinal.onclick = ()=>{
+  if(preinfo != "undefined" && preinfo != "null" && preinfo != null && preinfo != undefined)
+  {
+    if(starting != null)
+    {
+      ending = preinfo;
+      sessionStorage.setItem("end",ending);
+      setter();
+      getsetGoo();
+      namecard[0].innerHTML = "Information"
+      details[0].innerHTML = "Press Any Room in the Map to Get It's Info Here."
+      preinfo = undefined;
+    }
+    else
+    {
+      alert("Please first select the current location.");
+    }
+  }
+  else
+  {
+    alert("Please first select the room, you want to make as final location.")
+  }
+}
