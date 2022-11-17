@@ -486,47 +486,46 @@ body {
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
 }
-
-.grid-container {
-    margin-top: 8rem;
-    margin-left: 2rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.w-container{
+  margin-top: 10rem;
+  display: flex;
 }
+.green{
+  /* background-color: green; */
+  justify-content:space-around;
+  text-align: center;
+}
+
 @media(max-width:900px){
-    .grid-container{
-        grid-template-columns: 1fr;
-        margin-top: 12rem;
-        margin-left: 0rem;
-    }
+  .w-container{
+    margin-top: 12rem;
+  }
     svg{
         width: 100vw;
         height: 50vh;
-        padding: 0.5rem;
+        padding: 1rem;
+        /* padding: 0.5rem; */
+    }
+    .w-container{
+      flex-direction: column;
     }
     .green{
-        display: flex;
-        flex-direction: row;
-    }
-}
-@media(max-width:900px){
-    .green{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 0 !important;
-    }
-}
-.green{
-    /* background-color: green; */
-    padding-top: 5rem;
-    justify-content:space-around;
+      /* display: flex; */
+      /* flex-direction: column; */
+      align-items: center;
+      /* padding: 0 !important; */
+  }
 }
 
 .card{
     margin: 1rem 4rem;
     color: white;
     color: #183153;
+}
+@media(max-width:600px){
+  .card{
+    margin: 1rem 2rem;
+  }
 }
 
 .card-title{
@@ -553,7 +552,8 @@ body {
   border: 2px solid #1dc8cd;
   padding: 3px 5px;
   border-radius: 10px;
-  margin: 1rem 10rem;
+  /* margin-left: 10rem; */
+  margin-bottom: 2rem;
 }
 .reset-btn:hover{
   background-color: #1dc8cd;
