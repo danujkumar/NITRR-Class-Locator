@@ -222,4 +222,4 @@ const removeSess = ()=>{
   button1.onclick = ()=>{
     removeSess();
   }
-  button2.onclick = ()=>{removeSess()}
+ button2.onclick = ()=>{removeSess()}
