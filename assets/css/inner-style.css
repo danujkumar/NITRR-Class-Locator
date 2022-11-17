@@ -492,13 +492,12 @@ body {
     margin-left: 2rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    /* grid-gap: 20px; */
 }
 @media(max-width:900px){
     .grid-container{
         grid-template-columns: 1fr;
         margin-top: 12rem;
-        margin-left: 0.1rem;
+        margin-left: 0rem;
     }
     svg{
         width: 100vw;
@@ -525,7 +524,7 @@ body {
 }
 
 .card{
-    margin: 1rem 2.5rem;
+    margin: 1rem 4rem;
     color: white;
     color: #183153;
 }
@@ -554,8 +553,6 @@ body {
   border: 2px solid #1dc8cd;
   padding: 3px 5px;
   border-radius: 10px;
-  /* display: flex; */
-  /* justify-content: space-evenly; */
   margin: 1rem 10rem;
 }
 .reset-btn:hover{
