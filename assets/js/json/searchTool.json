@@ -1,433 +1,433 @@
 {
-  "1": {
-    "name": "Stage ground",
-    "details": ""
-  },
-  "2": {
-    "name": "SIR M. VISVESVARAYA E Hall",
-    "details": ""
-  },
-  "7": {
-    "name": "Static lab",
-    "details": "Dr. Ebha Koley - Lab incharge(Static lab)"
-  },
-  "8": {
-    "name": "Machine Lab",
-    "details": "Dr. Ebha Koley - Lab incharge(Machine lab)"
-  },
-  "9": {
-    "name": "Dr. Gangadhar Ramtekkar",
-    "details": "Professor Civil Engg. Department"
-  },
-  "10": {
-    "name": "Dr. Umesh Kumar Dewangan",
-    "details": "Professor Civil Engg. Department"
-  },
-  "11": {
-    "name": "Heat Engine Laboratory",
-    "details":""
-  },
-  "12": {
-    "name": "Shri G. K. Sahu, Vivek Kumar Gava",
-    "details": "Mechanical Engg. Department"
-  },
-  "13": {
-    "name": "Industrial Engineering and Management Laboratory",
-    "details":""
-  },
-  "15": {
-    "name": "Concrete Laboratory",
-    "details": "Dr. S. V. Deo - Professor incharge"
-  },
-  "16": {
-    "name": "Lecture Room MME",
-    "details": ""
-  },
-  "17": {
-    "name": "Scanning Electron Microscopy",
-    "details": "Department of Metallurgical Engineering"
-  },
-  "18": {
-    "name": "Metal Testing Lab OFFICE, DEAN (Planning and Development)",
-    "details": ""
-  },
-  "19": {
-    "name": "Stairs 4"
-    ,
-    "details":""
-  },
-  "21": {
-    "name": "Research Laboratory",
-    "details": "Dr. R.N Patel - Lab Incharge"
-  },
-  "22": {
-    "name": "Drives Lab",
-    "details": "Dr. Lalit Kumar Sahu - Lab Incharge"
-  },
-  "23": {
-    "name": "High Voltage Lab",
-    "details": "Dr. Anamika Yadav - Lab Incharge"
-  },
-  "24": {
-    "name": "Mineral Processing Lab",
-    "details": ""
-  },
-  "25": {
-    "name": "Department of Mining Engineering",
-    "details": ""
-  },
-  "26": {
-    "name": "General Mining Lab",
-    "details": ""
-  },
-  "27": {
-    "name": "ROCK Mechanics Lab",
-    "details": ""
-  },
-  "28": {
-    "name": "Department of Humanities Social Sciences Value Education",
-    "details": "Dr Hina Chawda"
-  },
-  "29": {
-    "name": "Stairs 2",
-    "details": ""
-  },
-  "31": {
-    "name": "Ladies Toilet",
-    "details":""
-  },
-  "x33": {
-    "p34": "p41",
-    "p85": "p41"
-  },
-  "x34": {
-    "p34": "p40",
-    "p85": "p40"
-  },
-  "35": {
-    "name": "Measurment and Control Laboratory",
-    "details": ""
-  },
-  "36": {
-    "name": "Dr S.D Patle Dr S. P.S. Matharu",
-    "details": ""
-  },
-  "37": {
-    "name": "Dynamic of Machines Laboratory",
-    "details": ""
-  },
-  "38": {
-    "name": "Computer Lab, Gate 2",
-    "details": ""
-  },
-  "41": {
-    "name": "Metal and Casting Shop",
-    "details": "MME"
-  },
-  "42": {
-    "name": "Research Scholar Room - 2",
-    "details": "MME"
-  },
-  "43": {
-    "name": "Dr. R Salhothra",
-    "details":""
-  },
-  "44": {
-    "name": "Mechanical Engg. Store",
-    "details":""
-  },
-  "45": {
-    "name": "Stairs 3",
-    "details":""
-  },
-  "46": {
-    "name": "Refrigeration and Air Conditioning Laboratory",
-    "details":""
-  },
-  "47": {
-    "name": "Mrs. Nisha Netam, Gate 3",
-    "details": "Assistant Professor Mechanical Engg. Department"
-  },
-  "48": {
-    "name": "HOD Office Department of Mechanical Engineering",
-    "details": "Dr. (Miss) S. L. Sinha, Dr. R.K. Yadav"
-  },
-  "49": {
-    "name": "Internal Combustion Engine Laboratory",
-    "details":""
-  },
-  "50": {
-    "name": "Badminton Court",
-    "details":""
-  },
-  "51": {
-    "name": "Computer Lab Mining Department",
-    "details":""
-  },
-  "52": {
-    "name": "LEGAL CELL, Gate 1",
-    "details": ""
-  },
-  "53": {
-    "name": "Stairs 1",
-    "details": ""
-  },
-  "54": {
-    "name": "Dr, Govardhan Bhatt",
-    "details": "Assistant Professor Civil Engg. Department"
-  },
-  "55": {
-    "name": "Dr. Mani Kant Verma Dr. Ansu Thomas",
-    "details": "Assistant Professor Civil Engg. Department"
-  },
-  "56": {
-    "name": "Fluid Mech. Lab",
-    "details": ""
-  },
-  "62": {
-    "name": "Stairs 6",
-    "details":""
-  },
-  "63": {
-    "name": "Mass Transfer Laboratory, Inorganic Process Laboratory",
-    "details":""
-  },
-  "64": {
-    "name": "Lecture Room",
-    "details": "BTE"
-  },
-  "65": {
-    "name": "Project Room - 2, Advanced Seperation Research Lab",
-    "details":""
-  },
-  "66": {
-    "name": "Project Room - 3",
-    "details":""
-  },
-  "67": {
-    "name": "Process Dynamics and Control Laboratory & Organic Process Technology Laboratory",
-    "details":""
-  },
-  "69": {
-    "name": "Enviromental Engineering Laboratory",
-    "details": "Dr. P Ghosh, Dr. J. Anandkumar, Dr. V. K. Singh, Dr. C. Thakur"
-  },
-  "70": {},
-  "72": {
-    "name": "Makerspace",
-    "details":""
-  },
-  "73": {
-    "name": "Department of Biotechnology Lab - 1",
-    "details": ""
-  },
-  "74": {
-    "name": "Research Laboratory",
-    "details": ""
-  },
-  "75": {
-    "name": "Department of Chemistry Faculty Room HOD Office Chemistry",
-    "details": ""
-  },
-  "76": {
-    "name": "B.Tech Lab 1. Applied Chemistry Lab 2. Enviroment & Ecology Lab",
-    "details": ""
-  },
-  "77": {
-    "name": "Gents Toilet",
-    "details": ""
-  },
-  "78": {
-    "name": "Stairs 5",
-    "details": ""
-  },
-  "79": {
-    
-  },
-  "80": {
-    "name": "Dr Manoj Pradhan Professor Mining",
-    "details": ""
-  },
-  "81": {
-    "name": "Ladies Toilet",
-    "details": ""
-  },
-  "83": {
-    "name": "Stairs 7",
-    "details": ""
-  },
-
-  "84": {
-    "name": "Ladies Toilet",
-    "details": ""
-  },
-
-  "85": {
-    "name": "Surveying Lab",
-    "details": ""
-  },
-
-  "86": {
-    "name": "Transportation Engg. Lab",
-    "details": ""
-  },
-  "87": {
-    "name":"NSS Office store room",
-    "details":""
-  },
-  "88": {
-    "name": "Structural Dynamic Lab",
-    "details": ""
-  },
-
-  "89": {
-    "name": "Sunny Deol G.",
-    "details": "Civil"
-  },
-
-  "90": {
-    "name": "Dr Ajay Vikram Ahirwar",
-    "details": "Civil"
-  },
-
-  "91": {
-    "name": "Store Room",
-    "details":""
-  },
-  "92": {
-    "name": "Gents Toilet",
-    "details": ""
-  },
-  "93": {
-    "name": "Office of the Head Department of Metallurgical and Materials Engineering",
-    "details": ""
-  },
-  "94": {
-    "name": "Advanced Geological Lab",
-    "details": ""
-  },
-  "95": {
-    "name": "Lecture Room G-4 (Department of MME)",
-    "details": ""
-  },
-  "96": {
-    "name": "Heat Transfer Laboratory",
-    "details": "Dr. P Ghosh"
-  },
-  "97": {
-    "name": "Dr (Mrs) A B Soni Professor",
-    "details": ""
-  },
-  "98": {
-    "name": "Chemical Reaction Engineering Laboratory & Fuel Testing Laboratory",
-    "details": ""
-  },
-  "99": {
-    "name": "Departmental Library Chemical Engineering",
-    "details": ""
-  },
-  "100": {
-    "name": "Head of Department Chemical Engineering",
-    "details": ""
-  },
-  "101": {
-    "name": "G-41 classroom",
-    "details": ""
-  },
-  "112": {
-    "name": "PG Section Department of Civil Engineering",
-    "details": "Water Resources Lab, M Tech (Structrual) Lecture Room - 2, M Tech (WRD&IE) Lecture Room - 1"
-  },
-  "111": {
-    "name": "Advanced Metal Casting Laboratory, Moulding Shop",
-    "details": "Mr. U. K. Verma MME"
-  },
-  "110": {
-    "name": "Metal Processing and Advanced Manufacturing Laboratory",
-    "details": "(ME Lab-4)"
-  },
-  "109": {
-    "name": "Weilding Shop",
-    "details": "Mr. M. K. Patle"
-  },
-  "108": {
-    "name": "Fitting Shop",
-    "details": "Mr. J.R. Mandavi"
-  },
-  "107": {
-    "name": "Office Workshop Department",
-    "details": "Dr. Shailesh Vaidya - incharge, Dr. Jagadish ME"
-  },
-  "106": {
-    "name": "C.N.C Shop",
-    "details": ""
-  },
-  "105": {
-    "name": "Machine Shop",
-    "details": "Mr. S. D. Goyal"
-  },
-  "104": {
-    "name": "Turing Shop",
-    "details": "Mr. Ripusudan Lal Sahu"
-  },
-  "103": {
-    "name": "Carpentry Shop",
-    "details": "Mr. Santosh Kumar Dewangan"
-  },
-  "3": {
-    "name": "Dean Parking",
-    "details":""
-  },
-  "14": {
-    "name": "Stairs 8",
-    "details":""
-  },
-  "20": {
-    "name": "Lift and Water 1",
-    "details":""
-  },
-  "30": {
-    "name": "Gents Toilet",
-    "details":""
-  },
-  "32": {
-    "name": "Mechanics Library",
-    "details":""
-  },
-  "57": {
-    "name": "Department Office Biomedical Engineering",
-    "details": "Dr. Jaya Dwivedi"
-  },
-  "58": {
-    "name": "HOD Department of Biomedical Engineering",
-    "details": ""
-  },
-  "59": {
-    "name": "Classroom - 3 BME, Room No BME - 2",
-    "details": "BME"
-  },
-  "60": {
-    "name": "Room No. BM 1, Class Room - 2",
-    "details": "BME"
-  },
-  "61": {
-    "name": "Ladies Toilet",
-    "details":""
-  },
-  "113": {
-    "name": "Dr. S Noyd Victoria",
-    "details":""
-  },
-  "114": {
-    "name": "Dean (Research and Consultancy) Office, Main gate",
-    "details": ""
-  },
-  "68": {
-    "name": "A. K. Poonia, P. k. Chaudhari",
-    "details": "Assistant Professor"
-  },
-  "40": {
-    "name": "Lift and Water 2",
-    "details":""
+    "1": {
+      "name": "Stage ground",
+      "details": ""
+    },
+    "2": {
+      "name": "SIR M. VISVESVARAYA E Hall",
+      "details": ""
+    },
+    "7": {
+      "name": "Static lab",
+      "details": "Dr. Ebha Koley - Lab incharge(Static lab)"
+    },
+    "8": {
+      "name": "Machine Lab",
+      "details": "Dr. Ebha Koley - Lab incharge(Machine lab)"
+    },
+    "9": {
+      "name": "Dr. Gangadhar Ramtekkar",
+      "details": "Professor Civil Engg. Department"
+    },
+    "10": {
+      "name": "Dr. Umesh Kumar Dewangan",
+      "details": "Professor Civil Engg. Department"
+    },
+    "11": {
+      "name": "Heat Engine Laboratory",
+      "details":""
+    },
+    "12": {
+      "name": "Shri G. K. Sahu, Vivek Kumar Gava",
+      "details": "Mechanical Engg. Department"
+    },
+    "13": {
+      "name": "Industrial Engineering and Management Laboratory",
+      "details":""
+    },
+    "15": {
+      "name": "Concrete Laboratory",
+      "details": "Dr. S. V. Deo - Professor incharge"
+    },
+    "16": {
+      "name": "Lecture Room MME",
+      "details": ""
+    },
+    "17": {
+      "name": "Scanning Electron Microscopy",
+      "details": "Department of Metallurgical Engineering"
+    },
+    "18": {
+      "name": "Metal Testing Lab OFFICE, DEAN (Planning and Development)",
+      "details": ""
+    },
+    "19": {
+      "name": "Stairs 4"
+      ,
+      "details":""
+    },
+    "21": {
+      "name": "Research Laboratory",
+      "details": "Dr. R.N Patel - Lab Incharge"
+    },
+    "22": {
+      "name": "Drives Lab",
+      "details": "Dr. Lalit Kumar Sahu - Lab Incharge"
+    },
+    "23": {
+      "name": "High Voltage Lab",
+      "details": "Dr. Anamika Yadav - Lab Incharge"
+    },
+    "24": {
+      "name": "Mineral Processing Lab, G-1",
+      "details": ""
+    },
+    "25": {
+      "name": "Department of Mining Engineering",
+      "details": ""
+    },
+    "26": {
+      "name": "General Mining Lab",
+      "details": ""
+    },
+    "27": {
+      "name": "ROCK Mechanics Lab",
+      "details": ""
+    },
+    "28": {
+      "name": "Department of Humanities Social Sciences Value Education",
+      "details": "Dr Hina Chawda"
+    },
+    "29": {
+      "name": "Stairs 2",
+      "details": ""
+    },
+    "31": {
+      "name": "Ladies Toilet-1",
+      "details":""
+    },
+    "x33": {
+      "p34": "p41",
+      "p85": "p41"
+    },
+    "x34": {
+      "p34": "p40",
+      "p85": "p40"
+    },
+    "35": {
+      "name": "Measurment and Control Laboratory",
+      "details": ""
+    },
+    "36": {
+      "name": "Dr S.D Patle Dr S. P.S. Matharu",
+      "details": ""
+    },
+    "37": {
+      "name": "Dynamic of Machines Laboratory",
+      "details": ""
+    },
+    "38": {
+      "name": "Computer Lab, Gate 2",
+      "details": ""
+    },
+    "41": {
+      "name": "Metal and Casting Shop",
+      "details": "MME"
+    },
+    "42": {
+      "name": "Research Scholar Room - 2",
+      "details": "MME"
+    },
+    "43": {
+      "name": "Dr. R Salhothra",
+      "details":""
+    },
+    "44": {
+      "name": "Mechanical Engg. Store",
+      "details":""
+    },
+    "45": {
+      "name": "Stairs 3",
+      "details":""
+    },
+    "46": {
+      "name": "Refrigeration and Air Conditioning Laboratory",
+      "details":""
+    },
+    "47": {
+      "name": "Mrs. Nisha Netam, Gate 3",
+      "details": "Assistant Professor Mechanical Engg. Department"
+    },
+    "48": {
+      "name": "HOD Office Department of Mechanical Engineering",
+      "details": "Dr. (Miss) S. L. Sinha, Dr. R.K. Yadav"
+    },
+    "49": {
+      "name": "Internal Combustion Engine Laboratory",
+      "details":""
+    },
+    "50": {
+      "name": "Badminton Court",
+      "details":""
+    },
+    "51": {
+      "name": "Computer Lab Mining Department, G-1",
+      "details":""
+    },
+    "52": {
+      "name": "LEGAL CELL, Gate 1, G-1",
+      "details": ""
+    },
+    "53": {
+      "name": "Stairs 1",
+      "details": ""
+    },
+    "54": {
+      "name": "Dr, Govardhan Bhatt",
+      "details": "Assistant Professor Civil Engg. Department"
+    },
+    "55": {
+      "name": "Dr. Mani Kant Verma Dr. Ansu Thomas",
+      "details": "Assistant Professor Civil Engg. Department"
+    },
+    "56": {
+      "name": "Fluid Mech. Lab, G-10",
+      "details": ""
+    },
+    "62": {
+      "name": "Stairs 6",
+      "details":""
+    },
+    "63": {
+      "name": "Mass Transfer Laboratory, Inorganic Process Laboratory, G-55",
+      "details":""
+    },
+    "64": {
+      "name": "Lecture Room",
+      "details": "BTE"
+    },
+    "65": {
+      "name": "Project Room - 2, Advanced Seperation Research Lab",
+      "details":""
+    },
+    "66": {
+      "name": "Project Room - 3",
+      "details":""
+    },
+    "67": {
+      "name": "Process Dynamics and Control Laboratory & Organic Process Technology Laboratory",
+      "details":""
+    },
+    "69": {
+      "name": "Enviromental Engineering Laboratory",
+      "details": "Dr. P Ghosh, Dr. J. Anandkumar, Dr. V. K. Singh, Dr. C. Thakur"
+    },
+    "70": {},
+    "72": {
+      "name": "Makerspace",
+      "details":""
+    },
+    "73": {
+      "name": "Department of Biotechnology Lab - 1, G-35",
+      "details": ""
+    },
+    "74": {
+      "name": "Research Laboratory, G-33, G-34",
+      "details": ""
+    },
+    "75": {
+      "name": "Department of Chemistry Faculty Room HOD Office Chemistry",
+      "details": ""
+    },
+    "76": {
+      "name": "B.Tech Lab 1. Applied Chemistry Lab 2. Enviroment & Ecology Lab, G-29",
+      "details": ""
+    },
+    "77": {
+      "name": "Gents Toilet-4",
+      "details": ""
+    },
+    "78": {
+      "name": "Stairs 5",
+      "details": ""
+    },
+    "79": {
+      
+    },
+    "80": {
+      "name": "Dr Manoj Pradhan Professor Mining",
+      "details": ""
+    },
+    "81": {
+      "name": "Ladies Toilet-2",
+      "details": ""
+    },
+    "83": {
+      "name": "Stairs 7",
+      "details": ""
+    },
+  
+    "84": {
+      "name": "Ladies Toilet-3",
+      "details": ""
+    },
+  
+    "85": {
+      "name": "Surveying Lab",
+      "details": ""
+    },
+  
+    "86": {
+      "name": "Transportation Engg. Lab",
+      "details": ""
+    },
+    "87": {
+      "name":"NSS Office store room",
+      "details":""
+    },
+    "88": {
+      "name": "Structural Dynamic Lab",
+      "details": ""
+    },
+  
+    "89": {
+      "name": "Sunny Deol G.",
+      "details": "Civil"
+    },
+  
+    "90": {
+      "name": "Dr Ajay Vikram Ahirwar",
+      "details": "Civil"
+    },
+  
+    "91": {
+      "name": "Store Room",
+      "details":""
+    },
+    "92": {
+      "name": "Gents Toilet-2",
+      "details": ""
+    },
+    "93": {
+      "name": "Office of the Head Department of Metallurgical and Materials Engineering, G-2",
+      "details": ""
+    },
+    "94": {
+      "name": "Advanced Geological Lab, G-3",
+      "details": ""
+    },
+    "95": {
+      "name": "Lecture Room G-4 (Department of MME), G-4",
+      "details": ""
+    },
+    "96": {
+      "name": "Heat Transfer Laboratory, G-47",
+      "details": "Dr. P Ghosh"
+    },
+    "97": {
+      "name": "Dr (Mrs) A B Soni Professor, G-46",
+      "details": ""
+    },
+    "98": {
+      "name": "Chemical Reaction Engineering Laboratory & Fuel Testing Laboratory, G-45",
+      "details": ""
+    },
+    "99": {
+      "name": "Departmental Library Chemical Engineering, G-43, G-44",
+      "details": ""
+    },
+    "100": {
+      "name": "Head of Department Chemical Engineering, G-42",
+      "details": ""
+    },
+    "101": {
+      "name": "G-41 classroom, G-41",
+      "details": ""
+    },
+    "112": {
+      "name": "PG Section Department of Civil Engineering",
+      "details": "Water Resources Lab, M Tech (Structrual) Lecture Room - 2, M Tech (WRD&IE) Lecture Room - 1"
+    },
+    "111": {
+      "name": "Advanced Metal Casting Laboratory, Moulding Shop",
+      "details": "Mr. U. K. Verma MME"
+    },
+    "110": {
+      "name": "Metal Processing and Advanced Manufacturing Laboratory",
+      "details": "(ME Lab-4)"
+    },
+    "109": {
+      "name": "Weilding Shop",
+      "details": "Mr. M. K. Patle"
+    },
+    "108": {
+      "name": "Fitting Shop",
+      "details": "Mr. J.R. Mandavi"
+    },
+    "107": {
+      "name": "Office Workshop Department",
+      "details": "Dr. Shailesh Vaidya - incharge, Dr. Jagadish ME"
+    },
+    "106": {
+      "name": "C.N.C Shop",
+      "details": ""
+    },
+    "105": {
+      "name": "Machine Shop",
+      "details": "Mr. S. D. Goyal"
+    },
+    "104": {
+      "name": "Turing Shop",
+      "details": "Mr. Ripusudan Lal Sahu"
+    },
+    "103": {
+      "name": "Carpentry Shop",
+      "details": "Mr. Santosh Kumar Dewangan"
+    },
+    "3": {
+      "name": "Dean Parking",
+      "details":""
+    },
+    "14": {
+      "name": "Stairs 8",
+      "details":""
+    },
+    "20": {
+      "name": "Lift and Water 1",
+      "details":""
+    },
+    "30": {
+      "name": "Gents Toilet-3",
+      "details":""
+    },
+    "32": {
+      "name": "Mechanics Library",
+      "details":""
+    },
+    "57": {
+      "name": "Department Office Biomedical Engineering",
+      "details": "Dr. Jaya Dwivedi"
+    },
+    "58": {
+      "name": "HOD Department of Biomedical Engineering",
+      "details": ""
+    },
+    "59": {
+      "name": "Classroom - 3 BME, Room No BME - 2",
+      "details": "BME"
+    },
+    "60": {
+      "name": "Room No. BM 1, Class Room - 2",
+      "details": "BME"
+    },
+    "61": {
+      "name": "Ladies Toilet-4",
+      "details":""
+    },
+    "113": {
+      "name": "Dr. S Noyd Victoria",
+      "details":""
+    },
+    "114": {
+      "name": "Dean (Research and Consultancy) Office, Main gate",
+      "details": ""
+    },
+    "68": {
+      "name": "A. K. Poonia, P. k. Chaudhari",
+      "details": "Assistant Professor"
+    },
+    "40": {
+      "name": "Lift and Water 2",
+      "details":""
+    }
   }
-}
