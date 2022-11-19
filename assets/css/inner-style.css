@@ -79,7 +79,7 @@ body {
   # Header
   --------------------------------------------------------------*/
   #header {
-    height: 90px;
+    height: 100px;
     transition: all 0.5s;
     z-index: 997;
     background: linear-gradient(45deg, #1de099, #1dc8cd);
@@ -111,15 +111,6 @@ body {
     color: #fff;
   }
   
-  @media (max-width: 768px) {
-    #header #logo h1 {
-      font-size: 28px;
-    }
-  
-    #header #logo img {
-      height: 65px;
-    }
-  }
 
 /*--------------------------------------------------------------
 # Navigation Menu
@@ -386,7 +377,7 @@ body {
   }
   @media(max-width:750px){
     #header{
-      height: 26vh !important;
+      height: 150px !important;
     }
   }
 
@@ -487,7 +478,7 @@ body {
     transition: opacity 0.5s ease-in-out;
 }
 .w-container{
-  margin-top: 6rem;
+  margin-top: 5rem;
   display: flex;
 }
 .green{
@@ -501,7 +492,7 @@ svg{
 }
 @media(max-width:900px){
   .w-container{
-    margin-top: 12rem;
+    margin-top: 10rem;
   }
     svg{
         width: 100vw;
@@ -557,7 +548,7 @@ svg{
   padding: 3px 5px;
   border-radius: 10px;
   /* margin-left: 10rem; */
-  margin-bottom: 2rem;
+  margin: 2rem 0.5rem;
 }
 .reset-btn:hover{
   background-color: #1dc8cd;
@@ -598,4 +589,62 @@ svg{
 
 .cf-btn{
   padding-bottom: 1rem;
+}
+
+/* EXPANDING GRID  */
+/* The grid: Three equal columns that floats next to each other */
+.column-eg {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+  text-align: center;
+  font-size: 17px;
+  color: white;
+  /* margin-top: 0.5rem; */
+}
+@media(max-width:750px){
+  .column-eg{
+    margin-top: 0rem;
+  }
+}
+
+.containerTab-eg {
+  padding: 20px;
+  color: white;
+}
+
+/* Clear floats after the columns */
+.row-eg:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Closable button inside the container tab */
+.closebtn-eg {
+  float: right;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.floor-selector{
+  border: 2px solid #1dc8cd;
+  padding: 0px 0px;
+  border-radius: 10px;
+  margin: 0rem;
+  width: 20vw;
+  font-size: 1rem;
+}
+
+@media(max-width:900px){
+  .floor-selector{
+    width: 30vw;
+  }
+}
+
+@media(max-width:350px){
+  .floor-selector{
+    font-size: 0.7rem;
+  }
 }
