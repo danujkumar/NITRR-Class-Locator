@@ -182,7 +182,7 @@ function createLine(x1, y1, x2, y2, lineId) {
   line.style.width = distance + 3 + "px";
 }
 
-const intersectionGreen = (x, y) => {
+const sdhfiusdhfsiadufhlinterg = (x, y) => {
   let foundx, foundy;
 
   let yintersect = {
@@ -223,7 +223,6 @@ const intersectionGreen = (x, y) => {
   let test = document.getElementById(intersect(foundx, foundy)[0]);
   return test;
 };
-
 function removeDestinationAll() {
   for (let i = 1; i <= 114; i++) {
     if (
@@ -417,9 +416,9 @@ const locates = () => {
   xgreenendss = greenEnds.getAttribute("x");
   ygreenendss = greenEnds.getAttribute("y");
 
-  let intersecteds = intersectionGreen(greenStarts.id, greenEnds.id);
+  let intersecteds = sdhfiusdhfsiadufhlinterg(greenStarts.id, greenEnds.id);
   if (intersecteds == null)
-    intersecteds = intersectionGreen(greenEnds.id, greenStarts.id);
+    intersecteds = sdhfiusdhfsiadufhlinterg(greenEnds.id, greenStarts.id);
 
   let xintersecteds = Number.parseInt(intersecteds.getAttribute("x"));
   let yintersecteds = Number.parseInt(intersecteds.getAttribute("y"));
