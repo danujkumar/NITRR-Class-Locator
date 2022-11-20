@@ -187,7 +187,9 @@ function createLine(x1, y1, x2, y2, lineId) {
   line.setAttribute("y", yMid.toString());
   line.setAttribute("x", (xMid - distance / 2).toString());
   line.style.transform = `rotate(${salopeInDegrees}deg)`;
-  line.style.width = distance + 3 + "px";
+  if(map_no == "0") line.style.width = distance + 3 + "px";
+  else if(map_no == "1") line.style.width = distance + 4 + "px";
+  else line.style.width =distance + 15 +"px";
 }
 
 const sdhfiusdhfsiadufhlinterg = (x, y) => {
@@ -240,9 +242,6 @@ const sdhfiusdhfsiadufhlinterg = (x, y) => {
     }
   }
   
-
-  
-
   for (let i in yintersect) {
     if (yintersect[i].includes(y)) {
       foundy = yintersect[i];
