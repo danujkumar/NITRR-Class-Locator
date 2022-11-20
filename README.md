@@ -1,7 +1,9 @@
 # Class Loacator NITRR
 #### Team - ELEX-CODE
 #### Quick Link to visit our Website
-[www.classlocator-nitrr.live](https://www.classlocator-nitrr.live)
+- [www.classlocator-nitrr.live](https://www.classlocator-nitrr.live)
+
+- [At Netlify](https://nitrr-class-locator.netlify.app/)
 
 
 
