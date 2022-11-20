@@ -1,8 +1,11 @@
 import mapping from "./json/bluetoGreen.json" assert { type: "json" };
+import mappingf from "./json/bluetoGreen1.json" assert {type:"json"};
+import mappings from "./json/bluetoGreen2.json" assert {type:"json"};
 import exceptions from "./json/exceptionPaths.json" assert { type: "json" };
 import searching from "./json/searchTool.json" assert{type:"json"};
+
 let starting;
-let ending ;
+let ending, map_no;
 let inUse = [];
 let id = [];
 let additionalInfo = [];
@@ -21,19 +24,16 @@ let makefinal = document.getElementById("makefinal");
 let preinfo;
 
 const Information = (buttonClicked)=>{
-  document.getElementById(buttonClicked)
   if(preinfo != undefined)
         {
           if(preinfo != starting && preinfo != ending)
           {
-            try {
-              document.getElementById(preinfo).querySelector('path').style.fill = "#d3d3d3"
-            } catch (error) {
-              document.getElementById(preinfo).querySelector('rect').style.fill = "#dbdbdb"
-            }
+            let element = document.getElementById(preinfo);
+            if(element.querySelector('rect') != undefined)
+              element.querySelector('rect').style.fill = "#d3d3d3"
+            else
+              element.querySelector('path').style.fill = "#dbdbdb"
           }
-            
-            
           if(preinfo == buttonClicked)
           {
             preinfo = undefined;
@@ -159,10 +159,11 @@ function setter() {
 
 window.addEventListener("load", () => {
   try {
-    starting = sessionStorage.getItem('start').toString();
-  ending = sessionStorage.getItem('end').toString();
-  setter();
-  getsetGoo();
+      starting = sessionStorage.getItem('start').toString();
+      ending = sessionStorage.getItem('end').toString();
+      map_no = sessionStorage.getItem('map_no');
+      setter();
+      getsetGoo();
   } catch (error) {
 
   }
@@ -191,21 +192,56 @@ function createLine(x1, y1, x2, y2, lineId) {
 
 const sdhfiusdhfsiadufhlinterg = (x, y) => {
   let foundx, foundy;
+  let yintersect,xintersect;
+  if(map_no != null && map_no != "null" && map_no != "undefined" && map_no != undefined)
+  {
+    if(Number.parseInt(map_no) == 0)
+    {
+         yintersect = {
+            y11: ["p34", "p85", "p53"],
+            y22: ["p86", "p87", "p63"],
+            y33: ["p70", "p79", "p88", "p111"],
+            y44: ["p110", "p90", "p108"],
+          };
+          xintersect = {
+            x11: ["p111", "p110"],
+            x22: ["p34", "p86", "p88", "p90"],
+            x33: ["p85", "p87", "p79", "p108"],
+            x44: ["p53", "p63", "p70"],
+          };
+    }
+    else if(Number.parseInt(map_no) == 1)
+    {
+        xintersect = {
+          x11: ["rect887", "rect917","rect855","rect837"],
+          x22: ["rect913", "rect947", "rect867", "rect975"],
+          x33: ["rect903", "rect937", "rect971"]
+        };
+        yintersect = {
+          y11: ["rect887", "rect913", "rect903"],
+          y22: ["rect917", "rect947", "rect937"],
+          y33: ["rect855", "rect867", "rect971"],
+          y44: ["rect837", "rect975"]
+        };
+    }
+    else if(Number.parseInt(map_no) == 2)
+    {
+        xintersect = {
+          x11: ["rect765", "rect823","rect825","rect907"],
+          x22: ["rect785", "rect813", "rect891", "rect853"],
+          x33: ["rect801", "rect811", "rect917"]
+        };
+        yintersect = {
+          y11: ["rect765", "rect785", "rect801"],
+          y22: ["rect823", "rect813", "rect811"],
+          y33: ["rect825", "rect891", "rect917"],
+          y44: ["rect907", "rect853"]
+        };
+    }
+  }
+  
 
-  let yintersect = {
-    y11: ["p34", "p85", "p53"],
-    y22: ["p86", "p87", "p63"],
-    y33: ["p70", "p79", "p88", "p111"],
-    y44: ["p110", "p90", "p108"],
-    
-  };
-
-  let xintersect = {
-    x11: ["p111", "p110"],
-    x22: ["p34", "p86", "p88", "p90"],
-    x33: ["p85", "p87", "p79", "p108"],
-    x44: ["p53", "p63", "p70"],
-  };
+  
 
   for (let i in yintersect) {
     if (yintersect[i].includes(y)) {
@@ -232,7 +268,23 @@ const sdhfiusdhfsiadufhlinterg = (x, y) => {
   return test;
 };
 function removeDestinationAll() {
-  for (let i = 1; i <= 301; i++) {
+
+  let startl,endl;
+  if(Number.parseInt(map_no) == 0)
+  {
+    startl = 1,endl = 114;
+  }
+  else if(Number.parseInt(map_no) == 1)
+  {
+    startl = 204, endl = 301;
+  }
+  else if(Number.parseInt(map_no) == 2)
+  {
+    startl = 115, endl = 203;
+  }
+
+
+  for (let i = startl; i <= endl; i++) {
     if (
       i != preinfo &&
       i != "6" &&
@@ -244,7 +296,13 @@ function removeDestinationAll() {
       i != "4" &&
       i != "1"
     )
-      document.getElementById(i.toString()).querySelector('path').style.fill = "#d4d4d4";
+    {
+      let element = document.getElementById(i.toString());
+      if(element.querySelector('rect')!=undefined)
+        element.querySelector('rect').style.fill = "#d4d4d4";
+      else
+        element.querySelector('path').style.fill = "#dbdbdb"
+    }  
   }
 }
 
@@ -276,16 +334,25 @@ const removeAlll = () => {
 };
 
 const info = (id) => {
-  console.log(document.getElementById(id));
   if(id != starting && id != ending)
-    document.getElementById(id).querySelector('path').style.fill = "#6e6969"
+    {
+      let element = document.getElementById(id);
+      if(element.querySelector('rect') != null)
+        element.querySelector('rect').style.fill = "#6e6969"
+      else
+        element.querySelector('path').style.fill = "#6e6969"
+    }
   namecard[0].innerHTML = searching[id]['name'];
   details[0].innerHTML = searching[id]['details'];
 };
 
 const removeinfo = ()=>{
   try {
-      document.getElementById(preinfo).querySelector('path').style.fill = "#d3d3d3"
+    let element = document.getElementById(preinfo);
+    if(element.querySelector('rect') != undefined)
+      element.querySelector('rect').style.fill = "#d3d3d3";
+    else
+      element.querySelector('path').style.fill = "#dbdbdb";
   } catch (error) {
     
   }
@@ -320,17 +387,30 @@ const greenDecider = () => {
   let greenEnd = [];
   let end;
   let transport = [];
+  let mapUse;
   let flags = true;
     
+  if(Number.parseInt(map_no) == 0)
+  {
+    mapUse = mapping;
+  }
+  else if(Number.parseInt(map_no) == 1)
+  {
+    mapUse = mappingf;
+  }
+  else if(Number.parseInt(map_no)== 2)
+  {
+    mapUse = mappings;
+  }
   const mappp = () => {
-    for (let i in mapping[starting]) {
+    for (let i in mapUse[starting]) {
       greenStart.push(document.getElementById(i));
-      start = document.getElementById(mapping[starting][i]);
+      start = document.getElementById(mapUse[starting][i]);
       bluetoblue.add(i);
     }
-    for (let j in mapping[ending]) {
+    for (let j in mapUse[ending]) {
       greenEnd.push(document.getElementById(j));
-      end = document.getElementById(mapping[ending][j]);
+      end = document.getElementById(mapUse[ending][j]);
       bluetoblue.add(j);
     }
   };
@@ -530,16 +610,32 @@ const getsetGoo = () => {
   if(starting!=null && starting!="null" && starting !="undefined" && starting != undefined)
   {
     let getsetRoom1 = document.getElementById(starting);
-  getsetRoom1.querySelector('path').setAttribute("fill-opacity", "0.5");
-  getsetRoom1.querySelector('path').style.fill = "#63e6beff";
-  starting = getsetRoom1.id;
+    if(getsetRoom1.querySelector('rect') != undefined)
+    {
+      getsetRoom1.querySelector('rect').setAttribute("fill-opacity","0.5")
+      getsetRoom1.querySelector('rect').style.fill = "#63e6beff"
+    }
+    else
+    {
+      getsetRoom1.querySelector('path').setAttribute("fill-opacity","0.5")
+      getsetRoom1.querySelector('path').style.fill = "#63e6beff"
+    }
+    starting = getsetRoom1.id;
   }
   if(ending!=null && ending!="null" && ending!="undefined" && ending!=undefined)
   {
     let getsetRoom2 = document.getElementById(ending);
-  getsetRoom2.querySelector('path').setAttribute("fill-opacity", "0.5");
-  getsetRoom2.querySelector('path').style.fill = "#ffd43cff";
-  ending = getsetRoom2.id;
+    if(getsetRoom2.querySelector('rect') != undefined)
+    {
+      getsetRoom2.querySelector('rect').setAttribute("fill-opacity","0.7")
+      getsetRoom2.querySelector('rect').style.fill = "#ffd43cff"
+    }
+    else
+    {
+      getsetRoom2.querySelector('path').setAttribute("fill-opacity","0.7")
+      getsetRoom2.querySelector('path').style.fill = "#ffd43cff"
+    }
+    ending = getsetRoom2.id;
   }
   if(starting != null && ending != null && starting !="null" && ending != "null" && starting != "undefined" && ending != "undefined"
     && starting !=undefined && ending != undefined)
