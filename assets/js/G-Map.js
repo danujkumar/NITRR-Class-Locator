@@ -161,7 +161,8 @@ window.addEventListener("load", () => {
   try {
       starting = sessionStorage.getItem('start').toString();
       ending = sessionStorage.getItem('end').toString();
-      map_no = sessionStorage.getItem('map_no');
+      // map_no = sessionStorage.getItem('map_no');
+      map_no = "0";
       setter();
       getsetGoo();
   } catch (error) {
