@@ -531,6 +531,14 @@ color: white;
     transition: opacity 0.5s ease-in-out;
 }
 
+.pathg rect{
+  transform-box:fill-box;
+  transform-origin:center;
+  opacity: 0;
+  
+  transition: opacity 0.5s ease-in-out;
+}
+
 .w-container{
   margin-top: 0;
   display: flex;
