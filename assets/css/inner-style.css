@@ -402,7 +402,7 @@ position: relative;
 /* height: 40px; */
 background: #d9d9d9;
 width: 100%;
-box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
+box-shadow: 2px 2px 7px 3px rgba(0, 0, 0, 0.3);
 /* box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.959); */
 display: flex;
 align-items: center;
@@ -551,7 +551,7 @@ svg{
     svg{
         width: 100vw;
         height: 50vh;
-        padding: 1rem;
+        padding: 0 1rem;
         /* padding: 0.5rem; */
     }
     .w-container{
