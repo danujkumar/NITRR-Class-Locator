@@ -25,7 +25,14 @@ const Information = (buttonClicked)=>{
   if(preinfo != undefined)
         {
           if(preinfo != starting && preinfo != ending)
-            document.getElementById(preinfo).querySelector('path').style.fill = "#d3d3d3"
+          {
+            try {
+              document.getElementById(preinfo).querySelector('path').style.fill = "#d3d3d3"
+            } catch (error) {
+              document.getElementById(preinfo).querySelector('rect').style.fill = "#dbdbdb"
+            }
+          }
+            
             
           if(preinfo == buttonClicked)
           {
@@ -190,6 +197,7 @@ const sdhfiusdhfsiadufhlinterg = (x, y) => {
     y22: ["p86", "p87", "p63"],
     y33: ["p70", "p79", "p88", "p111"],
     y44: ["p110", "p90", "p108"],
+    
   };
 
   let xintersect = {
