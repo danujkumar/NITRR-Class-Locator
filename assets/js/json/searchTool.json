@@ -430,4 +430,352 @@
       "name": "Lift and Water 2",
       "details":""
     }
+        "150": {
+      "name": "Department Of Mathematics",
+      "details":"Dr. M. Krishna Prasad, Dr. N.K. Thakur, Dr. Deepmala Sharma"
+    },
+    "151": {
+      "name": "Stairs",
+      "details":""
+    },
+    "152": {
+      "name": "Office, HOD Department Of Mathematics",
+      "details":""
+    },
+    "153": {
+      "name": "Dr. A. S. Raghuvanshi",
+      "details":"ECE HOD"
+    },
+    "154": {
+      "name": "Communication Lab",
+      "details":"ECE Dept."
+    },
+    "155": {
+      "name": "Digital & Microprocessor Lab",
+      "details":"ECE Dept."
+    },
+    "156": {
+      "name": "Computer Vision Lab",
+      "details":"Dr. T. Meenpal, Associate Proff. ECE"
+    },
+    "157": {
+      "name": "Faculty Room, ECE Dept",
+      "details":"ECE Dept."
+    },
+    "158": {
+      "name": "DSP Lab",
+      "details":"Dr. Saikal Majumdar, Assistant Professor ECE Dept."
+    },
+    "159": {
+      "name": "Microwave & Fibre Optics Lab",
+      "details":"Dr. Anshul Gupta, Assistant Professor ECE Dept."
+    },
+    "160": {
+      "name": "Head ECE Dept. Office",
+      "details":"ECE Dept."
+    },
+    "161": {
+      "name": "Basic VLSI Lab",
+      "details":"ECE MTECH Lab"
+    },
+    "162": {
+      "name": "Dr. Deboraj Muchahary",
+      "details":"Assistant Professor ECE Dept."
+    },
+    "163": {
+      "name": "Dr. Guru Prasad Subas Chandra Mishra",
+      "details":"Associate Professor ECE Dept."
+    },
+    "164": {
+      "name": "Staff's Toilet",
+      "details":""
+    },
+    "143": {
+      "name": "Ladies Toilet",
+      "details":""
+    },
+    "145": {
+      "name": "Ladies Toilet",
+      "details":""
+    },
+    "146": {
+      "name": "Faculty Room",
+      "details":"Dr. S. N. Raw, Dr. Anoop Kumar Tiwari, Dr. Shashi Kant Tarai, Dr. Sandip Sarkar"
+    },
+    "147": {
+      "name": "SN-2",
+      "details":"Classroom"
+    },
+    "148": {
+      "name": "SN-3",
+      "details":"Classroom"
+    },
+    "149": {
+      "name": "SN-4",
+      "details":"Classroom"
+    },
+    "142": {
+      "name": "S-42 Elex Gallery",
+      "details":"Classroom"
+    },
+    "141": {
+      "name": "S-42-A Elex Classroom",
+      "details":"Classroom"
+    },
+    "140": {
+      "name": "VLSI & Microelectronics Lab",
+      "details":"Dr. A. Naugarhiya, Assitant Proff"
+    },
+    "139": {
+      "name": "Dr. Shrish Verma",
+      "details":"Professor and Dean Academics"
+    },
+    "138": {
+      "name": "Analog Circuit Lab",
+      "details":"Dr. Sujay Chakraborty"
+    },
+    "137": {
+      "name": "Embedded System Lab",
+      "details":"Dr. B Acharya, Associate Professor"
+    },
+    "136": {
+      "name": "Electronics Workshop",
+      "details":"ECE Dept."
+    },
+    "187": {
+      "name": "S-18",
+      "details":"Classroom"
+    },
+    "188": {
+      "name": "S-17",
+      "details":"Classroom"
+    },
+    "189": {
+      "name": "S-16",
+      "details":"Classroom"
+    },
+    "190": {
+      "name": "Dr. G Srinivas, R. K. Sahu",
+      "details":"Faculty"
+    },
+    "191": {
+      "name": "Stairs",
+      "details":""
+    },
+    "192": {
+      "name": "S-13",
+      "details":"Classroom"
+    },
+    "193": {
+      "name": "S-14",
+      "details":"Classroom"
+    },
+    "165": {
+      "name": "Dr. Sudhakar Pandey",
+      "details":"Associate Professor IT Department"
+    },
+    "166": {
+      "name": "Dr. Tirath Prasad Sahu",
+      "details":"Assistant Professor IT Department"
+    },
+    "167": {
+      "name": "Dr. Satya Prakash Sahu",
+      "details":"Associate Professor IT Department"
+    },
+    "168": {
+      "name": "Lab 3, Computer Lab IT",
+      "details":"Dr. Sanjay Kumar Assistant Professor"
+    },
+    "169": {
+      "name": "IT Dept Office",
+      "details":"IT Dept"
+    },
+    "170": {
+      "name": "Faculty Room",
+      "details":""
+    },
+    "171": {
+      "name": "Computer Lab IT",
+      "details":"IT Dept"
+    },
+    "172": {
+      "name": "IT-2",
+      "details":"Classroom"
+    },
+    "173": {
+      "name": "IT-1",
+      "details":"Classroom"
+    },
+    "174": {
+      "name": "Dr. Harendra Billraj",
+      "details":"Faculty"
+    },
+    "122": {
+      "name": "M.Tech Class Room",
+      "details":"M.Tech"
+    },
+    "123": {
+      "name": "Measurement Lab",
+      "details":"Dr. S. Ghosh, Dr. Sachin Jain, Dr. M. Biswal, Dr. B. Bag, Kishor Kumar Dhruv, Santosh Kumar Sahu"
+    },
+    "124": {
+      "name": "S-22",
+      "details":"Classroom"
+    },
+    "125": {
+      "name": "Electronics Lab",
+      "details":"ECE Dept."
+    },
+    "126": {
+      "name": "Faculty Room 6",
+      "details":"Dr. P. D. Dewangan"
+    },
+    "127": {
+      "name": "Faculty Room 5",
+      "details":"Dr. S. Gupta"
+    },
+    "128": {
+      "name": "Computer Lab Near S-19",
+      "details":"Dr. N. D. Londhe, Rajesh Kumar Sahu"
+    },
+    "129": {
+      "name": "S-19",
+      "details":"Classroom"
+    },
+    "130": {
+      "name": "Gents Toilet",
+      "details":""
+    },
+    "131": {
+      "name": "Stairs",
+      "details":""
+    },
+    "132": {
+      "name": "Gents",
+      "details":""
+    },
+    "133": {
+      "name": "Dept. Of Electrical Engineering",
+      "details":"Electrical Dept."
+    },
+    "134": {
+      "name": "Faculty Room",
+      "details":"Dr. A. Yadav, Dr. E. Koley, Dr. V. Singh"
+    },
+    "135": {
+      "name": "S-4",
+      "details":"Classroom"
+    },
+    "115": {
+      "name": "Stairs",
+      "details":""
+    },
+    "116": {
+      "name": "A C Pahadiya",
+      "details":"Superintendent (Academics)"
+    },
+    "117": {
+      "name": "Exam Cell",
+      "details":""
+    },
+    "118": {
+      "name": "Office Dean Academics",
+      "details":""
+    },
+    "119": {
+      "name": "M. I. S. Room",
+      "details":""
+    },
+    "120": {
+      "name": "D-1",
+      "details":"Reporting Online"
+    },
+    "121": {
+      "name": "Vikram Sarabhai Hall",
+      "details":""
+    },
+    "194": {
+      "name": "Lift & Water Cooler",
+      "details":""
+    },
+    "180": {
+      "name": "D-3",
+      "details":"Verification"
+    },
+    "181": {
+      "name": "D-4",
+      "details":"Registration Helpdesk"
+    },
+    "182": {
+      "name": "Stairs",
+      "details":""
+    },
+    "183": {
+      "name": "Hydrogeology Research Lab, Applied Geology",
+      "details":"Dr. D. C. Jhariya, Assistant Professor"
+    },
+    "184": {
+      "name": "M.Tech Class Room - 3 Conference Hall / Seminar Hall",
+      "details":""
+    },
+    "185": {
+      "name": "Automobile Engineering Lab",
+      "details":""
+    },
+    "186": {
+      "name": "M.Tech Class Room & Lab Applied Geology",
+      "details":"Applied Geology"
+    },
+    "179": {
+      "name": "Gents Toilet",
+      "details":""
+    },
+    "178": {
+      "name": "Ladies Toilet",
+      "details":""
+    },
+    "176": {
+      "name": "Rakesh Tripathi",
+      "details":"Assistant Professor IT Department"
+    },
+    "177": {
+      "name": "Yeddu Vijaya Babu, Dr. Moksha Singh",
+      "details":"Assistant Professor, Humanities & Social Science"
+    },
+    "200": {
+      "name": "Dr. N. Vishwakarma",
+      "details":"Head Of Dept. Of Applied Geology"
+    },
+    "199": {
+      "name": "Geological Museum & Optical Labs",
+      "details":"Dr. N. Vishwakarma"
+    },
+    "198": {
+      "name": "Faculty Rooms & Computer Lab",
+      "details":"Dr. P Diwan, Dr. H. Govil, Dr. Bhargava K. Iyengar, Gourav Jangde, Applied Geology"
+    },
+    "197": {
+      "name": "Stairs",
+      "details":""
+    },
+    "196": {
+      "name": "Cutting & Polishing Lab",
+      "details":"Applied Geology"
+    },
+    "195": {
+      "name": "S-11",
+      "details":"Classroom"
+    },
+    "201": {
+      "name": "Stairs",
+      "details":""
+    },
+    "202": {
+      "name": "Library",
+      "details":""
+    },
+    "203": {
+      "name": "Library",
+      "details":""
+    }
   }
