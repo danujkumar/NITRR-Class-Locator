@@ -224,7 +224,7 @@ const sdhfiusdhfsiadufhlinterg = (x, y) => {
   return test;
 };
 function removeDestinationAll() {
-  for (let i = 1; i <= 114; i++) {
+  for (let i = 1; i <= 301; i++) {
     if (
       i != preinfo &&
       i != "6" &&
