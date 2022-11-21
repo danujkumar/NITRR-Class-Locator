@@ -220,3 +220,14 @@
     }
     document.getElementById(tabName).style.display = "block";
   }
+
+let grounds1 = document.getElementById("grounds1");
+let firstt1 = document.getElementById("firstt1");
+let secondd1 = document.getElementById("secondd1")
+const removeSess = ()=>{
+  sessionStorage.removeItem("start");
+  sessionStorage.removeItem("end");
+}
+grounds1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","0");}
+firstt1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","1");}
+secondd1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","2");}

@@ -430,7 +430,8 @@ font-weight: 500;
 .containerharsh .pagination li a:hover,
 .active1 {
 background: #878383;
-color: white;
+color: white !important; 
+cursor:default;
 }
 
 /* floor changes end  */

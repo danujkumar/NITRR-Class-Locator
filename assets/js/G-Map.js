@@ -24,23 +24,19 @@ let makefinal = document.getElementById("makefinal");
 let map0 = document.getElementById("groundd");
 let map1 = document.getElementById("firstt");
 let map2 = document.getElementById("secondd");
-let purple = document.querySelector(".purple svg");
 let buttonCon = document.querySelectorAll(".containerharsh a");
+let removals = document.getElementById("removal")
 let initialRotate = 0;
 let preinfo;
-console.log(buttonCon)
 
 const clearMap = () =>
 {
   if(map_no == "1")
-      {map2.innerHTML = "";map0.innerHTML = "";map1.style.display = "block";
-        map2.style.display = "none";map0.style.display = "none"}
+       { removals.removeChild(map0);removals.removeChild(map2);map1.style.opacity = 1}
   else if(map_no == "2")
-      {map1.innerHTML = "";map0.innerHTML = "";map2.style.display = "block";
-      map1.style.display = "none";map0.style.display = "none"}
+      { removals.removeChild(map0);removals.removeChild(map1);map2.style.opacity = 1}
   else
-      {map1.innerHTML = "";map2.innerHTML = "";map0.style.display = "block";
-      map1.style.display = "none";map2.style.display = "none"}
+      {removals.removeChild(map1);removals.removeChild(map2);map0.style.opacity = 1}
 }
 
 const butControl = ()=>{
@@ -53,7 +49,7 @@ const butControl = ()=>{
 }
 
 window.addEventListener("load", () => {
-  try {
+try {
       map_no = sessionStorage.getItem('map_no');
       if(map_no == null) {map_no = "0"}
       butControl();
@@ -66,6 +62,10 @@ window.addEventListener("load", () => {
 
   }
 });
+
+buttonCon[0].onclick = ()=>{sessionStorage.setItem('map_no',"0");location.reload()};
+buttonCon[1].onclick = ()=>{sessionStorage.setItem('map_no',"1");location.reload()};
+buttonCon[2].onclick = ()=>{sessionStorage.setItem('map_no',"2");location.reload()};
 
 const Information = (buttonClicked)=>{
   if(preinfo != undefined)
@@ -407,10 +407,17 @@ document.getElementById("reset").onclick = ()=>{
 }
 
 document.getElementById("counterclock").onclick = ()=>{
-  console.log("test")
-  initialRotate -= 90
-  purple.style.transform = `rotate(${-90})`;
-  console.log(purple)
+  initialRotate -= 90;
+  if(map_no == 1) map1.style.transform = `rotate(${initialRotate}deg)`;
+  else if(map_no == 2) map2.style.transform = `rotate(${initialRotate}deg)`;
+  else map0.style.transform = `rotate(${initialRotate}deg)`;
+}
+
+document.getElementById("clock").onclick = ()=>{
+  initialRotate += 90;
+  if(map_no == 1) map1.style.transform = `rotate(${initialRotate}deg)`;
+  else if(map_no == 2) map2.style.transform = `rotate(${initialRotate}deg)`;
+  else map0.style.transform = `rotate(${initialRotate}deg)`;
 }
 
 const greenDecider = () => {
@@ -427,8 +434,6 @@ const greenDecider = () => {
     mapUse = mappings;
   else
     mapUse = mapping;
-
-  // console.log(mapUse)
   const mappp = () => {
     for (let i in mapUse[starting]) {
       greenStart.push(document.getElementById(i));
@@ -441,8 +446,6 @@ const greenDecider = () => {
       bluetoblue.add(j);
     }
   };
-
-  // console.log(start,end)
 
   const comparison = () => {
     let xblueEnd = Number.parseInt(end.getAttribute("x"));
