@@ -23,6 +23,19 @@ let makecurrent = document.getElementById("makecurrent");
 let makefinal = document.getElementById("makefinal");
 let preinfo;
 
+window.addEventListener("load", () => {
+
+  try {
+      map_no = sessionStorage.getItem('map_no');
+      starting = sessionStorage.getItem('start');
+      ending = sessionStorage.getItem('end');
+      setter();
+      getsetGoo();
+  } catch (error) {
+
+  }
+});
+
 const Information = (buttonClicked)=>{
   if(preinfo != undefined)
         {
@@ -157,20 +170,6 @@ function setter() {
   }
 }
 
-window.addEventListener("load", () => {
-  try {
-      starting = sessionStorage.getItem('start').toString();
-      ending = sessionStorage.getItem('end').toString();
-      // map_no = sessionStorage.getItem('map_no');
-      map_no = "0";
-      setter();
-      getsetGoo();
-  } catch (error) {
-
-  }
-  
-});
-
 const distanceCalculator = (x1, y1, x2, y2) => {
   return Number.parseInt(
     Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)).toString()
@@ -188,9 +187,9 @@ function createLine(x1, y1, x2, y2, lineId) {
   line.setAttribute("y", yMid.toString());
   line.setAttribute("x", (xMid - distance / 2).toString());
   line.style.transform = `rotate(${salopeInDegrees}deg)`;
-  if(map_no == "0") line.style.width = distance + 3 + "px";
-  else if(map_no == "1") line.style.width = distance + 4 + "px";
-  else line.style.width =distance + 15 +"px";
+  if(map_no == "1") line.style.width = distance + 4 + "px";
+  else if(map_no == "2") line.style.width = distance + 15 +"px";
+  else line.style.width = distance + 3 + "px";
 }
 
 const sdhfiusdhfsiadufhlinterg = (x, y) => {
@@ -198,24 +197,9 @@ const sdhfiusdhfsiadufhlinterg = (x, y) => {
   let yintersect,xintersect;
   if(map_no != null && map_no != "null" && map_no != "undefined" && map_no != undefined)
   {
-    if(Number.parseInt(map_no) == 0)
+    if(map_no == "1")
     {
-         yintersect = {
-            y11: ["p34", "p85", "p53"],
-            y22: ["p86", "p87", "p63"],
-            y33: ["p70", "p79", "p88", "p111"],
-            y44: ["p110", "p90", "p108"],
-          };
-          xintersect = {
-            x11: ["p111", "p110"],
-            x22: ["p34", "p86", "p88", "p90"],
-            x33: ["p85", "p87", "p79", "p108"],
-            x44: ["p53", "p63", "p70"],
-          };
-    }
-    else if(Number.parseInt(map_no) == 1)
-    {
-        xintersect = {
+      xintersect = {
           x11: ["rect887", "rect917","rect855","rect837"],
           x22: ["rect913", "rect947", "rect867", "rect975"],
           x33: ["rect903", "rect937", "rect971"]
@@ -227,19 +211,34 @@ const sdhfiusdhfsiadufhlinterg = (x, y) => {
           y44: ["rect837", "rect975"]
         };
     }
-    else if(Number.parseInt(map_no) == 2)
+    else if(map_no == "2")
     {
-        xintersect = {
-          x11: ["rect765", "rect823","rect825","rect907"],
-          x22: ["rect785", "rect813", "rect891", "rect853"],
-          x33: ["rect801", "rect811", "rect917"]
-        };
-        yintersect = {
-          y11: ["rect765", "rect785", "rect801"],
-          y22: ["rect823", "rect813", "rect811"],
-          y33: ["rect825", "rect891", "rect917"],
-          y44: ["rect907", "rect853"]
-        };
+      xintersect = {
+        x11: ["rect765", "rect823","rect825","rect907"],
+        x22: ["rect785", "rect813", "rect891", "rect853"],
+        x33: ["rect801", "rect811", "rect917"]
+      };
+      yintersect = {
+        y11: ["rect765", "rect785", "rect801"],
+        y22: ["rect823", "rect813", "rect811"],
+        y33: ["rect825", "rect891", "rect917"],
+        y44: ["rect907", "rect853"]
+      };
+    }
+    else 
+    {
+      yintersect = {
+            y11: ["p34", "p85", "p53"],
+            y22: ["p86", "p87", "p63"],
+            y33: ["p70", "p79", "p88", "p111"],
+            y44: ["p110", "p90", "p108"],
+          };
+          xintersect = {
+            x11: ["p111", "p110"],
+            x22: ["p34", "p86", "p88", "p90"],
+            x33: ["p85", "p87", "p79", "p108"],
+            x44: ["p53", "p63", "p70"],
+          };
     }
   }
   
@@ -270,19 +269,12 @@ const sdhfiusdhfsiadufhlinterg = (x, y) => {
 function removeDestinationAll() {
 
   let startl,endl;
-  if(Number.parseInt(map_no) == 0)
-  {
-    startl = 1,endl = 114;
-  }
-  else if(Number.parseInt(map_no) == 1)
-  {
-    startl = 204, endl = 301;
-  }
-  else if(Number.parseInt(map_no) == 2)
-  {
-    startl = 115, endl = 203;
-  }
-
+  if(map_no == "1")
+  {startl = 204, endl = 301;}
+  else if(map_no == "2")
+  {startl = 115, endl = 203;}
+  else
+  {startl = 1,endl = 114;}
 
   for (let i = startl; i <= endl; i++) {
     if (
@@ -389,19 +381,12 @@ const greenDecider = () => {
   let transport = [];
   let mapUse;
   let flags = true;
-    
-  if(Number.parseInt(map_no) == 0)
-  {
-    mapUse = mapping;
-  }
-  else if(Number.parseInt(map_no) == 1)
-  {
+  if(map_no == "1")
     mapUse = mappingf;
-  }
-  else if(Number.parseInt(map_no)== 2)
-  {
+  else if(map_no == "2")
     mapUse = mappings;
-  }
+  else
+    mapUse = mapping;
   const mappp = () => {
     for (let i in mapUse[starting]) {
       greenStart.push(document.getElementById(i));
