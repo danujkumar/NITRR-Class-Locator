@@ -428,7 +428,7 @@ color: rgb(0, 0, 0);
 font-weight: 500;
 }
 .containerharsh .pagination li a:hover,
-.containerharsh .pagination li.active a {
+.active1 {
 background: #878383;
 color: white;
 }

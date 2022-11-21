@@ -56,9 +56,9 @@
             <li class="dropdown">
               <a href="#"><span>Select Floor</span> <i class="bi bi-chevron-down"></i></a>
               <ul>
-                <li><a href="./inner-page.html">Ground Floor</a></li>
-                <li><a href="#" onclick="alerty()">First Floor</a></li>
-                <li><a href="#" onclick="alerty()">Second Floor</a></li>
+                <li><a id="grounds1" href="./inner-page.html">Ground Floor</a></li>
+                <li><a id="firstt1" href="./inner-page.html">First Floor</a></li>
+                <li><a id="secondd1" href="./inner-page.html">Second Floor</a></li>
               </ul>
             </li>
           </ul>
@@ -72,13 +72,13 @@
   <div class="containerharsh">
     <ul class="pagination">
       <li>
-        <a href="#">Ground</a>
-      </li>
-      <li class="active">
-        <a href="#">First</a>
+        <a style="cursor:default;">Ground</a>
       </li>
       <li>
-        <a href="#">Second</a>
+        <a style="cursor:default;">First</a>
+      </li>
+      <li>
+        <a style="cursor:default;">Second</a>
       </li>
     </ul>
   </div>
@@ -87,7 +87,7 @@
   <!-- harsh -->
   <div class="w-container">
     
-      <div class="purple" style="display:none">
+   <div style="transition:transform;" class="purple" style="display:none" id="groundd">
         <?xml version="1.0" encoding="UTF-8" standalone="no"?>
         <svg width="60vw" height="90vh" viewBox="0 0 407 310" fill="none" version="1.1" id="svg1039"
           sodipodi:docname="map - Copy.svg" inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
@@ -1461,8 +1461,8 @@
   
   
         </svg>
-      </div>
-      <div class="purple" style="display:none">
+   </div>
+   <div style="transition:transform;" class="purple" style="display:none" id="firstt">
         <?xml version="1.0" encoding="UTF-8" standalone="no"?>
         <svg
              width="60vw"
@@ -4554,8 +4554,8 @@
                x="94"
                y="225.5" />
         </svg>
-      </div>
-      <div class="purple" style="display:none">
+   </div>
+   <div style="transition:transform;" class="purple" style="display:none" id="secondd">
         <?xml version="1.0" encoding="UTF-8" standalone="no"?>
         <svg
            width="60vw"
@@ -6785,8 +6785,6 @@
              stroke="black"
              stroke-width="3"
              id="path763" />
-          
-           <g class = "pathg">
           <rect
              x="558.5"
              y="403.5"
@@ -6796,6 +6794,10 @@
              stroke="black"
              stroke-width="3"
              id="rect723" />
+
+
+
+          <g class = "pathg">
           <rect
              x="364.5"
              y="995.5"
@@ -6805,8 +6807,6 @@
              stroke="black"
              stroke-width="3"
              id="rect729" />
-          
-         
           <rect
              x="54"
              y="379"
@@ -7472,12 +7472,12 @@
              x="902.21552"
              y="841.51862" />
         </svg>
-      </div>
+   </div>
 
     <div class="green">
-      <a id="reset" class="align-middle reset-btn" href=""><i class="bi bi-arrow-counterclockwise"></i></a>
+      <a id="counterclock" class="align-middle reset-btn"><i class="bi bi-arrow-counterclockwise"></i></a>
       <a id="reset" class="align-middle reset-btn" href="">Reset</a>
-      <a id="reset" class="align-middle reset-btn" href=""><i class="bi bi-arrow-clockwise"></i></a>
+      <a id="clock" class="align-middle reset-btn"><i class="bi bi-arrow-clockwise"></i></a>
       <div class="card" style="background-color: #dbdbdb">
         <div class="card-body">
           <h5 class="card-title">Information</h5>

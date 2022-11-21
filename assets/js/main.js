@@ -212,14 +212,21 @@ function alerty(){
   alert("This Feature Will Be Available After 1-2 Week ! Have Patience...");
 };
 
-let button1 = document.getElementById("grounds1");
-let button2 = document.getElementById("grounds2");
+let grounds1 = document.getElementById("grounds1");
+let grounds2 = document.getElementById("grounds2");
+let firstt1 = document.getElementById("firstt1");
+let firstt2 = document.getElementById("firstt2");
+let secondd1 = document.getElementById("secondd1")
+let secondd2 = document.getElementById("secondd2");
 
 const removeSess = ()=>{
   sessionStorage.removeItem("start");
   sessionStorage.removeItem("end");
 }
-  button1.onclick = ()=>{
-    removeSess();
-  }
- button2.onclick = ()=>{removeSess()}
+grounds1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","0");}
+grounds2.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","0");}
+firstt1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","1");}
+firstt2.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","1");}
+secondd1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","2");}
+secondd2.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","2");}
+ 
