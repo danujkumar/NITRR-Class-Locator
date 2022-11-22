@@ -111,6 +111,12 @@ try {
   }
   else
   {
+    if(Number.parseInt(start) >= 204)
+      sessionStorage.setItem('map_no',"1")
+    else if(Number.parseInt(start) >= 115 && Number.parseInt(start) <= 203)
+      sessionStorage.setItem("map_no","2")
+    else 
+      sessionStorage.setItem("map_no","0")
     search.setAttribute("href","./inner-page.html")
   }
   sessionStorage.setItem('start',start);

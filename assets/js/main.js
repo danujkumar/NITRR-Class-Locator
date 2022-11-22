@@ -222,6 +222,7 @@ let secondd2 = document.getElementById("secondd2");
 const removeSess = ()=>{
   sessionStorage.removeItem("start");
   sessionStorage.removeItem("end");
+  sessionStorage.removeItem("Stair")
 }
 grounds1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","0");}
 grounds2.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","0");}

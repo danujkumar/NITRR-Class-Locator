@@ -6,7 +6,6 @@ import searching from "./json/searchTool.json" assert{type:"json"};
 import floorsConnect from "./json/floorsConnection.json" assert{type:"json"};
 
 let starting;
-let isInterFloor = false;
 let ending, map_no;
 let mapUse;
 let starts,endd;
@@ -18,6 +17,7 @@ let detailss = new Map();
 let bluetoblue = new Set();
 let xstartss,ystartss,xgreenendss,ygreenendss,xgreenstartss,ygreenstartss,xintersectss,yintersectss;
 let divControl;
+let alertt = document.getElementById("alertt");
 let current = document.getElementById("current");
 let final = document.getElementById("final");
 let body = document.getElementsByTagName("html");
@@ -115,6 +115,15 @@ const removal = (element) => {
   }
 }
 
+const detectFloor = ()=>{
+  if(Number.parseInt(starts) >= 204)
+    sessionStorage.setItem('map_no',"1")
+  else if(Number.parseInt(starts) >= 115 && Number.parseInt(starts) <= 203)
+    sessionStorage.setItem("map_no","2")
+  else 
+    sessionStorage.setItem("map_no","0")
+}
+
 const pointsSE = (textId) => {
   //Getting the current text id
   let currentText = document.getElementById(textId);
@@ -143,8 +152,8 @@ const pointsSE = (textId) => {
                   starts = starting = name.get(id[i]);
                   sessionStorage.setItem('start',starting);
                 }
-                setter();
-                getsetGoo();
+                detectFloor();
+                location.reload();
               }
               else
               {
@@ -154,8 +163,8 @@ const pointsSE = (textId) => {
                   sessionStorage.setItem('end',ending);
                   if(starting != undefined && starting != "undefined" && starting != "null" && starting != null)
                     {
-                      setter();
-                      getsetGoo();
+                      detectFloor();
+                      location.reload();
                     }
                     else
                     {
@@ -675,30 +684,44 @@ const getsetGoo = () => {
     return felement;
   }
 
+  const moveToFloors = ()=>{
+    console.log(endd)
+    if(endd >=204)
+    {sessionStorage.setItem("map_no","1");location.reload();}
+    else if((endd >= 115 && endd <= 203))
+    {sessionStorage.setItem("map_no","2");location.reload();}
+    else if(endd <=114)
+    {sessionStorage.setItem("map_no","0");location.reload();}
+}
+
   
   const detectInterFloorStarts = ()=>{
-    console.log(starts,endd);
-        if(starts>=204 && endd < 204 && endd !=null && map_no == "1")
+        if(starts>=204 && endd < 204 && endd !=null && endd != undefined && map_no == "1" && endd !="null" && endd != "undefined")
         {
           starting = starts;
           ending = startToStairs();
+          alertt.style.display = "block";
           return true;
         }
-        else if((starts>=115 && starts<=203) && !(endd >115 && endd < 203) && endd != null && map_no == "2")
+        else if((starts>=115 && starts<=203) && !(endd >115 && endd < 203) && endd != undefined && endd != null && map_no == "2"
+        && endd !="null" && endd != "undefined")
         {
           starting = starts;
           ending = startToStairs();
+          alertt.style.display = "block";
           return true;
         }
-        else if(starts<=114 && endd > 114 && endd != null && map_no == "0")
+        else if(starts<=114 && endd > 114 && endd != null  && endd != undefined && map_no == "0" && endd !="null" && endd != "undefined")
         {
           starting = starts;
           ending = startToStairs();
+          alertt.style.display = "block";
           return true;
         } 
-        console.log("reached here")
         return false;
   }
+
+  alertt.querySelector('a').onclick = ()=>{console.log("Isworking");moveToFloors()}
 
   const detectInterFloorEnds = ()=>{
         if(starts<204 && endd >=204 && map_no == "1")
@@ -718,9 +741,7 @@ const getsetGoo = () => {
         }
   }
 
-  let testit = detectInterFloorStarts();
-  console.log(testit)
-  if(testit == false)
+  if(detectInterFloorStarts() == false)
     detectInterFloorEnds();
 
   if(starting!=null && starting!="null" && starting !="undefined" && starting != undefined)
@@ -764,12 +785,12 @@ const getsetGoo = () => {
 makecurrent.onclick = ()=>{
   if(preinfo != "undefined" && preinfo != "null" && preinfo != null && preinfo != undefined)
   {
+    namecard[0].innerHTML = "Information"
+    details[0].innerHTML = "Press Any Room in the Map to Get It's Info Here."
     starts = starting = preinfo;
     sessionStorage.setItem("start",starting);
     setter();
     getsetGoo();
-    namecard[0].innerHTML = "Information"
-    details[0].innerHTML = "Press Any Room in the Map to Get It's Info Here."
     preinfo = undefined;
   }
   else
@@ -782,12 +803,18 @@ makefinal.onclick = ()=>{
   {
     if(starting != null)
     {
-      endd = ending = preinfo;
-      sessionStorage.setItem("end",ending);
-      setter();
-      getsetGoo();
       namecard[0].innerHTML = "Information"
       details[0].innerHTML = "Press Any Room in the Map to Get It's Info Here."
+      endd = ending = preinfo;
+      sessionStorage.setItem("end",ending);
+      if(starts>=204 && endd < 204 && endd !=null && map_no != "1" && endd != undefined && endd !="null" && endd != "undefined")
+        {sessionStorage.setItem("map_no","1");location.reload();}
+      else if((starts>=115 && starts<=203) && !(endd >115 && endd < 203) && endd != null && map_no != "2" && endd != undefined
+              && endd !="null" && endd != "undefined")
+        {sessionStorage.setItem("map_no","2");location.reload();}
+      else if(starts<=114 && endd > 114 && endd != null && map_no != "0" && endd != undefined && endd !="null" && endd != "undefined")
+        {sessionStorage.setItem("map_no","0");location.reload();}
+      else{setter();getsetGoo();alertt.style.display = "none";}     
       preinfo = undefined;
     }
     else
