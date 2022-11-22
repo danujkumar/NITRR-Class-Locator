@@ -3,9 +3,13 @@ import mappingf from "./json/bluetoGreen1.json" assert {type:"json"};
 import mappings from "./json/bluetoGreen2.json" assert {type:"json"};
 import exceptions from "./json/exceptionPaths.json" assert { type: "json" };
 import searching from "./json/searchTool.json" assert{type:"json"};
+import floorsConnect from "./json/floorsConnection.json" assert{type:"json"};
 
 let starting;
+let isInterFloor = false;
 let ending, map_no;
+let mapUse;
+let starts,endd;
 let inUse = [];
 let id = [];
 let additionalInfo = [];
@@ -54,8 +58,8 @@ try {
       if(map_no == null) {map_no = "0"}
       butControl();
       clearMap();
-      starting = sessionStorage.getItem('start');
-      ending = sessionStorage.getItem('end');
+      starts = starting = sessionStorage.getItem('start');
+      endd = ending = sessionStorage.getItem('end');
       setter();
       getsetGoo();
   } catch (error) {
@@ -136,7 +140,7 @@ const pointsSE = (textId) => {
               {
                 if(name.get(current.value) != null)
                 {
-                  starting = name.get(id[i]);
+                  starts = starting = name.get(id[i]);
                   sessionStorage.setItem('start',starting);
                 }
                 setter();
@@ -146,7 +150,7 @@ const pointsSE = (textId) => {
               {
                 if(name.get(final.value) != null)
                 {
-                  ending = name.get(id[i]);
+                  endd = ending = name.get(id[i]);
                   sessionStorage.setItem('end',ending);
                   if(starting != undefined && starting != "undefined" && starting != "null" && starting != null)
                     {
@@ -387,6 +391,7 @@ const removeinfo = ()=>{
 const reset = ()=>{
   sessionStorage.removeItem("start");
   sessionStorage.removeItem("end");
+  sessionStorage.removeItem("Stair");
   removeAlll();
   removeDestinationAll();
   removeinfo();
@@ -398,8 +403,8 @@ const reset = ()=>{
   details[2].innerHTML = "Type and Choose Your Final Location in the Second Search Box."
   current.value = '';
   final.value = '';
-  starting = undefined;
-  ending = undefined;
+  starts = starting = undefined;
+  endd = ending = undefined;
 }
 
 document.getElementById("reset").onclick = ()=>{
@@ -426,14 +431,8 @@ const greenDecider = () => {
   let greenEnd = [];
   let end;
   let transport = [];
-  let mapUse;
   let flags = true;
-  if(map_no == "1")
-    mapUse = mappingf;
-  else if(map_no == "2")
-    mapUse = mappings;
-  else
-    mapUse = mapping;
+  
   const mappp = () => {
     for (let i in mapUse[starting]) {
       greenStart.push(document.getElementById(i));
@@ -519,14 +518,16 @@ const greenDecider = () => {
   return transport;
 };
 
+
+
 const locates = () => {
   let infoReceived = greenDecider();
-  let starts = infoReceived[3];
+  let startsss = infoReceived[3];
   let greenStarts = infoReceived[2];
   let ends = infoReceived[1];
   let greenEnds = infoReceived[0];
-  xstartss = starts.getAttribute("x");
-  ystartss = starts.getAttribute("y");
+  xstartss = startsss.getAttribute("x");
+  ystartss = startsss.getAttribute("y");
 
   xgreenstartss = greenStarts.getAttribute("x");
   ygreenstartss = greenStarts.getAttribute("y");
@@ -550,18 +551,18 @@ const locates = () => {
       Number.parseFloat(ystartss),
       Number.parseFloat(xend),
       Number.parseFloat(yend),
-      starts.id
+      startsss.id
     );
     xintersectss = intersecteds.getAttribute("x");
     yintersectss = intersecteds.getAttribute("y");
-    a.push(starts);
+    a.push(startsss);
   } else {
     createLine(
       Number.parseFloat(xstartss),
       Number.parseFloat(ystartss),
       Number.parseFloat(xgreenstartss),
       Number.parseFloat(ygreenstartss),
-      starts.id
+      startsss.id
     );
     greenAttachment(
       greenStarts.id,
@@ -577,10 +578,10 @@ const locates = () => {
       Number.parseFloat(yend),
       greenEnds.id
     );
-    a.push(starts, greenStarts, intersecteds, greenEnds);
+    a.push(startsss, greenStarts, intersecteds, greenEnds);
   }
   turnUp(a);
-  inUse[0] = starts;
+  inUse[0] = startsss;
   inUse[1] = greenStarts;
   inUse[2] = intersecteds;
   inUse[3] = greenEnds;
@@ -639,10 +640,93 @@ for (let button of places) {
 const getsetGoo = () => {
   removeAlll();
   removeDestinationAll();
+
+  if(map_no == "1")
+    mapUse = mappingf;
+  else if(map_no == "2")
+    mapUse = mappings;
+  else
+    mapUse = mapping;
+
+  const startToStairs = ()=>{
+    let toStairs;
+    if(map_no == "1")
+    {toStairs = floorsConnect["1"];}
+    else if(map_no == "2")
+    {toStairs = floorsConnect["2"];}
+    else {toStairs = floorsConnect["0"]}
+  
+    let distance,x = Number.MAX_VALUE,starterss,felement,key;
+    for (let i in mapUse[starting]) {
+      starterss = document.getElementById(mapUse[starting][i]);
+    }
+    for(let i in toStairs)
+    {
+      let star = document.getElementById(toStairs[i][1]);
+      distance = distanceCalculator(starterss.getAttribute("x"),starterss.getAttribute("y"),star.getAttribute("x"),star.getAttribute("y"));
+      if(x>distance)
+      {
+        x = distance;
+        felement = toStairs[i][0];
+        key = i;
+      }
+    }
+    sessionStorage.setItem("Stair",key);
+    return felement;
+  }
+
+  
+  const detectInterFloorStarts = ()=>{
+    console.log(starts,endd);
+        if(starts>=204 && endd < 204 && endd !=null && map_no == "1")
+        {
+          starting = starts;
+          ending = startToStairs();
+          return true;
+        }
+        else if((starts>=115 && starts<=203) && !(endd >115 && endd < 203) && endd != null && map_no == "2")
+        {
+          starting = starts;
+          ending = startToStairs();
+          return true;
+        }
+        else if(starts<=114 && endd > 114 && endd != null && map_no == "0")
+        {
+          starting = starts;
+          ending = startToStairs();
+          return true;
+        } 
+        console.log("reached here")
+        return false;
+  }
+
+  const detectInterFloorEnds = ()=>{
+        if(starts<204 && endd >=204 && map_no == "1")
+        {
+          ending = endd;
+          starting = floorsConnect[map_no][sessionStorage.getItem("Stair")][0];
+        }
+        else if(!(starts>115 && starts<203) && (endd >= 115 && endd <= 203) && map_no == "2")
+        {
+          ending = endd;
+          starting = floorsConnect[map_no][sessionStorage.getItem("Stair")][0];
+        }
+        else if(starts>114 && endd <=114 && map_no == "0")
+        {
+          ending = endd;
+          starting = floorsConnect[map_no][sessionStorage.getItem("Stair")][0];
+        }
+  }
+
+  let testit = detectInterFloorStarts();
+  console.log(testit)
+  if(testit == false)
+    detectInterFloorEnds();
+
   if(starting!=null && starting!="null" && starting !="undefined" && starting != undefined)
   {
     let getsetRoom1 = document.getElementById(starting);
-    if(getsetRoom1.querySelector('rect') != undefined)
+    if(getsetRoom1.querySelector('rect') != undefined && getsetRoom1.querySelector('rect') != null)
     {
       getsetRoom1.querySelector('rect').setAttribute("fill-opacity","0.5")
       getsetRoom1.querySelector('rect').style.fill = "#63e6beff"
@@ -654,10 +738,11 @@ const getsetGoo = () => {
     }
     starting = getsetRoom1.id;
   }
+
   if(ending!=null && ending!="null" && ending!="undefined" && ending!=undefined)
   {
     let getsetRoom2 = document.getElementById(ending);
-    if(getsetRoom2.querySelector('rect') != undefined)
+    if(getsetRoom2.querySelector('rect') != undefined && getsetRoom2.querySelector('rect') != null)
     {
       getsetRoom2.querySelector('rect').setAttribute("fill-opacity","0.7")
       getsetRoom2.querySelector('rect').style.fill = "#ffd43cff"
@@ -669,15 +754,17 @@ const getsetGoo = () => {
     }
     ending = getsetRoom2.id;
   }
+
+  
   if(starting != null && ending != null && starting !="null" && ending != "null" && starting != "undefined" && ending != "undefined"
     && starting !=undefined && ending != undefined)
-    locates();
+      locates();
 };
 
 makecurrent.onclick = ()=>{
   if(preinfo != "undefined" && preinfo != "null" && preinfo != null && preinfo != undefined)
   {
-    starting = preinfo;
+    starts = starting = preinfo;
     sessionStorage.setItem("start",starting);
     setter();
     getsetGoo();
@@ -695,7 +782,7 @@ makefinal.onclick = ()=>{
   {
     if(starting != null)
     {
-      ending = preinfo;
+      endd = ending = preinfo;
       sessionStorage.setItem("end",ending);
       setter();
       getsetGoo();
