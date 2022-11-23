@@ -78,9 +78,9 @@ const Information = (buttonClicked)=>{
           {
             let element = document.getElementById(preinfo);
             if(element.querySelector('rect') != undefined)
-              element.querySelector('rect').style.fill = "#d3d3d3"
+              element.querySelector('rect').style.fill = "rgb(212,212,212)"
             else
-              element.querySelector('path').style.fill = "#dbdbdb"
+              element.querySelector('path').style.fill = "rgb(219,219,219)"
           }
           if(preinfo == buttonClicked)
           {
@@ -337,9 +337,9 @@ function removeDestinationAll() {
     {
       let element = document.getElementById(i.toString());
       if(element.querySelector('rect')!=undefined)
-        element.querySelector('rect').style.fill = "#d4d4d4";
+        element.querySelector('rect').style.fill = "rgb(212,212,212)";
       else
-        element.querySelector('path').style.fill = "#dbdbdb"
+        element.querySelector('path').style.fill = "rgb(219,219,219)"
     }  
   }
 }
@@ -388,9 +388,9 @@ const removeinfo = ()=>{
   try {
     let element = document.getElementById(preinfo);
     if(element.querySelector('rect') != undefined)
-      element.querySelector('rect').style.fill = "#d3d3d3";
+      element.querySelector('rect').style.fill = "rgb(212,212,212)";
     else
-      element.querySelector('path').style.fill = "#dbdbdb";
+      element.querySelector('path').style.fill = "rgb(219,219,219)";
   } catch (error) {
     
   }
