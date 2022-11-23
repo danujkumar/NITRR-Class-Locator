@@ -260,12 +260,12 @@ const sdhfiusdhfsiadufhlinterg = (x, y) => {
       xintersect = {
         x11: ["rect765", "rect823","rect825","rect907"],
         x22: ["rect785", "rect813", "rect891", "rect853"],
-        x33: ["rect801", "rect811", "rect917"]
+        x33: ["rect801", "rect811"]
       };
       yintersect = {
         y11: ["rect765", "rect785", "rect801"],
         y22: ["rect823", "rect813", "rect811"],
-        y33: ["rect825", "rect891", "rect917"],
+        y33: ["rect825", "rect891"],
         y44: ["rect907", "rect853"]
       };
     }
