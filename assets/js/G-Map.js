@@ -13,7 +13,7 @@ let inUse = [];
 let id = [];
 let additionalInfo = [];
 let name = new Map();
-let detailss = new Map();
+// let detailss = new Map();
 let bluetoblue = new Set();
 let xstartss,ystartss,xgreenendss,ygreenendss,xgreenstartss,ygreenstartss,xintersectss,yintersectss;
 let divControl;
@@ -103,7 +103,7 @@ const Information = (buttonClicked)=>{
 
 for (let k in searching) {
   name.set(searching[k]["name"], k);
-  detailss.set(searching[k]["details"], k);
+  // detailss.set(searching[k]["details"], k);
   id.push(searching[k]["name"]);
 }
 
@@ -124,9 +124,24 @@ const detectFloor = ()=>{
     sessionStorage.setItem("map_no","0")
 }
 
+const refinedString = (word)=>{
+  let newWord;
+  for(let i=0;i<word.length;i++)
+  {
+    if((word[i]<'A' || word[i] > 'Z') && (word[i]<'a' || word[i]>'z') && (word[i]<'0' || word[i]>'9'))
+      {
+        word = word.substring(0,i)+word.substring(i+1);
+        i--;
+      }
+      newWord = word;
+  }
+  return newWord;
+}
+
 const pointsSE = (textId) => {
   //Getting the current text id
   let currentText = document.getElementById(textId);
+  let newWord = refinedString(currentText.value);
 
   if(textId=="current")
     divControl = document.getElementById('currentdiv');
@@ -136,9 +151,9 @@ const pointsSE = (textId) => {
 
   for (let i = 0; i < id.length; i++) {
     let fromId = id[i];
-    if (fromId != undefined) {
-      let fromIds = fromId.toUpperCase();
-      if (fromIds.indexOf(currentText.value.toUpperCase()) > -1) {
+    if (fromId != undefined && newWord != undefined) {
+      let fromIds = refinedString(fromId.toUpperCase());
+      if (fromIds.indexOf(newWord.toUpperCase()) > -1) {
         const para = document.createElement("button");
         para.innerHTML = id[i];
         para.classList.add("ibutton");
@@ -168,7 +183,7 @@ const pointsSE = (textId) => {
                     }
                     else
                     {
-                      alert("Please give the current location.")
+                      alert("Please first select the nearest room.")
                     }
                 }
               }
@@ -177,10 +192,12 @@ const pointsSE = (textId) => {
       }
       }
     }
-
-    if (!currentText.value.replace(/\s/g, "").length) {
+    try {
+      if (!newWord.replace(/\s/g, "").length) {
         removal(divControl);
-  };
+      };
+    } catch (error) {}
+    
 }
 
 current.onkeyup = ()=>{

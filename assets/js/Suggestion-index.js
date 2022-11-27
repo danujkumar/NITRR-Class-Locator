@@ -1,17 +1,15 @@
 import searching from "./json/searchTool.json" assert { type: "json" };
 let id = [];
 let name = new Map();
-let dept = new Map();
-let details = new Map();
+// let details = new Map();
 let start,end;
 let divControl;
 
 //Assigning all the names, details and department information into the array id;
 for (let k in searching) {
   name.set(searching[k]["name"], k);
-  dept.set(searching[k]["dept"], k);
-  details.set(searching[k]["details"], k);
-  id.push(searching[k]["name"], searching[k]["dept"]);
+  // details.set(searching[k]["details"], k);
+  id.push(searching[k]["name"]);
 }
 
 //Getting the element of input current, input final and search box
@@ -29,19 +27,30 @@ const removal = (element) => {
   }
 }
 
+const refinedString = (word)=>{
+  let newWord;
+  for(let i=0;i<word.length;i++)
+  {
+    if((word[i]<'A' || word[i] > 'Z') && (word[i]<'a' || word[i]>'z') && (word[i]<'0' || word[i]>'9'))
+      {
+        word = word.substring(0,i)+word.substring(i+1);
+        i--;
+      }
+      newWord = word;
+  }
+  return newWord;
+}
+
 //Searching filter is defined here
 const pointsSE = (textId) => {
   
   let currentText = document.getElementById(textId);
+  let newWord = refinedString(currentText.value);
   //Here we will control the divs for current and final location based on the input box id.
   if(textId=="current")
-  {
     divControl = document.getElementById('currentdiv');
-  }
   else if(textId=="final")
-  {
     divControl = document.getElementById('finaldiv');
-  }
 
   //Removing all the pre-filled divs for both current and final
   removal(divControl);
@@ -50,9 +59,10 @@ const pointsSE = (textId) => {
   for (let i = 0; i < id.length; i++) {
     let fromId = id[i];
 
-    if (fromId != undefined) {
-      let fromIds = fromId.toUpperCase();
-      if (fromIds.indexOf(currentText.value.toUpperCase()) > -1) {
+    if (fromId != undefined && newWord != undefined) {
+      let fromIds = refinedString(fromId.toUpperCase());
+
+      if (fromIds.indexOf(newWord.toUpperCase()) > -1) {
         
         //Creating element here para with innerHTML as its array text, adding class of ibutton for css and appending under test div.
         const para = document.createElement("button");
@@ -68,10 +78,11 @@ const pointsSE = (textId) => {
       }
       }
     }
-
-    if (!currentText.value.replace(/\s/g, "").length) {
-        removal(divControl);
-  };
+      try {
+        if (!newWord.replace(/\s/g, "").length) {
+              removal(divControl);
+        };
+      } catch (error) {}
 }
 
 //Implementing the onkeyup event for all the input boxes
@@ -97,8 +108,8 @@ try {
   const fetchId = (Id)=>{
     if(name.get(Id.value) != undefined)
       return name.get(Id.value);
-    else if(dept.get(Id.value) != undefined)
-      return dept.get(Id.value);
+    // else if(dept.get(Id.value) != undefined)
+    //   return dept.get(Id.value);
   }
 
   
@@ -106,7 +117,7 @@ try {
   end = fetchId(final)
   if(start == undefined || start == null)
   {
-    alert("Please select the current location.");
+    alert("Please first select the nearest room.");
     search.removeAttribute("href");
   }
   else
