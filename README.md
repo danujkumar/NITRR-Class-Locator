@@ -1,4 +1,4 @@
-# Class Loacator NITRR
+# Class Locator NIT Raipur
 #### Team - ELEX-CODE
 #### Quick Link to visit our Website
 - [www.classlocator.live](https://www.classlocator.live)
@@ -10,7 +10,7 @@
 
 
 ## Ambition
-This is our First Project to help students of NIT Raipur to find their classes in the Main Building of NITRR.
+This is our First Project to help the students of NIT Raipur to find their classes in the Main Building of NITRR.
 
 
 
