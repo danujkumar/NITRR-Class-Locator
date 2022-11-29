@@ -702,13 +702,12 @@ const getsetGoo = () => {
   }
 
   const moveToFloors = ()=>{
-    console.log(endd)
     if(endd >=204)
-    {sessionStorage.setItem("map_no","1");location.reload();}
+      {sessionStorage.setItem("map_no","1");location.reload();}
     else if((endd >= 115 && endd <= 203))
-    {sessionStorage.setItem("map_no","2");location.reload();}
+      {sessionStorage.setItem("map_no","2");location.reload();}
     else if(endd <=114)
-    {sessionStorage.setItem("map_no","0");location.reload();}
+      {sessionStorage.setItem("map_no","0");location.reload();}
 }
 
   
@@ -720,7 +719,7 @@ const getsetGoo = () => {
           alertt.style.display = "block";
           return true;
         }
-        else if((starts>=115 && starts<=203) && !(endd >115 && endd < 203) && endd != undefined && endd != null && map_no == "2"
+        else if((starts>=115 && starts<=203) && !(endd >=115 && endd <= 203) && endd != undefined && endd != null && map_no == "2"
         && endd !="null" && endd != "undefined")
         {
           starting = starts;
@@ -738,7 +737,7 @@ const getsetGoo = () => {
         return false;
   }
 
-  alertt.querySelector('a').onclick = ()=>{console.log("Isworking");moveToFloors()}
+  alertt.querySelector('a').onclick = ()=>{moveToFloors()}
 
   const detectInterFloorEnds = ()=>{
         if(starts<204 && endd >=204 && map_no == "1")
@@ -746,7 +745,7 @@ const getsetGoo = () => {
           ending = endd;
           starting = floorsConnect[map_no][sessionStorage.getItem("Stair")][0];
         }
-        else if(!(starts>115 && starts<203) && (endd >= 115 && endd <= 203) && map_no == "2")
+        else if(!(starts>=115 && starts<=203) && (endd >= 115 && endd <= 203) && map_no == "2")
         {
           ending = endd;
           starting = floorsConnect[map_no][sessionStorage.getItem("Stair")][0];
@@ -826,7 +825,7 @@ makefinal.onclick = ()=>{
       sessionStorage.setItem("end",ending);
       if(starts>=204 && endd < 204 && endd !=null && map_no != "1" && endd != undefined && endd !="null" && endd != "undefined")
         {sessionStorage.setItem("map_no","1");location.reload();}
-      else if((starts>=115 && starts<=203) && !(endd >115 && endd < 203) && endd != null && map_no != "2" && endd != undefined
+      else if((starts>=115 && starts<=203) && !(endd >= 115 && endd <= 203) && endd != null && map_no != "2" && endd != undefined
               && endd !="null" && endd != "undefined")
         {sessionStorage.setItem("map_no","2");location.reload();}
       else if(starts<=114 && endd > 114 && endd != null && map_no != "0" && endd != undefined && endd !="null" && endd != "undefined")

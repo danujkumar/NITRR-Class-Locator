@@ -1,14 +1,12 @@
 import searching from "./json/searchTool.json" assert { type: "json" };
 let id = [];
 let name = new Map();
-// let details = new Map();
 let start,end;
 let divControl;
 
 //Assigning all the names, details and department information into the array id;
 for (let k in searching) {
   name.set(searching[k]["name"], k);
-  // details.set(searching[k]["details"], k);
   id.push(searching[k]["name"]);
 }
 
@@ -58,7 +56,6 @@ const pointsSE = (textId) => {
   //Searching is done here
   for (let i = 0; i < id.length; i++) {
     let fromId = id[i];
-
     if (fromId != undefined && newWord != undefined) {
       let fromIds = refinedString(fromId.toUpperCase());
 
@@ -72,8 +69,8 @@ const pointsSE = (textId) => {
 
         //Onclick is handled here for each element it found
           para.onclick = () =>{
-          document.getElementById(textId).value = id[i];
-          removal(divControl); 
+            document.getElementById(textId).value = id[i];
+            removal(divControl); 
         }
       }
       }
@@ -108,11 +105,8 @@ try {
   const fetchId = (Id)=>{
     if(name.get(Id.value) != undefined)
       return name.get(Id.value);
-    // else if(dept.get(Id.value) != undefined)
-    //   return dept.get(Id.value);
   }
 
-  
   start = fetchId(current)
   end = fetchId(final)
   if(start == undefined || start == null)
