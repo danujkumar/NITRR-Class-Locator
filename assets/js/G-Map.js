@@ -36,11 +36,11 @@ let preinfo;
 const clearMap = () =>
 {
   if(map_no == "1")
-       { removals.removeChild(map0);removals.removeChild(map2);map1.style.opacity = 1}
+       { removals.removeChild(map0);removals.removeChild(map2);map1.style.opacity = 1;map1.style.overflow="auto"}
   else if(map_no == "2")
-      { removals.removeChild(map0);removals.removeChild(map1);map2.style.opacity = 1}
+      { removals.removeChild(map0);removals.removeChild(map1);map2.style.opacity = 1;map2.style.overflow="auto"}
   else
-      {removals.removeChild(map1);removals.removeChild(map2);map0.style.opacity = 1}
+      {removals.removeChild(map1);removals.removeChild(map2);map0.style.opacity = 1;map0.style.overflow="auto"}
 }
 
 const butControl = ()=>{

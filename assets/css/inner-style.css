@@ -548,10 +548,12 @@ cursor:default;
   /* background-color: green; */
   justify-content:space-around;
   text-align: center;
-  margin-top: 8rem;
+  margin-top: 6rem;
+  position: relative;
+  z-index: 30;
 }
 svg{
-  padding: 2.5rem;
+  padding: 1.5rem;
 }
 @media(max-width:900px){
   .w-container{
