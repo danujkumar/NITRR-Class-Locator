@@ -280,31 +280,13 @@ function pointermoveHandler(ev) {
     const curDiff = Math.abs(evCache[0].clientX - evCache[1].clientX);
     if(prevDiff>0){
       if(curDiff > prevDiff){
-        let svgg = svgMap.getBoundingClientRect();
-        let num1 = (evCache[0].clientX + evCache[1].clientX)/2
-        let num2 = (evCache[0].clientY + evCache[1].clientY)/2
-        const mousex =  num1- (svgg.x);
-        const mousey =  num2- (svgg.y);
-        ground.scrollBy(originx,originy);
-        originx += mousex/(scale*zoom) - mousex/scale;
-        originy += mousey/(scale*zoom) - mousey/scale;
-        svgMap.style.transform = `scale(${zoom += 0.01 })`
-        ground.scrollBy(-originx,-originy);
-        scale *= zoom;
+        svgMap.style.transform = `scale(${zoom += 0.05 })`
+
         // console.log(svgg.x,svgg.y);
       }
       if(curDiff < prevDiff && zoom>1){
-        let svgg = svgMap.getBoundingClientRect();
-        let num1 = (evCache[0].clientX + evCache[1].clientX)/2
-        let num2 = (evCache[0].clientY + evCache[1].clientY)/2
-        const mousex =  num1- (svgg.x);
-        const mousey =  num2- (svgg.y);
-        ground.scrollBy(originx,originy);
-        originx += mousex/(scale*zoom) - mousex/scale;
-        originy += mousey/(scale*zoom) - mousey/scale;
-        svgMap.style.transform = `scale(${zoom -= 0.01})`
-        ground.scrollBy(-originx,-originy);
-        scale *= zoom;
+        svgMap.style.transform = `scale(${zoom -= 0.05 })`
+
         // console.log(svgg.x,svgg.y)
       }
     }
