@@ -303,10 +303,8 @@ function pointermoveHandler(ev) {
         originy += mousey/(scale*zoom) - mousey/scale;
         svgMap.style.transform = `scale(${zoom -= 0.005 })`
         ground.scrollBy(-originx,-originy);
-        
         scale *= zoom;
       }
-      console.log(svgg.x,svgg.y)
     }
     prevDiff = curDiff;
   }  
