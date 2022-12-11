@@ -307,7 +307,6 @@ function pointermoveHandler(ev) {
         scale *= zoom;
         // console.log(svgg.x,svgg.y)
       }
-      
     }
     prevDiff = curDiff;
   }  
