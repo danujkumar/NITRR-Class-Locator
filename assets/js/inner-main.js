@@ -288,7 +288,7 @@ function pointermoveHandler(ev) {
         ground.scrollBy(originx,originy);
         originx += mousex/(scale*zoom) - mousex/scale;
         originy += mousey/(scale*zoom) - mousey/scale;
-        svgMap.style.transform = `scale(${zoom += 0.005 })`
+        svgMap.style.transform = `scale(${zoom += 0.01 })`
         ground.scrollBy(-originx,-originy);
         scale *= zoom;
       }
@@ -301,12 +301,11 @@ function pointermoveHandler(ev) {
         ground.scrollBy(originx,originy);
         originx += mousex/(scale*zoom) - mousex/scale;
         originy += mousey/(scale*zoom) - mousey/scale;
-        svgMap.style.transform = `scale(${zoom -= 0.005 })`
+        svgMap.style.transform = `scale(${zoom -= 0.01})`
         ground.scrollBy(-originx,-originy);
-        
         scale *= zoom;
       }
-      console.log(svgg.x,svgg.y)
+      // console.log(svgg.x,svgg.y)
     }
     prevDiff = curDiff;
   }  
