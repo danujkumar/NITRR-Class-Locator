@@ -37,7 +37,7 @@
     <link href="assets/css/inner-style.css" rel="stylesheet" />
   </head>
 
-  <body style="background-color: rgb(255, 255, 255)">
+  <body style="background-color: rgb(255, 255, 255);"  onload="init()">
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex flex-column p-2">
       <div class="align-items-center">
@@ -110,7 +110,7 @@
     <!-- End Header -->
 
     <div class="containerharsh">
-      <ul class="pagination">
+      <ul class="pagination" style="position:relative;z-index:30;">
         <li>
           <a href="#" style="cursor: pointer">Ground</a>
         </li>
@@ -126,12 +126,13 @@
     <!-- harsh -->
     <div class="w-container" id="removal">
       <div
-        style="transition: transform 1s; opacity: 0"
+        style="perspective-origin: 0%;transition: transform 1s; opacity: 0;"
         class="purple"
         id="groundd"
       >
         <svg
-          width="60vw"
+          style="transform-origin: 0% 0%;position: relative;z-index: 0;margin: auto;"
+          width="57vw"
           height="90vh"
           viewBox="0 0 407 310"
           fill="none"
@@ -3860,16 +3861,17 @@
             x="186.08148"
             y="45.171165"
           />
-        </svg>
+        </svg>      
       </div>
       <div
-        style="transition: transform 1s; opacity: 0"
+        style="perspective-origin: 0%;transition: transform 1s; opacity: 0;"
         class="purple"
         id="firstt"
       >
         <?xml version="1.0" encoding="UTF-8" standalone="no"?>
         <svg
-          width="60vw"
+        style="transform-origin: 0% 0%;position: relative;z-index: 0;margin: auto;"
+          width="57vw"
           height="90vh"
           viewBox="0 0 465 335"
           fill="none"
@@ -7137,13 +7139,14 @@
         </svg>
       </div>
       <div
-        style="transition: transform 1s; opacity: 0"
-        class="purple"
+        style="perspective-origin: 0%;transition: transform 1s; opacity: 0;"
+        class="purple"  
         id="secondd"
       >
         <?xml version="1.0" encoding="UTF-8" standalone="no"?>
         <svg
-          width="60vw"
+        style="transform-origin: 0% 0%;position: relative;z-index: 0;margin: auto;"
+          width="57vw"
           height="90vh"
           viewBox="0 0 1364 1175"
           fill="none"
@@ -10222,7 +10225,7 @@
         </svg>
       </div>
 
-      <div class="green">
+      <div class="green" style="padding-top:10px;">
         <div
           id="alertt"
           class="alert alert-primary"
@@ -10323,7 +10326,8 @@
     <script src="assets/vendor/php-email-form/validate.js"></script>
 
     <!-- Template Main JS File -->
-    <script src="assets/js/inner-main.js"></script>
     <script type="module" src="./assets/js/G-Map.js"></script>
+    <script src="assets/js/inner-main.js"></script>
+    
   </body>
 </html>
