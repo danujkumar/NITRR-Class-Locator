@@ -289,7 +289,6 @@ function pointermoveHandler(ev) {
 
         // console.log(svgg.x,svgg.y)
       }
-      
     }
     prevDiff = curDiff;
   }  
