@@ -280,7 +280,7 @@ function pointermoveHandler(ev) {
     const curDiff = Math.abs(evCache[0].clientX - evCache[1].clientX);
     if(prevDiff>0){
       if(curDiff > prevDiff){
-        svgg = svgMap.getBoundingClientRect();
+        let svgg = svgMap.getBoundingClientRect();
         let num1 = (evCache[0].clientX + evCache[1].clientX)/2
         let num2 = (evCache[0].clientY + evCache[1].clientY)/2
         const mousex =  num1- (svgg.x);
@@ -291,9 +291,10 @@ function pointermoveHandler(ev) {
         svgMap.style.transform = `scale(${zoom += 0.01 })`
         ground.scrollBy(-originx,-originy);
         scale *= zoom;
+        // console.log(svgg.x,svgg.y);
       }
       if(curDiff < prevDiff && zoom>1){
-        svgg = svgMap.getBoundingClientRect();
+        let svgg = svgMap.getBoundingClientRect();
         let num1 = (evCache[0].clientX + evCache[1].clientX)/2
         let num2 = (evCache[0].clientY + evCache[1].clientY)/2
         const mousex =  num1- (svgg.x);
@@ -304,8 +305,9 @@ function pointermoveHandler(ev) {
         svgMap.style.transform = `scale(${zoom -= 0.01})`
         ground.scrollBy(-originx,-originy);
         scale *= zoom;
+        // console.log(svgg.x,svgg.y)
       }
-      // console.log(svgg.x,svgg.y)
+      
     }
     prevDiff = curDiff;
   }  
