@@ -4,8 +4,7 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
-let svgMap = document.querySelectorAll("#removal div svg");
-let ground;
+
 (function() {
     "use strict";
   
@@ -233,94 +232,3 @@ const removeSess = ()=>{
 grounds1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","0");}
 firstt1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","1");}
 secondd1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","2");}
-
-let key = sessionStorage.getItem("map_no");
-switch (key) {
-  case "1":
-    svgMap = svgMap[1];
-    ground = document.getElementById("firstt");
-    break;
-  case "2":
-    svgMap = svgMap[2];
-    ground = document.getElementById("secondd");
-    break;
-  default:
-    svgMap = svgMap[0];
-    ground = document.getElementById("groundd");
-    break;
-}
-
-//Enabling two finger touch gestures 
-const evCache = [];
-let prevDiff = -1;
-
-function pointerdownHandler(ev) {
-  document.getElementsByTagName("html")[0].style.touchAction="none";
-  evCache.push(ev);
-}
-
-let originx = 0,originy = 0,scale=1,zoom=1;
-
-function pointerupHandler(ev) {
-  document.getElementsByTagName("html")[0].style.touchAction="auto";
-  function removeEvent(ev) {
-      const index = evCache.findIndex((cachedEv) => cachedEv.pointerId === ev.pointerId);
-      evCache.splice(index,1);   
-  }
-  removeEvent(ev);
-  if(evCache.length < 2){
-    prevDiff = -1;
-  }    
-}
-
-function pointermoveHandler(ev) {
-  const index = evCache.findIndex((cachedEv) => cachedEv.pointerId === ev.pointerId);
-  evCache[index] = ev;    
-  if(evCache.length === 2){
-    const curDiff = Math.abs(evCache[0].clientX - evCache[1].clientX);
-    if(prevDiff>0){
-      if(curDiff > prevDiff){
-        let svgg = svgMap.getBoundingClientRect();
-        let num1 = (evCache[0].clientX + evCache[1].clientX)/2
-        let num2 = (evCache[0].clientY + evCache[1].clientY)/2
-        const mousex =  num1- (svgg.x);
-        const mousey =  num2- (svgg.y);
-        ground.scrollBy(originx,originy);
-        originx += mousex/(scale*zoom) - mousex/scale;
-        originy += mousey/(scale*zoom) - mousey/scale;
-        svgMap.style.transform = `scale(${zoom += 0.04 })`
-        ground.scrollBy(-originx,-originy);
-        scale *= zoom;
-        // console.log(svgg.x,svgg.y);
-      }
-      if(curDiff < prevDiff && zoom>1){
-        let svgg = svgMap.getBoundingClientRect();
-        let num1 = (evCache[0].clientX + evCache[1].clientX)/2
-        let num2 = (evCache[0].clientY + evCache[1].clientY)/2
-        const mousex =  num1- (svgg.x);
-        const mousey =  num2- (svgg.y);
-        ground.scrollBy(originx,originy);
-        originx += mousex/(scale*zoom) - mousex/scale;
-        originy += mousey/(scale*zoom) - mousey/scale;
-        svgMap.style.transform = `scale(${zoom -= 0.04})`
-        ground.scrollBy(-originx,-originy);
-        scale *= zoom;
-        // console.log(svgg.x,svgg.y)
-      }
-      
-    }
-    prevDiff = curDiff;
-  }  
-}
-
-function init(){
-  svgMap.onpointerdown = pointerdownHandler;
-  svgMap.onpointermove = pointermoveHandler;
-  svgMap.onpointerup = pointerupHandler;
-  svgMap.onpointercancel = pointerupHandler;
-  svgMap.onpointerout = pointerupHandler;
-  svgMap.onpointerleave = pointerupHandler;
-}
-
-
-// svgMap.style.transform = "scale(2)"
