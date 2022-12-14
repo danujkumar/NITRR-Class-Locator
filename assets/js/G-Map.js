@@ -36,11 +36,11 @@ let preinfo;
 const clearMap = () =>
 {
   if(map_no == "1")
-       { removals.removeChild(map0);removals.removeChild(map2);map1.style.opacity = 1;map1.style.overflow="auto"}
+       { removals.removeChild(map0);removals.removeChild(map2);map1.style.opacity = 1;map1.style.overflow="clip"}
   else if(map_no == "2")
-      { removals.removeChild(map0);removals.removeChild(map1);map2.style.opacity = 1;map2.style.overflow="auto"}
+      { removals.removeChild(map0);removals.removeChild(map1);map2.style.opacity = 1;map2.style.overflow="clip"}
   else
-      {removals.removeChild(map1);removals.removeChild(map2);map0.style.opacity = 1;map0.style.overflow="auto"}
+      {removals.removeChild(map1);removals.removeChild(map2);map0.style.opacity = 1;map0.style.overflow="clip"}
 }
 
 const butControl = ()=>{
@@ -639,28 +639,25 @@ function greenAttachment(
   createLine(xintersect, yintersect, xend, yend, intersected.id);
 }
 
-
-const places = document.getElementsByClassName("room");
-for (let button of places) {
-  let exceptions = Number.parseInt(button.id);
-  if (
-    !(
-      exceptions == 6 ||
-      exceptions == 71 ||
-      exceptions == 5 ||
-      exceptions == 39 ||
-      exceptions == 4 ||
-      exceptions == 3 ||
-      exceptions == 102 ||
-      exceptions == 82
-    )
-  ) {
-
-    let infobut = document.getElementById(button.id);
-    infobut.onclick = ()=>{
-        Information(infobut.id);
+export function room_click(id_num) {
+    let exceptions;
+    exceptions = Number.parseInt(id_num).toString();
+    if (
+      !(
+        exceptions == "NaN" ||
+        exceptions == "6" ||
+        exceptions == "71" ||
+        exceptions == "5" ||
+        exceptions == "39" ||
+        exceptions == "4" ||
+        exceptions == "3" ||
+        exceptions == "102" ||
+        exceptions == "82"
+      )
+    ) {
+      Information(id_num);
     }
-  }
+    
 }
 
 const getsetGoo = () => {

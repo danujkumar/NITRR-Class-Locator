@@ -543,14 +543,15 @@ cursor:default;
 .w-container{
   margin-top: 0;
   display: flex;
+  margin:auto;
 }
 .green{
-  /* background-color: green; */
-  justify-content:space-around;
+  margin-right:auto;
+  margin-left:auto;
   text-align: center;
   margin-top: 6rem;
   position: relative;
-  z-index: 30;
+  max-width:40vw;
 }
 svg{
   padding: 1.5rem;
@@ -572,8 +573,11 @@ svg{
       /* display: flex; */
       /* flex-direction: column; */
       align-items: center;
+      max-width: none;
+
       /* padding: 0 !important; */
       margin-top:0;
+      margin:auto;
   }
 }
 
