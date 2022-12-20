@@ -55,6 +55,8 @@ const onclicked = (e)=>{
 
 svgMap.onpointerdown = function(e){
   e.preventDefault();
+  if(e.pointerType == "mouse")  
+    touchStart(e,300);
   document.getElementsByTagName("html")[0].style.touchAction="none";
   evCache.push(e);
   starts = {x:e.clientX - pointXX, y:e.clientY - pointYY};
@@ -62,32 +64,43 @@ svgMap.onpointerdown = function(e){
 }
 
 svgMap.onpointerup = function(ev){
+    if(ev.pointerType == "mouse")
+      touchEnd(ev);
     pointerupHandler(ev);
 }
 
 let onlongtouch = ()=>{timer=null};
 let timer = null;
 
-svgMap.addEventListener('touchstart',function(e){
-    // console.log(e.touches[0])
-
-    if(timer == null){ timer = setTimeout(onlongtouch,150); }
+const touchStart = (e,tTime)=>{
+  if(timer == null){ timer = setTimeout(onlongtouch,tTime); }
     e.preventDefault();
-    touchCount = e.touches.length;
+    try {
+      touchCount = e.touches.length;
+    } catch (error) {
+      touchCount = 1;
+    }
+    
     if(touchCount == 2){
       midPointX = (e.touches[0].clientX + e.touches[1].clientX)/2;
       midPointY = (e.touches[0].clientY + e.touches[1].clientY)/2;
-    }        
-})
+    }    
+}
 
-
-
-svgMap.addEventListener('touchend',function(e){
-    if(timer!=null){
+const touchEnd=(e)=>{
+  if(timer!=null){
         clearTimeout(timer);
         timer = null;
         onclicked(e);
     }
+}
+
+svgMap.addEventListener('touchstart',function(e){
+    touchStart(e,150);
+})
+
+svgMap.addEventListener('touchend',function(e){
+    touchEnd(e);
 });
 
 svgMap.onwheel = function(e){
@@ -115,15 +128,15 @@ svgMap.onwheel = function(e){
     setTransform(pointXX,pointYY,scaless);
 }
 
-svgMap.onmousemove = function(e){
-    e.preventDefault();
-    if(!pannings){
-        return;
-    }
-    pointXX = (e.clientX-starts.x);
-    pointYY = (e.clientY-starts.y);
-    setTransform(pointXX,pointYY,scaless);
-}
+// svgMap.onmousemove = function(e){
+//     e.preventDefault();
+//     if(!pannings){
+//         return;
+//     }
+//     pointXX = (e.clientX-starts.x);
+//     pointYY = (e.clientY-starts.y);
+//     setTransform(pointXX,pointYY,scaless);
+// }
 
 svgMap.onpointermove = function(ev){
   ev.preventDefault();
