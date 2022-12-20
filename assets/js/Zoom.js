@@ -69,7 +69,9 @@ let onlongtouch = ()=>{timer=null};
 let timer = null;
 
 svgMap.addEventListener('touchstart',function(e){
-    if(timer == null){ timer = setTimeout(onlongtouch,300); }
+    // console.log(e.touches[0])
+
+    if(timer == null){ timer = setTimeout(onlongtouch,150); }
     e.preventDefault();
     touchCount = e.touches.length;
     if(touchCount == 2){
@@ -77,6 +79,8 @@ svgMap.addEventListener('touchstart',function(e){
       midPointY = (e.touches[0].clientY + e.touches[1].clientY)/2;
     }        
 })
+
+
 
 svgMap.addEventListener('touchend',function(e){
     if(timer!=null){
