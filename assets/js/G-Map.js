@@ -31,6 +31,8 @@ let map2 = document.getElementById("secondd");
 let buttonCon = document.querySelectorAll(".containerharsh a");
 let removals = document.getElementById("removal")
 let initialRotate = 0;
+let initialFloor;
+let finalFloor;
 let preinfo;
 
 const clearMap = () =>
@@ -253,7 +255,7 @@ function createLine(x1, y1, x2, y2, lineId) {
   else line.style.width = distance + 3 + "px";
 }
 
-const sdhfiusdhfsiadufhlinterg = (x, y) => {
+const intersectionGreen = (x, y) => {
   let foundx, foundy;
   let yintersect,xintersect;
   if(map_no != null && map_no != "null" && map_no != "undefined" && map_no != undefined)
@@ -563,9 +565,9 @@ const locates = () => {
   xgreenendss = greenEnds.getAttribute("x");
   ygreenendss = greenEnds.getAttribute("y");
 
-  let intersecteds = sdhfiusdhfsiadufhlinterg(greenStarts.id, greenEnds.id);
+  let intersecteds = intersectionGreen(greenStarts.id, greenEnds.id);
   if (intersecteds == null)
-    intersecteds = sdhfiusdhfsiadufhlinterg(greenEnds.id, greenStarts.id);
+    intersecteds = intersectionGreen(greenEnds.id, greenStarts.id);
 
   let xintersecteds = Number.parseInt(intersecteds.getAttribute("x"));
   let yintersecteds = Number.parseInt(intersecteds.getAttribute("y"));
@@ -698,12 +700,21 @@ const getsetGoo = () => {
     return felement;
   }
 
-  const moveToFloors = ()=>{
-    if(endd >=204)
-      {sessionStorage.setItem("map_no","1");location.reload();}
+  const detectfinalFloor = ()=>{
+    if(endd >= 204)
+      return "First"
     else if((endd >= 115 && endd <= 203))
+      return "Second"
+    else
+      return "Ground"
+  }
+
+  const moveToFloors = ()=>{
+    if(detectfinalFloor() == "First")
+      {sessionStorage.setItem("map_no","1");location.reload();}
+    else if(detectfinalFloor() == "Second")
       {sessionStorage.setItem("map_no","2");location.reload();}
-    else if(endd <=114)
+    else
       {sessionStorage.setItem("map_no","0");location.reload();}
 }
 
@@ -714,6 +725,7 @@ const getsetGoo = () => {
           starting = starts;
           ending = startToStairs();
           alertt.style.display = "block";
+          initialFloor = "First"
           return true;
         }
         else if((starts>=115 && starts<=203) && !(endd >=115 && endd <= 203) && endd != undefined && endd != null && map_no == "2"
@@ -722,6 +734,7 @@ const getsetGoo = () => {
           starting = starts;
           ending = startToStairs();
           alertt.style.display = "block";
+          initialFloor = "Second"
           return true;
         }
         else if(starts<=114 && endd > 114 && endd != null  && endd != undefined && map_no == "0" && endd !="null" && endd != "undefined")
@@ -729,6 +742,7 @@ const getsetGoo = () => {
           starting = starts;
           ending = startToStairs();
           alertt.style.display = "block";
+          initialFloor = "Ground"
           return true;
         } 
         return false;
@@ -756,6 +770,12 @@ const getsetGoo = () => {
 
   if(detectInterFloorStarts() == false)
     detectInterFloorEnds();
+  else
+  {
+    document.getElementById('finalFloor').innerHTML = detectfinalFloor() + " floor"
+    document.getElementById('initialFloor').innerHTML = initialFloor + " floor";
+  }
+    
 
   if(starting!=null && starting!="null" && starting !="undefined" && starting != undefined)
   {
