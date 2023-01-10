@@ -110,7 +110,7 @@ svgMap.onwheel = function(e){
     let delta = (e.deltaY ? -e.deltaY : +e.deltaY);
     if(delta > 0)
     {
-      scaless += 0.1;
+      scaless += 0.05;
       pointXX = e.clientX - xs * scaless;
       pointYY = e.clientY - ys * scaless;
     }
@@ -120,7 +120,7 @@ svgMap.onwheel = function(e){
         {scaless = 1;pointXX = 0;pointYY = 0;}
       else
         {
-          scaless -= 0.1;
+          scaless -= 0.05;
           pointXX = e.clientX - xs * scaless;
           pointYY = e.clientY - ys * scaless;
         }
