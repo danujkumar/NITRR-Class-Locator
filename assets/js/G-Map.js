@@ -199,7 +199,6 @@ const pointsSE = (textId) => {
         removal(divControl);
       };
     } catch (error) {}
-    
 }
 
 current.onkeyup = ()=>{
