@@ -46,12 +46,19 @@ function pointerupHandler(ev) {
 }
 
 const onclicked = (e)=>{
-  console.log(e.path)
-    for(let i in e.path)
+  //Updated code for Google version 109 and above.
+  let gSelector = e.srcElement.parentElement;
+  if(gSelector.nodeName == "text")
+    gSelector = gSelector.parentElement;
+
+  if(gSelector.classList == "room")
+      room_click(gSelector.id)
+
+    /* for(let i in e.path)
     {
         if(e.path[i].classList == "room")
             room_click(e.path[i].id);
-    }
+    } // this section of code will not work after updating the Google version to 109 and above*/
 }
 
 svgMap.onpointerdown = function(e){
@@ -77,13 +84,9 @@ const touchStart = (e,tTime)=>{
   if(timer == null){ timer = setTimeout(onlongtouch,tTime); }
     e.preventDefault();
     try {
-      // console.log("touch start");
       touchCount = e.touches.length;
-      // console.log(touchCount);
-      
     } catch (error) {
       touchCount = 1;
-      console.log(touchCount)
     }
     
     if(touchCount == 2){
