@@ -19,6 +19,7 @@ document.getElementsByTagName("html")[0].addEventListener("onload",function(e){
     svgMap.onpointercancel = pointerupHandler;
     svgMap.onpointerout = pointerupHandler;
     svgMap.onpointerleave = pointerupHandler;
+
 })
 
 //Enabling two finger touch gestures 

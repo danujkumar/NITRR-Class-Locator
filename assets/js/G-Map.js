@@ -30,10 +30,12 @@ let map1 = document.getElementById("firstt");
 let map2 = document.getElementById("secondd");
 let buttonCon = document.querySelectorAll(".containerharsh a");
 let removals = document.getElementById("removal")
-let initialRotate = 0;
+let initialRotate = parseInt(sessionStorage.getItem("rotate"));
 let initialFloor;
-let finalFloor;
 let preinfo;
+
+if(Object.is(initialRotate,NaN))
+    initialRotate = 0;
 
 const clearMap = () =>
 {
@@ -62,6 +64,7 @@ try {
       clearMap();
       starts = starting = sessionStorage.getItem('start');
       endd = ending = sessionStorage.getItem('end');
+      rotateDeg(initialRotate);
       setter();
       getsetGoo();
   } catch (error) {
@@ -419,6 +422,7 @@ const reset = ()=>{
   sessionStorage.removeItem("start");
   sessionStorage.removeItem("end");
   sessionStorage.removeItem("Stair");
+  sessionStorage.removeItem("rotate");
   removeAlll();
   removeDestinationAll();
   removeinfo();
@@ -438,18 +442,19 @@ document.getElementById("reset").onclick = ()=>{
   reset();
 }
 
+const rotateDeg = (degree)=>{
+  if(map_no == 1) map1.style.transform = `rotate(${degree}deg)`;
+  else if(map_no == 2) map2.style.transform = `rotate(${degree}deg)`;
+  else map0.style.transform = `rotate(${degree}deg)`;
+  sessionStorage.setItem("rotate",`${degree}`)
+}
+
 document.getElementById("counterclock").onclick = ()=>{
-  initialRotate -= 90;
-  if(map_no == 1) map1.style.transform = `rotate(${initialRotate}deg)`;
-  else if(map_no == 2) map2.style.transform = `rotate(${initialRotate}deg)`;
-  else map0.style.transform = `rotate(${initialRotate}deg)`;
+  rotateDeg(initialRotate -= 90)
 }
 
 document.getElementById("clock").onclick = ()=>{
-  initialRotate += 90;
-  if(map_no == 1) map1.style.transform = `rotate(${initialRotate}deg)`;
-  else if(map_no == 2) map2.style.transform = `rotate(${initialRotate}deg)`;
-  else map0.style.transform = `rotate(${initialRotate}deg)`;
+  rotateDeg(initialRotate += 90)
 }
 
 const greenDecider = () => {
