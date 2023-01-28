@@ -64,6 +64,7 @@ try {
       clearMap();
       starts = starting = sessionStorage.getItem('start');
       endd = ending = sessionStorage.getItem('end');
+      initialRotate = initialRotate - Math.floor(initialRotate/360)*360;
       rotateDeg(initialRotate);
       setter();
       getsetGoo();
