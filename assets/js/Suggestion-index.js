@@ -122,7 +122,7 @@ try {
       sessionStorage.setItem("map_no","2")
     else 
       sessionStorage.setItem("map_no","0")
-    search.setAttribute("href","./inner-page.html")
+    search.setAttribute("href","./maps.html")
   }
   sessionStorage.setItem('start',start);
   sessionStorage.setItem('end',end);
