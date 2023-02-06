@@ -109,19 +109,11 @@ function pointerupHandler(ev) {
 }
 
 const onclicked = (e)=>{
-  //Updated code for Google version 109 and above.
-  let gSelector = e.srcElement.parentElement;
-  if(gSelector.nodeName == "text")
-    gSelector = gSelector.parentElement;
-
-  if(gSelector.classList == "room")
-      room_click(gSelector.id)
-
-    /* for(let i in e.path)
+    for(let i in e.path)
     {
         if(e.path[i].classList == "room")
             room_click(e.path[i].id);
-    } // this section of code will not work after updating the Google version to 109 and above*/
+    } // this section of code will not work after updating the Google version to 109 and above
 }
 
 svgMap.onpointerdown = function(e){
