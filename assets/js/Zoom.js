@@ -115,13 +115,7 @@ const onclicked = (e)=>{
     gSelector = gSelector.parentElement;
 
   if(gSelector.classList == "room")
-      room_click(gSelector.id)
-
-    /* for(let i in e.path)
-    {
-        if(e.path[i].classList == "room")
-            room_click(e.path[i].id);
-    } // this section of code will not work after updating the Google version to 109 and above*/
+    room_click(gSelector.id)
 }
 
 svgMap.onpointerdown = function(e){
@@ -198,16 +192,6 @@ svgMap.onwheel = function(e){
     }
     setTransform(pointXX,pointYY,scaless);
 }
-
-// svgMap.onmousemove = function(e){
-//     e.preventDefault();
-//     if(!pannings){
-//         return;
-//     }
-//     pointXX = (e.clientX-starts.x);
-//     pointYY = (e.clientY-starts.y);
-//     setTransform(pointXX,pointYY,scaless);
-// }
 
 svgMap.onpointermove = function(ev){
   ev.preventDefault();
