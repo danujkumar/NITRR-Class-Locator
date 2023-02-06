@@ -38,15 +38,9 @@ const rotateDeg = (degree,isCounter)=>{
   else if(map_no == 2) map2.style.transform = `rotate(${degree}deg)`;
   else map0.style.transform = `rotate(${degree}deg)`;
   if(isCounter)
-  {
-    pointXX = -pointYYOld;
-    pointYY = pointXXOld; 
-  }
+  { pointXX = -pointYYOld; pointYY = pointXXOld; }
   else
-  {
-    pointXX = pointYYOld;
-    pointYY = -pointXXOld;
-  }
+  { pointXX = pointYYOld; pointYY = -pointXXOld; }
     pointXXOld = pointXX;
     pointYYOld = pointYY;
     sessionStorage.setItem("rotate",`${degree}`)
@@ -65,10 +59,38 @@ let evCache = [];
 let prevDiff = -1;
 let touchCount,midPointX,midPointY;
 
+const setTranslate = (pointX,pointY) =>{
+  let initialRotate = parseInt(sessionStorage.getItem("rotate"));
+  let rotate = initialRotate - Math.floor(initialRotate/360)*360;
+  switch (rotate) {
+    case 90:
+      svgMap.style.transform = `translate(${pointY}px,${-pointX}px)`;
+      break;
+    case 180:
+      svgMap.style.transform = `translate(${-pointX}px,${-pointY}px)`;
+      break;
+    case 270:
+      svgMap.style.transform = `translate(${-pointY}px,${pointX}px)`;
+      break;
+    case -90:
+      svgMap.style.transform = `translate(${-pointY}px,${pointX}px)`;
+      break;
+    case -180:
+      svgMap.style.transform = `translate(${-pointX}px,${-pointY}px)`;
+      break;
+    case -270:
+      svgMap.style.transform = `translate(${pointY}px,${-pointX}px)`;
+      break;
+    default:
+      svgMap.style.transform = `translate(${pointX}px,${pointY}px)`;
+      break;
+  }
+}
+
 function setTransform(pointX,pointY,scales) {
   let initialRotate = parseInt(sessionStorage.getItem("rotate"));
   let rotate = initialRotate - Math.floor(initialRotate/360)*360;
-  pointX == 0 && pointY == 0 ? svgMap.style.transition = 'transform 0.5s' : svgMap.style.transition = '';
+  // svgMap.style.transform = `translate(${-pointX}px,${-pointY}px) scale(${scales})`;
   switch (rotate) {
     case 90:
       svgMap.style.transform = `translate(${pointY}px,${-pointX}px) scale(${scales})`;
@@ -124,13 +146,21 @@ const onclicked = (e)=>{
     } // this section of code will not work after updating the Google version to 109 and above*/
 }
 
+function degrees_to_radians(degrees)
+{
+  var pi = Math.PI;
+  return degrees * (pi/180);
+}
+
 svgMap.onpointerdown = function(e){
   e.preventDefault();
   if(e.pointerType == "mouse")  
     touchStart(e,300);
   document.getElementsByTagName("html")[0].style.touchAction="none";
   evCache.push(e);
-  starts = {x:e.clientX - pointXX, y:e.clientY - pointYY};
+  let touchPointX = e.clientX * Math.cos(degrees_to_radians(initialRotate)) - e.clientY * Math.sin(degrees_to_radians(initialRotate));
+  let touchPointY = e.clientY * Math.cos(degrees_to_radians(initialRotate)) + e.clientX * Math.sin(degrees_to_radians(initialRotate));
+  starts = {x:touchPointX - pointXX, y:touchPointY - pointYY};
   pannings = true;
 }
 
@@ -176,14 +206,16 @@ svgMap.addEventListener('touchend',function(e){
 
 svgMap.onwheel = function(e){
     e.preventDefault();
-    let xs = (e.clientX - pointXX)/scaless,
-    ys = (e.clientY- pointYY)/scaless;
+    let touchPointX = e.clientX * Math.cos(degrees_to_radians(initialRotate)) - e.clientY * Math.sin(degrees_to_radians(initialRotate));
+    let touchPointY = e.clientY * Math.cos(degrees_to_radians(initialRotate)) + e.clientX * Math.sin(degrees_to_radians(initialRotate));
+    let xs = (touchPointX - pointXX)/scaless,
+    ys = (touchPointY - pointYY)/scaless;
     let delta = (e.deltaY ? -e.deltaY : +e.deltaY);
     if(delta > 0)
     {
       scaless += 0.05;
-      pointXXOld = pointXX = (e.clientX - xs * scaless);
-      pointYYOld = pointYY = (e.clientY - ys * scaless);
+      pointXXOld = pointXX = (touchPointX - xs * scaless);
+      pointYYOld = pointYY = (touchPointY - ys * scaless);
     }
     else
     {
@@ -192,8 +224,8 @@ svgMap.onwheel = function(e){
       else
         {
           scaless -= 0.05;
-          pointXXOld = pointXX = e.clientX - xs * scaless;
-          pointYYOld = pointYY = e.clientY - ys * scaless;
+          pointXXOld = pointXX = touchPointX - xs * scaless;
+          pointYYOld = pointYY = touchPointY - ys * scaless;
         }
     }
     setTransform(pointXX,pointYY,scaless);
@@ -240,6 +272,6 @@ svgMap.onpointermove = function(ev){
     if(!pannings){return;}
     pointXXOld = pointXX = (ev.clientX - starts.x);
     pointYYOld = pointYY = (ev.clientY - starts.y);
-    setTransform(pointXX,pointYY,scaless);
+    setTranslate(pointXX,pointYY);
   }
 }
