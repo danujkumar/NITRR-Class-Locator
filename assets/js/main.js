@@ -208,6 +208,7 @@ window.addEventListener("load", function() {
   });
 });
 
+//This alert is not valid, all the floors are working perfectly
 function alerty(){
   alert("This Feature Will Be Available After 1-2 Week ! Have Patience...");
 };

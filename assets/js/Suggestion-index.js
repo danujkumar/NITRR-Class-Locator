@@ -6,8 +6,10 @@ let divControl;
 
 //Assigning all the names, details and department information into the array id;
 for (let k in searching) {
+  if(searching[k]["details"] == "")
+    searching[k]["details"] = searching[k]["name"];
   name.set(searching[k]["name"], k);
-  id.push(searching[k]["name"]);
+  id.push([searching[k]["name"],searching[k]["details"]]);
 }
 
 //Getting the element of input current, input final and search box
@@ -55,21 +57,21 @@ const pointsSE = (textId) => {
 
   //Searching is done here
   for (let i = 0; i < id.length; i++) {
-    let fromId = id[i];
-    if (fromId != undefined && newWord != undefined) {
-      let fromIds = refinedString(fromId.toUpperCase());
-
-      if (fromIds.indexOf(newWord.toUpperCase()) > -1) {
-        
+    let fromIdName = id[i][0];
+    let fromIdDetails = id[i][1];
+    if (fromIdName != undefined && newWord != undefined && fromIdDetails != undefined) {
+      let fromIdsNames = refinedString(fromIdName.toUpperCase());
+      let fromIdsDetails = refinedString(fromIdDetails.toUpperCase());
+      if ((fromIdsNames.indexOf(newWord.toUpperCase()) > -1) || (fromIdsDetails.indexOf(newWord.toUpperCase()) > -1)) {
         //Creating element here para with innerHTML as its array text, adding class of ibutton for css and appending under test div.
         const para = document.createElement("button");
-        para.innerHTML = id[i];
+        para.innerHTML = `${id[i][0]} (${currentText.value})`;
         para.classList.add("ibutton");
         divControl.appendChild(para);
 
         //Onclick is handled here for each element it found
           para.onclick = () =>{
-            document.getElementById(textId).value = id[i];
+            document.getElementById(textId).value = id[i][0];
             removal(divControl); 
         }
       }
