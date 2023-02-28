@@ -35,7 +35,11 @@
     gtag('config', 'G-TS5SNMMD07');
   </script>
     <script src="https://www.google.com/recaptcha/api.js"></script>
-
+    <script>
+      function onSubmit(token) {
+        document.getElementById("my-form").submit();
+      }
+    </script>
 </head>
 
 
@@ -252,9 +256,9 @@
               </div>
               <div class="text-center" id="pleasewait">Please Wait...</div>
               <div class="text-center"><button class="g-recaptcha" 
-                data-sitekey="6LcLPlIkAAAAAATIE974JB9KLWidz-1QReFsPC5D" 
+                data-sitekey="6LfHDMAkAAAAAOXKZt69rjLPYsQv0KS-TZ_Ui5ZG" 
                 data-callback='onSubmit' 
-                data-action='submit' id="demo-form" type="submit" title="Send Message">Submit</button></div>
+                data-action='submit' type="submit" title="Send Message">Submit</button></div>
             </form>
           </div>
 
@@ -272,12 +276,6 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-chevron-up"></i></a>
 
   <!-- Vendor JS Files -->
-  <script>
-    function onSubmit(token) {
-      document.getElementById("demo-form").submit();
-    }
-  </script>
-
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
