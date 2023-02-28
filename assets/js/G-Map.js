@@ -104,9 +104,10 @@ const Information = (buttonClicked)=>{
 }
 
 for (let k in searching) {
+  if(searching[k]["details"] == "")
+    searching[k]["details"] = searching[k]["name"];
   name.set(searching[k]["name"], k);
-  // detailss.set(searching[k]["details"], k);
-  id.push(searching[k]["name"]);
+  id.push([searching[k]["name"],searching[k]["details"]]);
 }
 
 const removal = (element) => {
@@ -152,21 +153,23 @@ const pointsSE = (textId) => {
   removal(divControl);
 
   for (let i = 0; i < id.length; i++) {
-    let fromId = id[i];
-    if (fromId != undefined && newWord != undefined) {
-      let fromIds = refinedString(fromId.toUpperCase());
-      if (fromIds.indexOf(newWord.toUpperCase()) > -1) {
+    let fromIdName = id[i][0];
+    let fromIdDetails = id[i][1];
+    if (fromIdName != undefined && newWord != undefined && fromIdDetails !=undefined) {
+      let fromIdsName = refinedString(fromIdName.toUpperCase());
+      let fromIdsDetails = refinedString(fromIdDetails.toUpperCase());
+      if ((fromIdsName.indexOf(newWord.toUpperCase()) > -1) || (fromIdsDetails.indexOf(newWord.toUpperCase()) > -1)) {
         const para = document.createElement("button");
-        para.innerHTML = id[i];
+        para.innerHTML = `${id[i][0]} (${currentText.value})`;
         para.classList.add("ibutton");
         divControl.appendChild(para);
             para.onclick = () =>{
-              document.getElementById(textId).value = id[i];
+              document.getElementById(textId).value = id[i][0];
               if(textId == "current")
               {
                 if(name.get(current.value) != null)
                 {
-                  starts = starting = name.get(id[i]);
+                  starts = starting = name.get(id[i][0]);
                   sessionStorage.setItem('start',starting);
                 }
                 detectFloor();
@@ -176,7 +179,7 @@ const pointsSE = (textId) => {
               {
                 if(name.get(final.value) != null)
                 {
-                  endd = ending = name.get(id[i]);
+                  endd = ending = name.get(id[i][0]);
                   sessionStorage.setItem('end',ending);
                   if(starting != undefined && starting != "undefined" && starting != "null" && starting != null)
                     {
