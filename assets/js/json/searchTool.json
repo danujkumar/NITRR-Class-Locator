@@ -801,401 +801,400 @@
 
 
 
-
-
-
-
-
-
     "204":{
+      "name": "Lift & Water 2(Second floor)",
+      "details":""
+    },
+
+    "205":{
       "name":"Stairs - 1 (First Floor)",
       "details":""
     },
-    "262": {
+    "263": {
       "name": "Gents Toilet - 3 (First Floor)",
       "details":""
     },
-    "261": {
+    "262": {
       "name": "Ladies Toilet - 3 (First Floor)",
       "details": ""
     },
-    "260": {
+    "261": {
       "name": "Dr. Anil Tiwari",
       "details": "Professor Mechanical Engineering"
     },
-    "259": {
+    "260": {
       "name": "F3, Dr. S. Bhattacharya, Shri Satish Kumar Dewagan",
       "details": "Assistant Professor Mechanical Engineering"
     },
-    "258": {
+    "259": {
       "name": "Stairs - 8 (First Floor)",
       "details": ""
     },
-    "257": {
+    "258": {
       "name": "Dr. Priyanka Tripathi, Dr. Tanmoy Kanti Das, Dr. Shyam Sundar, Dr. Dibakar Saha",
       "details": ""
     },
-    "256": {
+    "257": {
       "name": "Dr. Manju Pandey, Dr. Mou Dasgupta",
       "details": ""
     },
-    "255": {
+    "256": {
       "name": "Computer Lab 2 (MCA, First Floor, Near F35), F34",
       "details": ""
     },
-    "254": {
+    "255": {
       "name": "F35",
       "details": "Classroom"
     },
-    "253": {
+    "254": {
       "name": "F36",
       "details": "Classroom"
     },
-    "252": {
+    "253": {
       "name": "F37",
       "details": "Classroom"
     },
-    "251": {
+    "252": {
       "name": "F38",
       "details": "Classroom"
     },
-    "250": {
+    "251": {
       "name": "F39",
       "details": "Lecture Room, Dept. of Metallurgical Engineering"
     },
-    "249": {
+    "250": {
       "name": "F40",
       "details": "Classroom, Dept. of Computer Science & Engineering"
     },
-    "242": {
+    "243": {
       "name": "Stairs - 9 (First Floor)",
       "details": ""
     },
-    "243": {
-      "name": "Room",
-      "details": ""
-    },
     "244": {
-      "name": "Ladies Toilet - 2 (First Floor)",
+      "name": "Room",
       "details": ""
     },
     "245": {
+      "name": "Ladies Toilet - 2 (First Floor)",
+      "details": ""
+    },
+    "246": {
       "name": "FN1",
       "details": "Civil Engg. Dept."
     },
-    "246": {
+    "247": {
       "name": "FN2",
       "details": "Civil Engg. Dept."
     },
-    "247": {
+    "248": {
       "name": "FN3",
       "details": "Civil Engg. Dept."
     },
-    "248": {
+    "249": {
       "name": "FN4",
       "details": "Civil Engg. Dept."
     },
-    "239":{
+    "240":{
       "name": "Ladies Toilet - 1 (First Floor)",
       "details" : ""
     },
-    "240": {
+    "241": {
       "name": "F42",
       "details": "Classroom, Dept. of Computer Science & Engineering"
     },
-    "241": {
+    "242": {
       "name": "F43A",
       "details": "Lab, Dept. of Computer Science & Engineering"
     },
-    "238": {
+    "239": {
       "name": "F43B",
       "details": "Faculy Room - 2, Dept. of Computer Science & Engineering"
     },
-    "237": {
+    "238": {
       "name": "F44",
       "details": "Classroom"
     },
-    "236": {
+    "237": {
       "name": "F45",
       "details": "Classroom"
     },
-    "235": {
+    "236": {
       "name": "F46, Research Laboratory",
       "details": "Dr. Pradeep Singh, Dept. of Computer Science & Engineering"
     },
-    "233": {
+    "234": {
       "name": "F47A, F50, Laboratory",
       "details": "Dept. of Computer Science & Engineering"
     },
-    "234": {
+    "235": {
       "name": "F47B",
       "details": "Faculty Room - 1, Dept. of Computer Science & Engineering"
     },
-    "232": {
+    "233": {
       "name": "Laboratory 1 & 2",
       "details": "Arindam Bit, Assistant Professor, Dept. of Biotech Engineering"
     },
-    "231": {
+    "232": {
       "name": "Lab 2",
       "details": "Dept. of Biotechnology"
     },
-    "230": {
+    "231": {
       "name": "Lab 3",
       "details": "Dept. of Biotechnology"
     },
-    "229": {
+    "230": {
       "name": "F52",
       "details": "Classroom, Dept. of Biotechnology"
     },
-    "228": {
+    "229": {
       "name": "F53",
       "details": "Classroom, Dept. of Biotechnology"
     },
-    "227": {
+    "228": {
       "name": "F54",
       "details": "Classroom, Dept. of Biotechnology"
     },
-    "226": {
+    "227": {
       "name": "F55",
       "details": "Office, Dept. of Biotechnology"
     },
-    "225": {
+    "226": {
       "name": "F57",
       "details": "HOD Dept. Of Computer Science & Engineering"
     },
-    "224": {
+    "225": {
       "name": "Department Of Mathematics - 1st Floor",
       "details": "Dr. Anup Kumar Sharma, Assistance Proff. Department Of Mathematics"
     },
-    "223": {
+    "224": {
       "name": "Stairs - 7 (First Floor)",
       "details": ""
     },
-    "222": {
+    "223": {
       "name": "Computer Lab, Department of Biotechnology",
       "details": ""
     },
-    "208": {
+    "209": {
       "name": "Faculty Room",
       "details": "Dr. Ayush Khare, Dr. S. M. Saini, Dr. Ashok Kumar Shrivastav, Dr. K. S. Ojha, Dr. B. K. Sahoo"
     },
-    "209": {
+    "210": {
       "name": "F26",
       "details": "Classroom"
     },
-    "210": {
+    "211": {
       "name": "Research Laboratory, First Floor",
       "details": ""
     },
-    "211": {
+    "212": {
       "name": "F24",
       "details": "Classroom"
     },
-    "212": {
+    "213": {
       "name": "Physics 1 Laboratory",
       "details": "Dr. Sadhana Agrawal, Professor"
     },
-    "213": {
+    "214": {
       "name": "Physics 2 Laboratory",
       "details": ""
     },
-    "214": {
+    "215": {
       "name": "HOD Physics Dept.",
       "details": "Dr. Sadhana Agrawal, Professor & HOD"
     },
-    "215": {
+    "216": {
       "name": "Gents Toilet - 1 (First Floor)",
       "details": ""
     },
-    "216": {
+    "217": {
       "name": "Stairs - 6 (First Floor)",
       "details": ""
     },
-    "217": {
+    "218": {
       "name": "Room",
       "details": ""
     },
-    "218": {
+    "219": {
       "name": "Gents Toilet - 2 (First Floor)",
       "details": ""
     },
-    "219": {
+    "220": {
       "name": "HOD Office Civil Engg. Dept.",
       "details": "Dr. Gangadhar Ramtekkar, Professor & Head"
     },
-    "220": {
+    "221": {
       "name": "Dr. Samir Bajpai, Dr. Rajesh Kumar Tripathi",
       "details": "Professor, Civil Engg. Dept."
     },
-    "221": {
+    "222": {
       "name": "F5",
       "details": "Classroom"
     },
-    "205": {
+    "206": {
       "name": "Registrar, Dr. Arif Khan",
       "details": ""
     },
-    "206": {
+    "207": {
       "name": "Director, Dr. (Mrs.) A. B. Soni",
       "details": ""
     },
-    "207": {
+    "208": {
       "name": "C. V. Raman Hall",
       "details": ""
     },
-    "274": {
+    "275": {
       "name": "Research Scholar Room - 1",
       "details": "Department of Metallurgical Engineering"
     },
-    "275": {
+    "276": {
       "name": "Computational Material Engineering Laboratory",
       "details": "Department of Metallurgical Engineering"
     },
-    "276": {
+    "277": {
       "name": "Subhas Ganguly, Ph.D.",
       "details": "Associate Professor, Department of Metallurgical & Materials Engineering"
     },
-    "277": {
+    "278": {
       "name": "Faculty Room 2",
       "details": "Sanjeev Das (Ph.D) Assistant Proff. Department of Metallurgical Engineering"
     },
-    "278": {
+    "279": {
       "name": "Metallography Laboratory",
       "details": "Department of Metallurgical Engineering"
     },
-    "279": {
+    "280": {
       "name": "Stairs - 5 (First Floor)",
       "details": ""
     },
-    "280": {
+    "281": {
       "name": "Dr. Meena Murmu",
       "details": "Assistant Professor Civil Engg. Department"
     },
-    "281": {
+    "282": {
       "name": "Structure Engg. Lab",
       "details": "Prof. I/C Mohit Jaiswal, Dashrath Lal Verma"
     },
-    "282": {
+    "283": {
       "name": "Conference Room",
       "details": "Dr. Mohit Jaiswal, Assistant Professor, Civil Engg. Dept."
     },
-    "283": {
+    "284": {
       "name": "Dr. Sandeep Kumar Chouksey",
       "details": "Assistant Professor Civil Engg. Department"
     },
-    "284": {
+    "285": {
       "name": "Geotechnical Lab",
       "details": ""
     },
-    "273": {
+    "274": {
       "name": "Lift & Water",
       "details": ""
     },
-    "263": {
+    "264": {
       "name": "Dr. N. K. Jain",
       "details": "Assistant Professor Mechanical Engg. Department"
     },
-    "264": {
+    "265": {
       "name": "Engineering Mechanics Laboratory",
       "details": "Mechanical Engg. Department"
     },
-    "265": {
+    "266": {
       "name": "Computer Aided Design & Manufacturing Laboratory",
       "details": "Dr. S. Bhowmick, Assistant Professor, Mechanical Engineering"
     },
-    "266": {
+    "267": {
       "name": "Dr. S. Sanyal",
       "details": "Professor, Mechanical Engineering"
     },
-    "267": {
+    "268": {
       "name": "Dr. Alfia Bano",
       "details": "Assistant Professor, Civil Engineering Department"
     },
-    "268": {
+    "269": {
       "name": "Stairs - 4 (First Floor)",
       "details": ""
     },
-    "269": {
+    "270": {
       "name": "MCA, Department Of Computer Applications",
       "details": "Computer Lab 1, HOD Computer Applications"
     },
-    "270": {
+    "271": {
       "name": "Research Scholars",
       "details": ""
     },
-    "271": {
+    "272": {
       "name": "Environmental Engineering Laboratory, First Floor",
       "details": "Dr. Samir Bajpai, Arvind K. Swarnakar, Dasharath Lal Verma"
     },
-    "272":{
+    "273":{
       "name":"Lift & Water",
       "details":""
     },
-    "292": {
+    "293": {
       "name": "F1",
       "details": "Dr. A. M. Rawani, Professor, Mechanical Engineering"
     },
-    "291": {
+    "292": {
       "name": "F2",
       "details": "Classroom"
     },
-    "290": {
+    "291": {
       "name": "F13",
       "details": "Classroom"
     },
-    "289": {
+    "290": {
       "name": "Stairs - 3 (First Floor)",
       "details": ""
     },
-    "288": {
+    "289": {
       "name": "Mine Survey Lab",
       "details": "Dr. Md. Patel, Asso. Professor, Dept. Of Mining Engineering"
     },
-    "287": {
+    "288": {
       "name": "Mine Environment Lab",
       "details": "Dept. Of Mining Engineering"
     },
-    "286": {
+    "287": {
       "name": "Acid Mine Drainage Lab",
       "details": "Dept. Of Mining Engineering"
     },
-    "285": {
+    "286": {
       "name": "HOD Mining Dept.",
       "details": "Dept. Of Mining Engineering"
     },
-    "293": {
+    "294": {
       "name": "Store & Purchase",
       "details": ""
     },
-    "294": {
+    "295": {
       "name": "Student Section",
       "details": ""
     },
-    "295": {
+    "296": {
       "name": "Establishment Section",
       "details": ""
     },
-    "296": {
+    "297": {
       "name": "Finance & Accounts",
       "details": ""
     },
-    "297": {
+    "298": {
       "name": "Stairs - 2 (First Floor)",
       "details": ""
     },
-    "298": {
+    "299": {
       "name": "Heat Treatment Laboratory",
       "details": "Department Of Metallurgical Engineering"
     },
-    "299": {
+    "300": {
       "name": "Faculty Room 1",
       "details": "Manoj Kumar Chopkar (Ph.D), Assistant Professor, Department Of Metallurgical Engineering"
     },
-    "300": {
+    "301": {
       "name": "Electro Chemistry & Corrossion Laboratory",
       "details": "Department Of Metallurgical Engineering"
     },
-    "301": {
+    "302": {
       "name": "X-Ray Diffraction Laboratory",
       "details": "Department Of Metallurgical Engineering"
     }
