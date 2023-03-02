@@ -30,10 +30,14 @@ let map1 = document.getElementById("firstt");
 let map2 = document.getElementById("secondd");
 let buttonCon = document.querySelectorAll(".containerharsh a");
 let removals = document.getElementById("removal")
+let modes = document.getElementById("lift");
 let initialFloor;
 let preinfo;
 
 export {map_no,map0,map1,map2};
+
+if(sessionStorage.getItem("mode") == null)
+   sessionStorage.setItem("mode","S");
 
 const clearMap = () =>
 {
@@ -119,9 +123,9 @@ const removal = (element) => {
 }
 
 const detectFloor = ()=>{
-  if(Number.parseInt(starts) >= 204)
+  if(Number.parseInt(starts) >= 205)
     sessionStorage.setItem('map_no',"1")
-  else if(Number.parseInt(starts) >= 115 && Number.parseInt(starts) <= 203)
+  else if(Number.parseInt(starts) >= 115 && Number.parseInt(starts) <= 204)
     sessionStorage.setItem("map_no","2")
   else 
     sessionStorage.setItem("map_no","0")
@@ -337,9 +341,9 @@ function removeDestinationAll() {
 
   let startl,endl;
   if(map_no == "1")
-  {startl = 204, endl = 301;}
+  {startl = 205, endl = 302;}
   else if(map_no == "2")
-  {startl = 115, endl = 203;}
+  {startl = 115, endl = 204;}
   else
   {startl = 1,endl = 114;}
 
@@ -423,6 +427,7 @@ const reset = ()=>{
   sessionStorage.removeItem("end");
   sessionStorage.removeItem("Stair");
   sessionStorage.removeItem("rotate");
+  sessionStorage.removeItem("mode");
   removeAlll();
   removeDestinationAll();
   removeinfo();
@@ -651,9 +656,14 @@ export function room_click(id_num) {
     
 }
 
+modes.addEventListener('click',()=>{
+  modes.innerText == "From lift" ? sessionStorage.setItem("mode","L") : sessionStorage.setItem("mode","S");
+})
+
 const getsetGoo = () => {
   removeAlll();
   removeDestinationAll();
+  sessionStorage.getItem("mode") == "L" ? modes.innerText = "From stairs" : modes.innerText = "From lift";
 
   if(map_no == "1")
     mapUse = mappingf;
@@ -664,12 +674,13 @@ const getsetGoo = () => {
 
   const startToStairs = ()=>{
     let toStairs;
+
     if(map_no == "1")
-    {toStairs = floorsConnect["1"];}
+    {toStairs = floorsConnect[sessionStorage.getItem("mode")]["1"];}
     else if(map_no == "2")
-    {toStairs = floorsConnect["2"];}
-    else {toStairs = floorsConnect["0"]}
-  
+    {toStairs = floorsConnect[sessionStorage.getItem("mode")]["2"];}
+    else {toStairs = floorsConnect[sessionStorage.getItem("mode")]["0"]}
+
     let distance,x = Number.MAX_VALUE,starterss,felement,key;
     for (let i in mapUse[starting]) {
       starterss = document.getElementById(mapUse[starting][i]);
@@ -690,9 +701,9 @@ const getsetGoo = () => {
   }
 
   const detectfinalFloor = ()=>{
-    if(endd >= 204)
+    if(endd >= 205)
       return "First"
-    else if((endd >= 115 && endd <= 203))
+    else if((endd >= 115 && endd <= 204))
       return "Second"
     else
       return "Ground"
@@ -709,20 +720,22 @@ const getsetGoo = () => {
 
   
   const detectInterFloorStarts = ()=>{
-        if(starts>=204 && endd < 204 && endd !=null && endd != undefined && map_no == "1" && endd !="null" && endd != "undefined")
+        if(starts>=205 && endd < 205 && endd !=null && endd != undefined && map_no == "1" && endd !="null" && endd != "undefined")
         {
           starting = starts;
           ending = startToStairs();
           alertt.style.display = "block";
+          modes.style.display = "inline";
           initialFloor = "First"
           return true;
         }
-        else if((starts>=115 && starts<=203) && !(endd >=115 && endd <= 203) && endd != undefined && endd != null && map_no == "2"
+        else if((starts>=115 && starts<=204) && !(endd >=115 && endd <= 204) && endd != undefined && endd != null && map_no == "2"
         && endd !="null" && endd != "undefined")
         {
           starting = starts;
           ending = startToStairs();
           alertt.style.display = "block";
+          modes.style.display = "inline";
           initialFloor = "Second"
           return true;
         }
@@ -731,29 +744,31 @@ const getsetGoo = () => {
           starting = starts;
           ending = startToStairs();
           alertt.style.display = "block";
+          modes.style.display = "inline";
           initialFloor = "Ground"
           return true;
         } 
+        modes.style.display = "none";
         return false;
   }
 
   alertt.querySelector('a').onclick = ()=>{moveToFloors()}
 
   const detectInterFloorEnds = ()=>{
-        if(starts<204 && endd >=204 && map_no == "1")
+        if(starts<205 && endd >=205 && map_no == "1")
         {
           ending = endd;
-          starting = floorsConnect[map_no][sessionStorage.getItem("Stair")][0];
+          starting = floorsConnect[sessionStorage.getItem("mode")][map_no][sessionStorage.getItem("Stair")][0];
         }
-        else if(!(starts>=115 && starts<=203) && (endd >= 115 && endd <= 203) && map_no == "2")
+        else if(!(starts>=115 && starts<=204) && (endd >= 115 && endd <= 204) && map_no == "2")
         {
           ending = endd;
-          starting = floorsConnect[map_no][sessionStorage.getItem("Stair")][0];
+          starting = floorsConnect[sessionStorage.getItem("mode")][map_no][sessionStorage.getItem("Stair")][0];
         }
         else if(starts>114 && endd <=114 && map_no == "0")
         {
           ending = endd;
-          starting = floorsConnect[map_no][sessionStorage.getItem("Stair")][0];
+          starting = floorsConnect[sessionStorage.getItem("mode")][map_no][sessionStorage.getItem("Stair")][0];
         }
   }
 
@@ -829,9 +844,9 @@ makefinal.onclick = ()=>{
       details[0].innerHTML = "Press Any Room in the Map to Get It's Info Here."
       endd = ending = preinfo;
       sessionStorage.setItem("end",ending);
-      if(starts>=204 && endd < 204 && endd !=null && map_no != "1" && endd != undefined && endd !="null" && endd != "undefined")
+      if(starts>=205 && endd < 205 && endd !=null && map_no != "1" && endd != undefined && endd !="null" && endd != "undefined")
         {sessionStorage.setItem("map_no","1");location.reload();}
-      else if((starts>=115 && starts<=203) && !(endd >= 115 && endd <= 203) && endd != null && map_no != "2" && endd != undefined
+      else if((starts>=115 && starts<=204) && !(endd >= 115 && endd <= 204) && endd != null && map_no != "2" && endd != undefined
               && endd !="null" && endd != "undefined")
         {sessionStorage.setItem("map_no","2");location.reload();}
       else if(starts<=114 && endd > 114 && endd != null && map_no != "0" && endd != undefined && endd !="null" && endd != "undefined")
