@@ -660,28 +660,30 @@ modes.addEventListener('click',()=>{
   modes.innerText == "From lift" ? sessionStorage.setItem("mode","L") : sessionStorage.setItem("mode","S");
 })
 
-const getsetGoo = () => {
-  removeAlll();
-  removeDestinationAll();
-  sessionStorage.getItem("mode") == "L" ? modes.innerText = "From stairs" : modes.innerText = "From lift";
+const mapUses = ()=>{
+    if(map_no == "1")
+    return mappingf;
+    else if(map_no == "2")
+    return mappings;
+    else
+    return mapping;
+}
+
+const serviceUse = (service_Id)=>{
+  let toStairs;
 
   if(map_no == "1")
-    mapUse = mappingf;
+  {toStairs = floorsConnect[service_Id]["1"];}
   else if(map_no == "2")
-    mapUse = mappings;
-  else
-    mapUse = mapping;
+  {toStairs = floorsConnect[service_Id]["2"];}
+  else {toStairs = floorsConnect[service_Id]["0"]}
 
-  const startToStairs = ()=>{
-    let toStairs;
+  ending = endd = nearestDist(toStairs)[0];
+  infoo();finalEnd();
+}
 
-    if(map_no == "1")
-    {toStairs = floorsConnect[sessionStorage.getItem("mode")]["1"];}
-    else if(map_no == "2")
-    {toStairs = floorsConnect[sessionStorage.getItem("mode")]["2"];}
-    else {toStairs = floorsConnect[sessionStorage.getItem("mode")]["0"]}
-
-    let distance,x = Number.MAX_VALUE,starterss,felement,key;
+const nearestDist = (toStairs)=>{
+  let distance,x = Number.MAX_VALUE,starterss,felement,key;
     for (let i in mapUse[starting]) {
       starterss = document.getElementById(mapUse[starting][i]);
     }
@@ -692,12 +694,32 @@ const getsetGoo = () => {
       if(x>distance)
       {
         x = distance;
+        //This two parameters needs to be exported
         felement = toStairs[i][0];
         key = i;
       }
     }
-    sessionStorage.setItem("Stair",key);
-    return felement;
+    return [felement,key];
+}
+
+const getsetGoo = () => {
+  removeAlll();
+  removeDestinationAll();
+  sessionStorage.getItem("mode") == "L" ? modes.innerText = "From stairs" : modes.innerText = "From lift";
+
+  mapUse = mapUses();
+  const startToStairs = ()=>{
+    let toStairs;
+
+    if(map_no == "1")
+    {toStairs = floorsConnect[sessionStorage.getItem("mode")]["1"];}
+    else if(map_no == "2")
+    {toStairs = floorsConnect[sessionStorage.getItem("mode")]["2"];}
+    else {toStairs = floorsConnect[sessionStorage.getItem("mode")]["0"]}
+
+    let exportt = nearestDist(toStairs);
+    sessionStorage.setItem("Stair",exportt[1]);
+    return exportt[0];
   }
 
   const detectfinalFloor = ()=>{
@@ -835,6 +857,24 @@ makecurrent.onclick = ()=>{
     alert("Please first select the room, you want to make as current location.")
   }
 }
+
+const infoo = ()=>{
+  namecard[0].innerHTML = "Information"
+  details[0].innerHTML = "Press Any Room in the Map to Get It's Info Here."
+  sessionStorage.setItem("end",ending);
+}
+
+const finalEnd = ()=>{
+    if(starts>=205 && endd < 205 && endd !=null && map_no != "1" && endd != undefined && endd !="null" && endd != "undefined")
+        {sessionStorage.setItem("map_no","1");location.reload();}
+      else if((starts>=115 && starts<=204) && !(endd >= 115 && endd <= 204) && endd != null && map_no != "2" && endd != undefined
+              && endd !="null" && endd != "undefined")
+        {sessionStorage.setItem("map_no","2");location.reload();}
+      else if(starts<=114 && endd > 114 && endd != null && map_no != "0" && endd != undefined && endd !="null" && endd != "undefined")
+        {sessionStorage.setItem("map_no","0");location.reload();}
+      else{setter();getsetGoo();alertt.style.display = "none";}  
+}
+
 makefinal.onclick = ()=>{
   if(preinfo != "undefined" && preinfo != "null" && preinfo != null && preinfo != undefined)
   {
@@ -844,14 +884,7 @@ makefinal.onclick = ()=>{
       details[0].innerHTML = "Press Any Room in the Map to Get It's Info Here."
       endd = ending = preinfo;
       sessionStorage.setItem("end",ending);
-      if(starts>=205 && endd < 205 && endd !=null && map_no != "1" && endd != undefined && endd !="null" && endd != "undefined")
-        {sessionStorage.setItem("map_no","1");location.reload();}
-      else if((starts>=115 && starts<=204) && !(endd >= 115 && endd <= 204) && endd != null && map_no != "2" && endd != undefined
-              && endd !="null" && endd != "undefined")
-        {sessionStorage.setItem("map_no","2");location.reload();}
-      else if(starts<=114 && endd > 114 && endd != null && map_no != "0" && endd != undefined && endd !="null" && endd != "undefined")
-        {sessionStorage.setItem("map_no","0");location.reload();}
-      else{setter();getsetGoo();alertt.style.display = "none";}     
+      finalEnd()
       preinfo = undefined;
     }
     else
