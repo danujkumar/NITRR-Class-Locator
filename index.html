@@ -12,6 +12,7 @@
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <script src="https://kit.fontawesome.com/911240ee85.js" crossorigin="anonymous"></script>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700|Open+Sans:300,300i,400,400i,700,700i"
@@ -34,18 +35,30 @@
 
     gtag('config', 'G-TS5SNMMD07');
   </script>
-    <script src="https://www.google.com/recaptcha/api.js"></script>
-    <script>
-      function onSubmit(token) {
-        document.getElementById("my-form").submit();
-      }
-    </script>
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+  <script>
+    function onSubmit(token) {
+      document.getElementById("my-form").submit();
+    }
+  </script>
 </head>
 
 
 <body>
 
   <!-- ======= Header ======= -->
+  <!-- This section is for dialog box -->
+  <div class="popup" id="popup">
+    <div class="overlay"></div>
+    <div class="popup-content">
+      <h1><i class="fa-solid fa-circle-info" style="color:#3274ed"></i>&nbsp;Information</h1>
+      <p></p>
+      <div class="controls">
+        <button class="close-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
   <header id="header" class="fixed-top d-flex align-items-center header-transparent">
     <div class="container d-flex justify-content-between align-items-center">
 
@@ -85,15 +98,17 @@
             <input id="current" type="text" placeholder="Nearest Room" name="current" value="" autocomplete="off" />
           </div>
           <div id="currentdiv" class="iContainer">
-            
+
           </div>
           <div class="hcontainer">
-            <input id="final" type="text" placeholder="Destination Room" name="search-box" value="" autocomplete="off" />
+            <input id="final" type="text" placeholder="Destination Room" name="search-box" value=""
+              autocomplete="off" />
           </div>
           <div id="finaldiv" class="iContainer i2Container">
-            
+
           </div>
-          <a href=/maps.html" id="search" class="btn-get-started" style="width:80px; padding:0.5rem 1rem;"><i class="bi bi-search"></i></a>
+          <a href=/maps.html" id="search" class="btn-get-started" style="width:80px; padding:0.5rem 1rem;cursor:pointer;"><i
+              class="bi bi-search"></i></a>
         </div>
       </div>
       <h2>Welcome to Class Locator, NITRR</h2>
@@ -156,7 +171,8 @@
             <div class="box">
               <div class="icon"><i class="bi bi-image-alt"></i></div>
               <h4 class="title"><a href="">Visual Graphics</a></h4>
-              <p class="description">Visual Symbols like that of Badminton Court, Garden, Staircase, Stage, Lecture Hall, Labs and Rooms are used in this Map for better understanding of it</p>
+              <p class="description">Visual Symbols like that of Badminton Court, Garden, Staircase, Stage, Lecture
+                Hall, Labs and Rooms are used in this Map for better understanding of it</p>
             </div>
           </div>
           <div class="col-lg-6">
@@ -170,7 +186,8 @@
             <div class="box">
               <div class="icon"><i class="bi bi-wifi"></i></div>
               <h4 class="title"><a href="">Works At Low Connection</a></h4>
-              <p class="description">You don't need to have a Fast & Stable Internet Connection as this Website works mostly on Offline Functionality.</p>
+              <p class="description">You don't need to have a Fast & Stable Internet Connection as this Website works
+                mostly on Offline Functionality.</p>
             </div>
           </div>
 
@@ -178,7 +195,8 @@
             <div class="box">
               <div class="icon"><i class="bi bi-box"></i></div>
               <h4 class="title"><a href="">Provides Information</a></h4>
-              <p class="description">In addition to it's main functionality, It also Provides you with Detailed Information about the ClassRooms, Laboratory, Faculty Rooms and Offices.</p>
+              <p class="description">In addition to it's main functionality, It also Provides you with Detailed
+                Information about the ClassRooms, Laboratory, Faculty Rooms and Offices.</p>
             </div>
           </div>
 
@@ -247,18 +265,17 @@
                 </div>
               </div>
               <div class="form-group mt-3">
-                <input type="text" class="form-control" name="Topic" id="topic" placeholder="Topic"
-                  data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
+                <input type="text" class="form-control" name="Topic" id="topic" placeholder="Topic" data-rule="minlen:4"
+                  data-msg="Please enter at least 8 chars of subject">
               </div>
               <div class="form-group mt-3">
 
                 <textarea class="form-control" name="Message" rows="5" placeholder="Message" required></textarea>
               </div>
               <div class="text-center" id="pleasewait">Please Wait...</div>
-              <div class="text-center"><button class="g-recaptcha" 
-                data-sitekey="6LfHDMAkAAAAAOXKZt69rjLPYsQv0KS-TZ_Ui5ZG" 
-                data-callback='onSubmit' 
-                data-action='submit' type="submit" title="Send Message">Submit</button></div>
+              <div class="text-center"><button class="g-recaptcha"
+                  data-sitekey="6LfHDMAkAAAAAOXKZt69rjLPYsQv0KS-TZ_Ui5ZG" data-callback='onSubmit' data-action='submit'
+                  type="submit" title="Send Message">Submit</button></div>
             </form>
           </div>
 
@@ -272,7 +289,7 @@
   <div class="text-center p-3" style="background-color: #afafaf">
     @TEAM ELEX-CODE : <i>Created at SAHYOG - The Mentorship Club's Hackathon</i>
   </div>
-  
+
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-chevron-up"></i></a>
 
   <!-- Vendor JS Files -->
@@ -284,7 +301,7 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script src="assets/js/Suggestion-index.js" type="module"></script>
-  
+
 
 </body>
 
