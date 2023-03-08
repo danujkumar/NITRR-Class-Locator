@@ -4,6 +4,7 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+import { createPopup } from "./DialogBox.js";
 
 (function() {
     "use strict";
@@ -204,7 +205,9 @@
       })
       .then(() => {
         window.location.reload();
-        alert("Submitted Successfully!");
+        // alert("Submitted Successfully!");
+        let popup = createPopup("#popup","Submitted Successfully!");
+        popup();
       })
     });
   });

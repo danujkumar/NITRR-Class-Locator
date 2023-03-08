@@ -4,6 +4,7 @@ import mappings from "./json/bluetoGreen2.json" assert {type:"json"};
 import exceptions from "./json/exceptionPaths.json" assert { type: "json" };
 import searching from "./json/searchTool.json" assert{type:"json"};
 import floorsConnect from "./json/floorsConnection.json" assert{type:"json"};
+import { createPopup } from "./DialogBox.js";
 
 let starting;
 let ending, map_no;
@@ -192,7 +193,9 @@ const pointsSE = (textId) => {
                     }
                     else
                     {
-                      alert("Please first select the nearest room.")
+                      let popup = createPopup("#popup","Please first select the nearest room.");
+                      popup();
+                      sessionStorage.removeItem('end');
                     }
                 }
               }
@@ -854,7 +857,9 @@ makecurrent.onclick = ()=>{
   }
   else
   {
-    alert("Please first select the room, you want to make as current location.")
+    // alert("Please first select the room, you want to make as current location.")
+    let popup = createPopup("#popup","Please first select the room, you want to make as current location.");
+    popup();
   }
 }
 
@@ -889,11 +894,15 @@ makefinal.onclick = ()=>{
     }
     else
     {
-      alert("Please first select the current location.");
+      // alert("Please first select the current location.");
+      let popup = createPopup("#popup","Please first select the nearest room.");
+      popup();
     }
   }
   else
   {
-    alert("Please first select the room, you want to make as final location.")
+    // alert("Please first select the room, you want to make as final location.");
+    let popup = createPopup("#popup","Please first select the room, you want to make as final location.");
+    popup();
   }
 }

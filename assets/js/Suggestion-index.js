@@ -1,4 +1,5 @@
 import searching from "./json/searchTool.json" assert { type: "json" };
+import { createPopup } from "./DialogBox.js";
 let id = [];
 let name = new Map();
 let start,end;
@@ -113,7 +114,8 @@ try {
   end = fetchId(final)
   if(start == undefined || start == null)
   {
-    alert("Please first select the nearest room.");
+    let popup = createPopup("#popup","Please first select the nearest room.");
+    popup();
     search.removeAttribute("href");
   }
   else
