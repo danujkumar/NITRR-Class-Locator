@@ -91,6 +91,21 @@ body {
     opacity: 1;
   }
 
+  .noservice{
+    display:none !important; 
+  }
+  .service{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .services{
+    margin:3px;
+    border:none;
+    background-color: transparent;
+    color:#1d9ccd;
+  }
+
   a {
     color: #1dc8cd;
     text-decoration: none;

@@ -14,7 +14,6 @@ let inUse = [];
 let id = [];
 let additionalInfo = [];
 let name = new Map();
-// let detailss = new Map();
 let bluetoblue = new Set();
 let xstartss,ystartss,xgreenendss,ygreenendss,xgreenstartss,ygreenstartss,xintersectss,yintersectss;
 let divControl;
@@ -193,7 +192,7 @@ const pointsSE = (textId) => {
                     }
                     else
                     {
-                      let popup = createPopup("#popup","Please first select the nearest room.");
+                      let popup = createPopup("#popup","Please first select the nearest room.",false);
                       popup();
                       sessionStorage.removeItem('end');
                     }
@@ -672,7 +671,7 @@ const mapUses = ()=>{
     return mapping;
 }
 
-const serviceUse = (service_Id)=>{
+export const serviceUse = (service_Id)=>{
   let toStairs;
 
   if(map_no == "1")
@@ -858,7 +857,7 @@ makecurrent.onclick = ()=>{
   else
   {
     // alert("Please first select the room, you want to make as current location.")
-    let popup = createPopup("#popup","Please first select the room, you want to make as current location.");
+    let popup = createPopup("#popup","Please first select the room, you want to make as current location.",false);
     popup();
   }
 }
@@ -881,9 +880,9 @@ const finalEnd = ()=>{
 }
 
 makefinal.onclick = ()=>{
-  if(preinfo != "undefined" && preinfo != "null" && preinfo != null && preinfo != undefined)
+  if(starting != null)
   {
-    if(starting != null)
+    if(preinfo != "undefined" && preinfo != "null" && preinfo != null && preinfo != undefined)
     {
       namecard[0].innerHTML = "Information"
       details[0].innerHTML = "Press Any Room in the Map to Get It's Info Here."
@@ -894,15 +893,15 @@ makefinal.onclick = ()=>{
     }
     else
     {
-      // alert("Please first select the current location.");
-      let popup = createPopup("#popup","Please first select the nearest room.");
+      // alert("Please first select the room, you want to make as final location.");
+      let popup = createPopup("#popup","Please first select the room, you want to make as final location, quick actions are given below.",true);
       popup();
     }
   }
   else
   {
-    // alert("Please first select the room, you want to make as final location.");
-    let popup = createPopup("#popup","Please first select the room, you want to make as final location.");
+    // alert("Please first select the current location.");
+    let popup = createPopup("#popup","Please first select the nearest room.",false);
     popup();
   }
 }
