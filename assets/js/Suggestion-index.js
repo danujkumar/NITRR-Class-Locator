@@ -1,5 +1,5 @@
 import searching from "./json/searchTool.json" assert { type: "json" };
-import { createPopup } from "./DialogBox.js";
+import { createPopup } from "./MainDialogbox.js";
 let id = [];
 let name = new Map();
 let start,end;
@@ -103,6 +103,16 @@ body[0].onclick = ()=>{
 }
 
 //Implementing the onclick for the search button
+export function letsGoo() {
+  if(Number.parseInt(start) >= 205)
+      sessionStorage.setItem('map_no',"1")
+    else if(Number.parseInt(start) >= 115 && Number.parseInt(start) <= 204)
+      sessionStorage.setItem("map_no","2")
+    else 
+      sessionStorage.setItem("map_no","0")
+    search.setAttribute("href","./maps.html")
+    location.assign('./maps.html')
+}
 try {
   search.onclick = ()=>{
   const fetchId = (Id)=>{
@@ -114,19 +124,22 @@ try {
   end = fetchId(final)
   if(start == undefined || start == null)
   {
-    let popup = createPopup("#popup","Please first select the nearest room.");
+    let popup = createPopup("#popup","Please first select the nearest room.",false);
     popup();
     search.removeAttribute("href");
   }
   else
   {
-    if(Number.parseInt(start) >= 205)
-      sessionStorage.setItem('map_no',"1")
-    else if(Number.parseInt(start) >= 115 && Number.parseInt(start) <= 204)
-      sessionStorage.setItem("map_no","2")
-    else 
-      sessionStorage.setItem("map_no","0")
-    search.setAttribute("href","./maps.html")
+    if(end == undefined || end == null)
+    {
+      let popup = createPopup("#popup","Quick actions for you, or click continue anyway to proceed without selecting any destination.",true);
+      popup();
+      search.removeAttribute("href");
+    }
+    else
+    {
+      letsGoo();
+    }
   }
   sessionStorage.setItem('start',start);
   sessionStorage.setItem('end',end);

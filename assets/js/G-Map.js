@@ -14,7 +14,6 @@ let inUse = [];
 let id = [];
 let additionalInfo = [];
 let name = new Map();
-// let detailss = new Map();
 let bluetoblue = new Set();
 let xstartss,ystartss,xgreenendss,ygreenendss,xgreenstartss,ygreenstartss,xintersectss,yintersectss;
 let divControl;
@@ -34,11 +33,15 @@ let removals = document.getElementById("removal")
 let modes = document.getElementById("lift");
 let initialFloor;
 let preinfo;
+let serviceUsed = sessionStorage.getItem('serviceUse');
 
 export {map_no,map0,map1,map2};
 
 if(sessionStorage.getItem("mode") == null)
    sessionStorage.setItem("mode","S");
+
+if(sessionStorage.getItem("serviceUse") == null || sessionStorage.getItem('serviceUse')==undefined)
+    sessionStorage.setItem('serviceUse','X');
 
 const clearMap = () =>
 {
@@ -66,11 +69,21 @@ try {
       butControl();
       clearMap();
       starts = starting = sessionStorage.getItem('start');
-      endd = ending = sessionStorage.getItem('end');
-      setter();
-      getsetGoo();
+      if(serviceUsed != 'X')
+      {
+        mapUse = mapUses();
+        serviceUse(serviceUsed);
+        sessionStorage.setItem('serviceUse','X');
+      }
+      else
+      {
+        endd = ending = sessionStorage.getItem('end');
+        setter();
+        getsetGoo();
+      }
   } catch (error) {
-
+    //Remember this is under try section, so for debugging always disable this try section first.
+      // console.log(error)
   }
 });
 
@@ -193,7 +206,7 @@ const pointsSE = (textId) => {
                     }
                     else
                     {
-                      let popup = createPopup("#popup","Please first select the nearest room.");
+                      let popup = createPopup("#popup","Please first select the nearest room.",false);
                       popup();
                       sessionStorage.removeItem('end');
                     }
@@ -672,7 +685,7 @@ const mapUses = ()=>{
     return mapping;
 }
 
-const serviceUse = (service_Id)=>{
+export const serviceUse = (service_Id)=>{
   let toStairs;
 
   if(map_no == "1")
@@ -687,6 +700,7 @@ const serviceUse = (service_Id)=>{
 
 const nearestDist = (toStairs)=>{
   let distance,x = Number.MAX_VALUE,starterss,felement,key;
+  console.log(mapUse)
     for (let i in mapUse[starting]) {
       starterss = document.getElementById(mapUse[starting][i]);
     }
@@ -858,7 +872,7 @@ makecurrent.onclick = ()=>{
   else
   {
     // alert("Please first select the room, you want to make as current location.")
-    let popup = createPopup("#popup","Please first select the room, you want to make as current location.");
+    let popup = createPopup("#popup","Please first select the room, you want to make as current location.",false);
     popup();
   }
 }
@@ -881,9 +895,9 @@ const finalEnd = ()=>{
 }
 
 makefinal.onclick = ()=>{
-  if(preinfo != "undefined" && preinfo != "null" && preinfo != null && preinfo != undefined)
+  if(starting != null)
   {
-    if(starting != null)
+    if(preinfo != "undefined" && preinfo != "null" && preinfo != null && preinfo != undefined)
     {
       namecard[0].innerHTML = "Information"
       details[0].innerHTML = "Press Any Room in the Map to Get It's Info Here."
@@ -894,15 +908,15 @@ makefinal.onclick = ()=>{
     }
     else
     {
-      // alert("Please first select the current location.");
-      let popup = createPopup("#popup","Please first select the nearest room.");
+      // alert("Please first select the room, you want to make as final location.");
+      let popup = createPopup("#popup","Please first select the room, you want to make as final location, quick actions are given below.",true);
       popup();
     }
   }
   else
   {
-    // alert("Please first select the room, you want to make as final location.");
-    let popup = createPopup("#popup","Please first select the room, you want to make as final location.");
+    // alert("Please first select the current location.");
+    let popup = createPopup("#popup","Please first select the nearest room.",false);
     popup();
   }
 }
