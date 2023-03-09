@@ -48,6 +48,7 @@ export function createPopup(id, para, serviceRequired) {
   });
 
   continueAny.addEventListener("click", () => {
+    sessionStorage.setItem("serviceUse", "X");
     letsGoo();
     closePopup();
   });

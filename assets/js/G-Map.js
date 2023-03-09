@@ -41,7 +41,7 @@ if(sessionStorage.getItem("mode") == null)
    sessionStorage.setItem("mode","S");
 
 if(sessionStorage.getItem("serviceUse") == null || sessionStorage.getItem('serviceUse')==undefined)
-    sessionStorage.setItem('serviceUse','X');
+{sessionStorage.setItem('serviceUse','X');}
 
 const clearMap = () =>
 {
@@ -700,7 +700,6 @@ export const serviceUse = (service_Id)=>{
 
 const nearestDist = (toStairs)=>{
   let distance,x = Number.MAX_VALUE,starterss,felement,key;
-  console.log(mapUse)
     for (let i in mapUse[starting]) {
       starterss = document.getElementById(mapUse[starting][i]);
     }
