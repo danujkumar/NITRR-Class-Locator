@@ -33,11 +33,15 @@ let removals = document.getElementById("removal")
 let modes = document.getElementById("lift");
 let initialFloor;
 let preinfo;
+let serviceUsed = sessionStorage.getItem('serviceUse');
 
 export {map_no,map0,map1,map2};
 
 if(sessionStorage.getItem("mode") == null)
    sessionStorage.setItem("mode","S");
+
+if(sessionStorage.getItem("serviceUse") == null || sessionStorage.getItem('serviceUse')==undefined)
+    sessionStorage.setItem('serviceUse','X');
 
 const clearMap = () =>
 {
@@ -65,11 +69,21 @@ try {
       butControl();
       clearMap();
       starts = starting = sessionStorage.getItem('start');
-      endd = ending = sessionStorage.getItem('end');
-      setter();
-      getsetGoo();
+      if(serviceUsed != 'X')
+      {
+        mapUse = mapUses();
+        serviceUse(serviceUsed);
+        sessionStorage.setItem('serviceUse','X');
+      }
+      else
+      {
+        endd = ending = sessionStorage.getItem('end');
+        setter();
+        getsetGoo();
+      }
   } catch (error) {
-
+    //Remember this is under try section, so for debugging always disable this try section first.
+      // console.log(error)
   }
 });
 
@@ -686,6 +700,7 @@ export const serviceUse = (service_Id)=>{
 
 const nearestDist = (toStairs)=>{
   let distance,x = Number.MAX_VALUE,starterss,felement,key;
+  console.log(mapUse)
     for (let i in mapUse[starting]) {
       starterss = document.getElementById(mapUse[starting][i]);
     }
