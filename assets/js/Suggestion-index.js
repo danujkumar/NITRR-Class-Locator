@@ -1,5 +1,5 @@
 import searching from "./json/searchTool.json" assert { type: "json" };
-import { createPopup } from "./MainDialogbox.js";
+import { createPopup } from "./mainDialogBox.js";
 let id = [];
 let name = new Map();
 let start,end;
