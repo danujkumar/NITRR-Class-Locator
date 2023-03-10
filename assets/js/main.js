@@ -225,13 +225,13 @@ const removeSess = ()=>{
   sessionStorage.removeItem("end");
   sessionStorage.removeItem("Stair")
 }
-grounds1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","0");}
-firstt1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","1");}
-secondd1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","2");}
+grounds1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","0");sessionStorage.setItem('serviceUse','X');}
+firstt1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","1");sessionStorage.setItem('serviceUse','X');}
+secondd1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","2");sessionStorage.setItem('serviceUse','X');}
 try {
-  grounds2.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","0");}
-  firstt2.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","1");}
-  secondd2.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","2");}
+  grounds2.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","0");sessionStorage.setItem('serviceUse','X');}
+  firstt2.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","1");sessionStorage.setItem('serviceUse','X');}
+  secondd2.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","2");sessionStorage.setItem('serviceUse','X');}
 } catch (error) {
   
 }
