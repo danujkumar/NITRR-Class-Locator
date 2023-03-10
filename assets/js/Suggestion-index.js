@@ -18,6 +18,7 @@ let current = document.getElementById("current");
 let final = document.getElementById("final");
 let search = document.getElementById("search");
 let body = document.getElementsByTagName("html");
+let swap = document.getElementById("swap");
 
 //Method to delete all the child elements of the given parameter
 const removal = (element) => {
@@ -114,6 +115,12 @@ export function letsGoo() {
     location.assign('./maps.html')
 }
 try {
+  swap.addEventListener('click',()=>{
+    let temp = final.value;
+    final.value = current.value;
+    current.value = temp;
+  })
+  
   search.onclick = ()=>{
   const fetchId = (Id)=>{
     if(name.get(Id.value) != undefined)
@@ -138,6 +145,7 @@ try {
     }
     else
     {
+      sessionStorage.setItem('serviceUse','X');
       letsGoo();
     }
   }

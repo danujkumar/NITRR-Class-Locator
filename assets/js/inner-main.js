@@ -229,6 +229,6 @@ const removeSess = ()=>{
   sessionStorage.removeItem("start");
   sessionStorage.removeItem("end");
 }
-grounds1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","0");}
-firstt1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","1");}
-secondd1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","2");}
+grounds1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","0");sessionStorage.setItem('serviceUse','X');}
+firstt1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","1");sessionStorage.setItem('serviceUse','X');}
+secondd1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","2");sessionStorage.setItem('serviceUse','X');}
