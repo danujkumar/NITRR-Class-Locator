@@ -90,7 +90,7 @@ const butControl = () => {
 };
 
 window.addEventListener("load", () => {
-  // try {
+  try {
     map_no = sessionStorage.getItem("map_no");
     if (map_no == null) {
       map_no = "0";
@@ -107,10 +107,10 @@ window.addEventListener("load", () => {
       setter();
       getsetGoo();
     }
-  // } catch (error) {
+  } catch (error) {
     //Remember this is under try section, so for debugging always disable this try section first.
     // console.log(error)
-  // }
+  }
 });
 
 buttonCon[0].onclick = () => {
