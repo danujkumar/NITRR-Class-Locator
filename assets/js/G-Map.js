@@ -761,7 +761,7 @@ export const serviceUse = (service_Id) => {
   } else {
     toStairs = floorsConnect[service_Id]["0"];
   }
-
+  removeAlll();
   ending = endd = nearestDist(toStairs)[0];
   infoo();
   finalEnd();
@@ -786,7 +786,7 @@ const nearestDist = (toStairs) => {
     );
     if (x > distance) {
       x = distance;
-      //This two parameters needs to be exported
+      //These two parameters needs to be exported
       felement = toStairs[i][0];
       key = i;
     }
