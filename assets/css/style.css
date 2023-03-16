@@ -1039,7 +1039,7 @@ form button[type=submit] {
       }
       @media(min-width:750px){
         .i2Container{
-          left: 18.2rem;
+          left: 21.2rem;
         }
       }
       .iContainer::-webkit-scrollbar {
@@ -1090,7 +1090,7 @@ form button[type=submit] {
           top: 2.7rem;
         }
         .i2Container{
-          top: 5.7rem;
+          top: 8.28rem;
         }
       }
       input {

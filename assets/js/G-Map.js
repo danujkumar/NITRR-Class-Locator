@@ -753,7 +753,6 @@ const mapUses = () => {
 
 export const serviceUse = (service_Id) => {
   let toStairs;
-
   if (map_no == "1") {
     toStairs = floorsConnect[service_Id]["1"];
   } else if (map_no == "2") {
@@ -762,9 +761,19 @@ export const serviceUse = (service_Id) => {
     toStairs = floorsConnect[service_Id]["0"];
   }
   removeAlll();
-  ending = endd = nearestDist(toStairs)[0];
-  infoo();
-  finalEnd();
+  if(service_Id == 'G' && (map_no == '1' || map_no == '2'))
+  {
+    let temp_end = nearestDist(toStairs)[1];
+    ending = endd = floorsConnect[service_Id]['0'][temp_end][0];
+    sessionStorage.setItem("end", ending);
+    location.reload();
+  }
+  else
+  {
+    ending = endd = nearestDist(toStairs)[0];
+    infoo();
+    finalEnd();
+  }
 };
 
 const nearestDist = (toStairs) => {
