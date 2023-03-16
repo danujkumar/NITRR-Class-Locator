@@ -10,6 +10,7 @@ export function createPopup(id, para, serviceRequired) {
   let liftService = popupNode.querySelector("#services2");
   let ltoiletService = popupNode.querySelector("#services3");
   let gtoiletService = popupNode.querySelector("#services4");
+  let exitService = popupNode.querySelector("#services5");
   let serviceEnability = popupNode.querySelector(".popup-content .service");
   let continueAny = document.getElementById("continueAny");
   info.innerHTML = para;
@@ -46,7 +47,11 @@ export function createPopup(id, para, serviceRequired) {
     letsGoo();
     closePopup();
   });
-
+  exitService.addEventListener('click',()=>{
+    sessionStorage.setItem("serviceUse","G");
+    letsGoo();
+    closePopup();
+  })
   continueAny.addEventListener("click", () => {
     sessionStorage.setItem("serviceUse", "X");
     letsGoo();

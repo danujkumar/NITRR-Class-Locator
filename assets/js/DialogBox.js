@@ -10,6 +10,7 @@ export function createPopup(id,para,serviceRequired){
     let liftService = popupNode.querySelector("#services2");
     let ltoiletService = popupNode.querySelector("#services3");
     let gtoiletService = popupNode.querySelector("#services4");
+    let exitService = popupNode.querySelector("#services5");
     let serviceEnability = popupNode.querySelector(".popup-content .service")
     info.innerHTML = para;
     serviceRequired == false ? serviceEnability.classList.add('noservice') : serviceEnability.classList.remove('noservice');
@@ -33,6 +34,10 @@ export function createPopup(id,para,serviceRequired){
     })
     gtoiletService.addEventListener('click',()=>{
       serviceUse("GT");
+      closePopup();
+    })
+    exitService.addEventListener('click',()=>{
+      serviceUse("G");
       closePopup();
     })
     overlay.addEventListener('click',closePopup);
