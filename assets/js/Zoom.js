@@ -1,19 +1,10 @@
 import {room_click} from './G-Map.js';
-import {map_no,map0,map1,map2} from './G-Map.js'
-let svgMap=document.querySelectorAll("#removal div svg");
+import {map0,map1,map2} from './G-Map.js'
 let svgMaps = document.querySelectorAll("#removal div svg");
 let mapRotateCache = [0,0,0];
 let mapScaleCache = [[0,0,1,0,0],[0,0,1,0,0],[0,0,1,0,0]];
 
-document.getElementsByTagName("html")[0].addEventListener("onload",function(e){
-    svgMap.onpointerup = pointerupHandler;
-    svgMap.onpointercancel = pointerupHandler;
-    svgMap.onpointerout = pointerupHandler;
-    svgMap.onpointerleave = pointerupHandler;
-    reloades(map_no);
-})
-
-export const reloades = (maps_no)=> {
+export const reloades = (svgMap,maps_no)=> {
 let scaless = mapScaleCache[maps_no][2]
     ,pannings = false, 
     pointXXOld=mapScaleCache[maps_no][0], 
@@ -23,7 +14,6 @@ let scaless = mapScaleCache[maps_no][2]
     starts = {x:0,y:0};
 
 setTransform(pointXX,pointYY,scaless);
-svgMap.onpointerup = pointerupHandler;
 svgMap.onpointercancel = pointerupHandler;
 svgMap.onpointerout = pointerupHandler;
 svgMap.onpointerleave = pointerupHandler;
@@ -78,7 +68,6 @@ function setTransform(pointX,pointY,scales) {
       svgMap.style.transform = `translate(${pointX}px,${pointY}px) scale(${scales})`;
       break;
   }
-  console.log(mapScaleCache);
 }
 
 function pointerupHandler(ev) {
@@ -103,6 +92,8 @@ const onclicked = (e)=>{
 
   if(gSelector.classList == "room")
     room_click(gSelector.id)
+  
+  console.log(gSelector);
 }
 
 document.getElementById("counterclock").onclick = ()=>{
@@ -228,19 +219,7 @@ svgMap.onpointermove = function(ev){
 }
 
 export const switchMap = ()=> {
-  let key = sessionStorage.getItem("map_no");
-  switch (key) {
-  case "1":
-    svgMap = svgMaps[1];
-    break;
-  case "2":
-    svgMap = svgMaps[2];
-    break;
-  default:
-    svgMap = svgMaps[0];
-    break;
-  }
-  reloades(parseInt(key));
+  reloades(svgMaps[0],0);//Command for ground floor map is loaded
+  reloades(svgMaps[1],1);//Command for first floor map is loaded
+  reloades(svgMaps[2],2);//Command for second floor map is loaded
 }
-
-switchMap();

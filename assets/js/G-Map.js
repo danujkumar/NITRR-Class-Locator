@@ -70,19 +70,16 @@ const setMap = () => {
   if (map_no == "1") {
     lastAppended = removeMap1;
     removals.prepend(removeMap1);
-    switchMap();
     map1.style.opacity = 1;
     map1.style.overflow = "clip";
   } else if (map_no == "2") {
     lastAppended = removeMap2;
     removals.prepend(removeMap2);
-    switchMap();
     map2.style.opacity = 1;
     map2.style.overflow = "clip";
   } else {
     lastAppended = removeMap0;
     removals.prepend(removeMap0);
-    switchMap();
     map0.style.opacity = 1;
     map0.style.overflow = "clip";
   }
@@ -144,6 +141,7 @@ const reload = () => {
 
 window.addEventListener("load", () => {
   try {
+    switchMap();
     removeMap0 = removals.removeChild(map0);
     removeMap1 = removals.removeChild(map1);
     removeMap2 = removals.removeChild(map2);
