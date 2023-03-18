@@ -45,7 +45,7 @@ let initialFloor;
 let preinfo;
 let serviceUsed = sessionStorage.getItem("serviceUse");
 
-export {map0,map1,map2};
+export {map0,map1,map2,map_no};
 
 const prerequisiteTask = ()=>{
   if (sessionStorage.getItem("mode") == null || sessionStorage.getItem("mode")==undefined) 

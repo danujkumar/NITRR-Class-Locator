@@ -1,5 +1,5 @@
 import {room_click} from './G-Map.js';
-import { map0,map1,map2 } from './G-Map.js';
+import { map0,map1,map2,map_no } from './G-Map.js';
 let svgMaps = document.querySelectorAll("#removal div svg");
 let mapRotateCache = [0,0,0];
 let mapScaleCache = [[0,0,1,0,0],[0,0,1,0,0],[0,0,1,0,0]];
@@ -57,26 +57,12 @@ export const resetCache = ()=> {
   setTransform(0,0,1,svgMaps[0],0);
   setTransform(0,0,1,svgMaps[1],1);
   setTransform(0,0,1,svgMaps[2],2);
-  rotater(0,0);
-  rotater(1,0);
-  rotater(2,0);
+  rotateDeg(0,true,0);
+  rotateDeg(0,true,1);
+  rotateDeg(0,true,2);
 }
 
-const reloades = (svgMap,maps_no)=> {
-
-let starts = {x:0,y:0};
-let pannings = false;
-setTransform(pointXX,pointYY,scaless,svgMap,maps_no);
-svgMap.onpointercancel = pointerupHandler;
-svgMap.onpointerout = pointerupHandler;
-svgMap.onpointerleave = pointerupHandler;
-
-//Enabling two finger touch gestures 
-let evCache = [];
-let prevDiff = -1;
-let touchCount,midPointX,midPointY;
-
-const rotateDeg = (degree,isCounter,map,svgMap)=>{
+const rotateDeg = (degree,isCounter,map)=>{
   rotater(map,degree);
   if(isCounter)
   {
@@ -92,6 +78,28 @@ const rotateDeg = (degree,isCounter,map,svgMap)=>{
     mapScaleCache[map][4] = pointYYOld = pointYY;
     mapRotateCache[map] = degree;
 }
+
+document.getElementById("counterclock").onclick = ()=>{
+  rotateDeg(mapRotateCache[parseInt(map_no)] -= 90,false,parseInt(map_no))
+}
+
+document.getElementById("clock").onclick = ()=>{
+  rotateDeg(mapRotateCache[parseInt(map_no)] += 90,true,parseInt(map_no))
+}
+
+const reloades = (svgMap,maps_no)=> {
+
+let starts = {x:0,y:0};
+let pannings = false;
+setTransform(pointXX,pointYY,scaless,svgMap,maps_no);
+svgMap.onpointercancel = pointerupHandler;
+svgMap.onpointerout = pointerupHandler;
+svgMap.onpointerleave = pointerupHandler;
+
+//Enabling two finger touch gestures 
+let evCache = [];
+let prevDiff = -1;
+let touchCount,midPointX,midPointY;
 
 function pointerupHandler(ev) {
   ev.preventDefault();
@@ -115,16 +123,6 @@ const onclicked = (e)=>{
 
   if(gSelector.classList == "room")
     room_click(gSelector.id)
-  
-  console.log(gSelector);
-}
-
-document.getElementById("counterclock").onclick = ()=>{
-  rotateDeg(mapRotateCache[maps_no] -= 90,false,maps_no,svgMap)
-}
-
-document.getElementById("clock").onclick = ()=>{
-  rotateDeg(mapRotateCache[maps_no] += 90,true,maps_no,svgMap)
 }
 
 svgMap.onpointerdown = function(e) {
