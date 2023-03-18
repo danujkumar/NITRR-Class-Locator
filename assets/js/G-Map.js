@@ -4,7 +4,7 @@ import mappings from "./json/bluetoGreen2.json" assert { type: "json" };
 import exceptions from "./json/exceptionPaths.json" assert { type: "json" };
 import searching from "./json/searchTool.json" assert { type: "json" };
 import floorsConnect from "./json/floorsConnection.json" assert { type: "json" };
-import { switchMap } from "./Zoom.js";
+import { switchMap, resetCache, switching } from "./Zoom.js";
 import { createPopup } from "./DialogBox.js";
 
 let starting;
@@ -45,7 +45,7 @@ let initialFloor;
 let preinfo;
 let serviceUsed = sessionStorage.getItem("serviceUse");
 
-export { map_no, map0, map1, map2 };
+export {map0,map1,map2};
 
 const prerequisiteTask = ()=>{
   if (sessionStorage.getItem("mode") == null || sessionStorage.getItem("mode")==undefined) 
@@ -128,6 +128,7 @@ const reload = () => {
     if (map_no == null) {
       map_no = "0";
     }
+    switching(parseInt(map_no));
     butControl();
     removeinfo();
     infoRemoval();
@@ -558,6 +559,7 @@ const reset = () => {
   sessionStorage.removeItem("Stair");
   sessionStorage.removeItem("rotate");
   sessionStorage.removeItem("mode");
+  resetCache();
   removeAlll();
   removeDestinationAll();
   removeinfo();

@@ -1,48 +1,11 @@
 import {room_click} from './G-Map.js';
-import {map0,map1,map2} from './G-Map.js'
+import { map0,map1,map2 } from './G-Map.js';
 let svgMaps = document.querySelectorAll("#removal div svg");
 let mapRotateCache = [0,0,0];
 let mapScaleCache = [[0,0,1,0,0],[0,0,1,0,0],[0,0,1,0,0]];
+let scaless = 1,pointXXOld = 0,pointYYOld = 0,pointXX = 0,pointYY = 0;
 
-export const reloades = (svgMap,maps_no)=> {
-let scaless = mapScaleCache[maps_no][2]
-    ,pannings = false, 
-    pointXXOld=mapScaleCache[maps_no][0], 
-    pointYYOld=mapScaleCache[maps_no][1], 
-    pointXX = mapScaleCache[maps_no][3], 
-    pointYY = mapScaleCache[maps_no][4],
-    starts = {x:0,y:0};
-
-setTransform(pointXX,pointYY,scaless);
-svgMap.onpointercancel = pointerupHandler;
-svgMap.onpointerout = pointerupHandler;
-svgMap.onpointerleave = pointerupHandler;
-
-//Enabling two finger touch gestures 
-let evCache = [];
-let prevDiff = -1;
-let touchCount,midPointX,midPointY;
-
-const rotateDeg = (degree,isCounter,map)=>{
-  if(map == 1) map1.style.transform = `rotate(${degree}deg)`;
-  else if(map == 2) map2.style.transform = `rotate(${degree}deg)`;
-  else map0.style.transform = `rotate(${degree}deg)`;
-  if(isCounter)
-  {
-    mapScaleCache[map][0] = pointXX = -pointYYOld;
-    mapScaleCache[map][1] = pointYY = pointXXOld; 
-  }
-  else
-  {
-    mapScaleCache[map][0] = pointXX = pointYYOld;
-    mapScaleCache[map][1] = pointYY = -pointXXOld;
-  }
-    mapScaleCache[map][3] = pointXXOld = pointXX;
-    mapScaleCache[map][4] = pointYYOld = pointYY;
-    mapRotateCache[map] = degree;
-}
-
-function setTransform(pointX,pointY,scales) {
+function setTransform(pointX,pointY,scales,svgMap,maps_no) {
   let rotate = mapRotateCache[maps_no] - Math.floor(mapRotateCache[maps_no]/360)*360;
   pointX == 0 && pointY == 0 ? svgMap.style.transition = 'transform 0.5s' : svgMap.style.transition = '';
   switch (rotate) {
@@ -68,6 +31,66 @@ function setTransform(pointX,pointY,scales) {
       svgMap.style.transform = `translate(${pointX}px,${pointY}px) scale(${scales})`;
       break;
   }
+}
+
+function rotater(svgMap,degree) {
+  if(svgMap == 1)
+    map1.style.transform = `rotate(${degree}deg)`;
+  else if(svgMap == 2)
+    map2.style.transform = `rotate(${degree}deg)`;
+  else
+    map0.style.transform = `rotate(${degree}deg)`;
+}
+
+function switchMapScaleCache(maps_no) {
+  scaless = mapScaleCache[maps_no][2]
+  pointXXOld=mapScaleCache[maps_no][0], 
+  pointYYOld=mapScaleCache[maps_no][1], 
+  pointXX = mapScaleCache[maps_no][3], 
+  pointYY = mapScaleCache[maps_no][4];
+}
+
+export const resetCache = ()=> {
+  mapRotateCache = [0,0,0];
+  mapScaleCache = [[0,0,1,0,0],[0,0,1,0,0],[0,0,1,0,0]];
+  scaless = 1;pointXX = 0;pointYY = 0;pointXXOld = 0;pointYYOld = 0;
+  setTransform(0,0,1,svgMaps[0],0);
+  setTransform(0,0,1,svgMaps[1],1);
+  setTransform(0,0,1,svgMaps[2],2);
+  rotater(0,0);
+  rotater(1,0);
+  rotater(2,0);
+}
+
+const reloades = (svgMap,maps_no)=> {
+
+let starts = {x:0,y:0};
+let pannings = false;
+setTransform(pointXX,pointYY,scaless,svgMap,maps_no);
+svgMap.onpointercancel = pointerupHandler;
+svgMap.onpointerout = pointerupHandler;
+svgMap.onpointerleave = pointerupHandler;
+
+//Enabling two finger touch gestures 
+let evCache = [];
+let prevDiff = -1;
+let touchCount,midPointX,midPointY;
+
+const rotateDeg = (degree,isCounter,map,svgMap)=>{
+  rotater(map,degree);
+  if(isCounter)
+  {
+    mapScaleCache[map][0] = pointXX = -pointYYOld;
+    mapScaleCache[map][1] = pointYY = pointXXOld; 
+  }
+  else
+  {
+    mapScaleCache[map][0] = pointXX = pointYYOld;
+    mapScaleCache[map][1] = pointYY = -pointXXOld;
+  }
+    mapScaleCache[map][3] = pointXXOld = pointXX;
+    mapScaleCache[map][4] = pointYYOld = pointYY;
+    mapRotateCache[map] = degree;
 }
 
 function pointerupHandler(ev) {
@@ -97,11 +120,11 @@ const onclicked = (e)=>{
 }
 
 document.getElementById("counterclock").onclick = ()=>{
-  rotateDeg(mapRotateCache[maps_no] -= 90,false,maps_no)
+  rotateDeg(mapRotateCache[maps_no] -= 90,false,maps_no,svgMap)
 }
 
 document.getElementById("clock").onclick = ()=>{
-  rotateDeg(mapRotateCache[maps_no] += 90,true,maps_no)
+  rotateDeg(mapRotateCache[maps_no] += 90,true,maps_no,svgMap)
 }
 
 svgMap.onpointerdown = function(e) {
@@ -177,7 +200,7 @@ svgMap.onwheel = function(e){
           mapScaleCache[maps_no][4] = pointYYOld = pointYY = e.clientY - ys * scaless;
         }
     }
-    setTransform(pointXX,pointYY,scaless);
+    setTransform(pointXX,pointYY,scaless,svgMap,maps_no);
 }
 
 svgMap.onpointermove = function(ev){
@@ -203,7 +226,7 @@ svgMap.onpointermove = function(ev){
             { mapScaleCache[maps_no][2] = scaless =1 ;
               mapScaleCache[maps_no][3] = pointXXOld = pointXX = 0;
               mapScaleCache[maps_no][4] = pointYYOld = pointYY = 0;}
-          setTransform(pointXX,pointYY,scaless);
+          setTransform(pointXX,pointYY,scaless,svgMap,maps_no);
         }
         prevDiff = curDiff;
       }  
@@ -213,9 +236,18 @@ svgMap.onpointermove = function(ev){
     if(!pannings){return;}
     mapScaleCache[maps_no][3] = pointXXOld = pointXX = (ev.clientX - starts.x);
     mapScaleCache[maps_no][4] = pointYYOld = pointYY = (ev.clientY - starts.y);
-    setTransform(pointXX,pointYY,scaless);
+    setTransform(pointXX,pointYY,scaless,svgMap,maps_no);
   }
 }
+}
+
+export const switching = (maps_no)=>{
+  if(maps_no == 1)
+    switchMapScaleCache(1);
+  else if(maps_no == 2)
+    switchMapScaleCache(2);
+  else
+    switchMapScaleCache(0);
 }
 
 export const switchMap = ()=> {
