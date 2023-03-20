@@ -7,7 +7,8 @@
 
   <title>Class Locator - Home</title>
   <meta content="This Is The Landing Page To Our ClassRoom Locator Website" name="description">
-  <meta content="nit, raipur, chhattisgarh, national, institute, technology, class, locator, nitrr, classroom" name="keywords">
+  <meta content="nit, raipur, chhattisgarh, national, institute, technology, class, locator, nitrr, classroom"
+    name="keywords">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -30,7 +31,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TS5SNMMD07"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'G-TS5SNMMD07');
@@ -51,7 +52,7 @@
   <div class="popup" id="popup">
     <div class="overlay"></div>
     <div class="popup-content">
-      <h1><i class="fa-solid fa-circle-info" style="color:#3274ed"></i>&nbsp;Information</h1>
+      <h1><i style="color:#3274ed"><i class="bi bi-info-circle-fill"></i></i>&nbsp;Information</h1>
       <p></p>
       <div class="service">
         <button class="services" id="services1">Nearest Stairs</button>
@@ -106,18 +107,24 @@
             <input id="current" type="text" placeholder="Nearest Room" name="current" value="" autocomplete="off" />
           </div>
           <div id="currentdiv" class="iContainer">
-              <!-- Don't think this section useless, it is used for showing the search results -->
+            <!-- Don't think this section useless, it is used for showing the search results -->
           </div>
-          <a id="swap" class="btn-get-started" style="border:none;margin:0;width:50px; padding:0.5rem 1rem;cursor:pointer;"><i class="fa-sharp fa-solid fa-right-left"></i></a>
+          <a id="swap" class="btn-get-started"
+            style="border:none;margin:0;width:50px; padding:0.5rem 1rem;cursor:pointer;"><svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512" fill="white"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path 
+                d="M32 96l320 0V32c0-12.9 7.8-24.6 19.8-29.6s25.7-2.2 34.9 6.9l96 96c6 6 9.4 14.1 9.4 22.6s-3.4 16.6-9.4 22.6l-96 96c-9.2 9.2-22.9 11.9-34.9 6.9s-19.8-16.6-19.8-29.6V160L32 160c-17.7 0-32-14.3-32-32s14.3-32 32-32zM480 352c17.7 0 32 14.3 32 32s-14.3 32-32 32H160v64c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-96-96c-6-6-9.4-14.1-9.4-22.6s3.4-16.6 9.4-22.6l96-96c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 64H480z" />
+            </svg></a>
           <div class="hcontainer">
             <input id="final" type="text" placeholder="Destination Room" name="search-box" value=""
               autocomplete="off" />
           </div>
           <div id="finaldiv" class="iContainer i2Container">
-              <!-- Don't think this section useless, it is used for showing the search results -->
+            <!-- Don't think this section useless, it is used for showing the search results -->
           </div>
-          <a href=/maps.html" id="search" class="btn-get-started" style="width:80px; padding:0.5rem 1rem;cursor:pointer;"><i
-              class="bi bi-search"></i></a>
+          <a href=/maps.html" id="search" class="btn-get-started"
+            style="width:80px; padding:0.5rem 1rem;cursor:pointer;"><i class="bi bi-search"></i></a>
         </div>
       </div>
       <h2>Welcome to Class Locator, NITRR</h2>

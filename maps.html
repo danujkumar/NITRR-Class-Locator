@@ -52,7 +52,7 @@
   <div class="popup" id="popup">
     <div class="overlay"></div>
     <div class="popup-content">
-      <h1><i class="fa-solid fa-circle-info" style="color:#3274ed"></i>&nbsp;Information</h1>
+      <h1><i style="color:#3274ed"><i class="bi bi-info-circle-fill"></i></i>&nbsp;Information</h1>
       <p></p>
       <div class="service">
         <button class="services" id="services1">Nearest Stairs</button>
@@ -99,7 +99,12 @@
             </div>
             <div>
               <!-- This feature is completed successfully, just frontend part is left, will be completed soon -->
-              <a id="swap" class="btn-get-started" style="display:none;color:#fff;border:none;margin:0;width:50px; padding:0.5rem 1rem;cursor:pointer;z-index: 2;"><i class="fa-sharp fa-solid fa-right-left"></i></a>
+              <a id="swap" class="btn-get-started" style="display:none;color:#fff;border:none;margin:0;width:50px; cursor:pointer;z-index: 2;"><svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512" height="60" fill="white">
+                <path 
+                  d="M32 96l320 0V32c0-12.9 7.8-24.6 19.8-29.6s25.7-2.2 34.9 6.9l96 96c6 6 9.4 14.1 9.4 22.6s-3.4 16.6-9.4 22.6l-96 96c-9.2 9.2-22.9 11.9-34.9 6.9s-19.8-16.6-19.8-29.6V160L32 160c-17.7 0-32-14.3-32-32s14.3-32 32-32zM480 352c17.7 0 32 14.3 32 32s-14.3 32-32 32H160v64c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-96-96c-6-6-9.4-14.1-9.4-22.6s3.4-16.6 9.4-22.6l96-96c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 64H480z" />
+              </svg></a>
             </div>
             <div class="hcontainer">
               <input
@@ -7639,8 +7644,10 @@
           display="none"
         >
           <!-- Move to next floor! -->
-           <b id="initialFloor" style="color:green"></b>  <i class="fa-solid fa-arrow-right-long"></i> <i class="fa-solid fa-arrow-right-long"></i>
+          <div style="display:inline;">
+           <b id="initialFloor" style="color:green"></b> <i class="bi bi-arrow-right"></i> <i class="bi bi-arrow-right"></i>
             <b id="finalFloor" style="color:red"></b> !
+          </div>
           <a
             class="align-middle reset-btn"
             style="background-color: #1dc8cd; color: white; cursor: default"

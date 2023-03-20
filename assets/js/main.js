@@ -235,3 +235,11 @@ try {
 } catch (error) {
   
 }
+
+document.getElementById("swap").addEventListener('mouseover',()=>{
+  document.getElementById("swap").querySelector("svg").setAttribute('fill','#1dc9ce');
+})
+
+document.getElementById("swap").addEventListener('mouseout',()=>{
+  document.getElementById("swap").querySelector("svg").setAttribute('fill','white');
+})
