@@ -112,6 +112,7 @@ const A = () => {
   if (serviceUsed != "X") {
     mapUse = mapUses();
     serviceUse(serviceUsed);
+    serviceUsed = 'X';
     sessionStorage.setItem("serviceUse", "X");
   } else {
     endd = ending = sessionStorage.getItem("end");
