@@ -55,6 +55,7 @@ const prerequisiteTask = ()=>{
     sessionStorage.getItem("serviceUse") == null ||
     sessionStorage.getItem("serviceUse") == undefined
   ) {
+    serviceUsed = 'X';
     sessionStorage.setItem("serviceUse", "X");
   }
 }
@@ -871,7 +872,6 @@ const getsetGoo = () => {
   mapUse = mapUses();
   const startToStairs = () => {
     let toStairs;
-    console.log(floorsConnect[sessionStorage.getItem("mode")])
     if (map_no == "1") {
       toStairs = floorsConnect[sessionStorage.getItem("mode")]["1"];
     } else if (map_no == "2") {
