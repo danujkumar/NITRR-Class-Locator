@@ -51,6 +51,7 @@ if (
   sessionStorage.getItem("serviceUse") == null ||
   sessionStorage.getItem("serviceUse") == undefined
 ) {
+  serviceUsed = 'X';
   sessionStorage.setItem("serviceUse", "X");
 }
 
