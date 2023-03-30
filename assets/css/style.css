@@ -1092,6 +1092,9 @@ form button[type=submit] {
         .i2Container{
           top: 8.20rem;
         }
+        #swap{
+          rotate:90deg;
+        }
       }
       input {
         width: 280px;
