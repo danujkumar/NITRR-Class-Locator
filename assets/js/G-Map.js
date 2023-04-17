@@ -532,6 +532,7 @@ const reset = () => {
 
 document.getElementById("reset").onclick = () => {
   reset();
+  location.reload();
 };
 
 const greenDecider = () => {
