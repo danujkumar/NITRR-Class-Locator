@@ -744,6 +744,7 @@ modes.addEventListener("click", () => {
   modes.innerText == "From lift"
     ? sessionStorage.setItem("mode", "L")
     : sessionStorage.setItem("mode", "S");
+    location.reload();
 });
 
 const mapUses = () => {
