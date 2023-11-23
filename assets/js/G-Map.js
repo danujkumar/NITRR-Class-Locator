@@ -1,9 +1,22 @@
-import mapping from "./json/bluetoGreen.json" assert { type: "json" };
-import mappingf from "./json/bluetoGreen1.json" assert { type: "json" };
-import mappings from "./json/bluetoGreen2.json" assert { type: "json" };
-import exceptions from "./json/exceptionPaths.json" assert { type: "json" };
-import searching from "./json/searchTool.json" assert { type: "json" };
-import floorsConnect from "./json/floorsConnection.json" assert { type: "json" };
+// import mapping from "./json/bluetoGreen.json" assert { type: "json" };
+// import mappingf from "./json/bluetoGreen1.json" assert { type: "json" };
+// import mappings from "./json/bluetoGreen2.json" assert { type: "json" };
+// import exceptions from "./json/exceptionPaths.json" assert { type: "json" };
+// import searching from "./json/searchTool.json" assert { type: "json" };
+// import floorsConnect from "./json/floorsConnection.json" assert { type: "json" };
+let jsonFileURL;
+let jsonFileURLf;
+let jsonFileURLs;
+let jsonFileURL2;
+const jsonFileURL3 = new URL("./json/searchTool.json", import.meta.url);
+const searching = await fetch(jsonFileURL3).then((r) => r.json());
+let jsonFileURL4;
+let mapping;
+let mappingf;
+let mappings;
+let exceptions;
+let floorsConnect;
+
 import { createPopup } from "./DialogBox.js";
 
 let starting;
@@ -51,7 +64,7 @@ if (
   sessionStorage.getItem("serviceUse") == null ||
   sessionStorage.getItem("serviceUse") == undefined
 ) {
-  serviceUsed = 'X';
+  serviceUsed = "X";
   sessionStorage.setItem("serviceUse", "X");
 }
 
@@ -74,7 +87,18 @@ const clearMap = () => {
   }
 };
 
-const butControl = () => {
+const butControl = async () => {
+  jsonFileURL2 = new URL("./json/exceptionPaths.json", import.meta.url);
+  exceptions = await fetch(jsonFileURL2).then((r) => r.json());
+  jsonFileURL4 = new URL("./json/floorsConnection.json", import.meta.url);
+  floorsConnect = await fetch(jsonFileURL4).then((r) => r.json());
+  jsonFileURL = new URL("./json/bluetoGreen.json", import.meta.url);
+  jsonFileURLf = new URL("./json/bluetoGreen1.json", import.meta.url);
+  jsonFileURLs = new URL("./json/bluetoGreen2.json", import.meta.url);
+  mapping = await fetch(jsonFileURL).then((r) => r.json());
+  mappingf = await fetch(jsonFileURLf).then((r) => r.json());
+  mappings = await fetch(jsonFileURLs).then((r) => r.json());
+
   if (map_no == "1") {
     buttonCon[0].classList.remove("active1");
     buttonCon[1].classList.add("active1");
@@ -90,13 +114,13 @@ const butControl = () => {
   }
 };
 
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
   try {
     map_no = sessionStorage.getItem("map_no");
     if (map_no == null) {
       map_no = "0";
     }
-    butControl();
+    await butControl();
     clearMap();
     starts = starting = sessionStorage.getItem("start");
     if (serviceUsed != "X") {
@@ -110,7 +134,7 @@ window.addEventListener("load", () => {
     }
   } catch (error) {
     //Remember this is under try section, so for debugging always disable this try section first.
-    // console.log(error)
+    console.log(error);
   }
 });
 
@@ -745,7 +769,7 @@ modes.addEventListener("click", () => {
   modes.innerText == "From lift"
     ? sessionStorage.setItem("mode", "L")
     : sessionStorage.setItem("mode", "S");
-    location.reload();
+  location.reload();
 });
 
 const mapUses = () => {
@@ -764,15 +788,12 @@ export const serviceUse = (service_Id) => {
     toStairs = floorsConnect[service_Id]["0"];
   }
   removeAlll();
-  if(service_Id == 'G' && (map_no == '1' || map_no == '2'))
-  {
+  if (service_Id == "G" && (map_no == "1" || map_no == "2")) {
     let temp_end = nearestDist(toStairs)[1];
-    ending = endd = floorsConnect[service_Id]['0'][temp_end][0];
+    ending = endd = floorsConnect[service_Id]["0"][temp_end][0];
     sessionStorage.setItem("end", ending);
     location.reload();
-  }
-  else
-  {
+  } else {
     ending = endd = nearestDist(toStairs)[0];
     infoo();
     finalEnd();
