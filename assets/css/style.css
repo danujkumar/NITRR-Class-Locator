@@ -1020,6 +1020,18 @@ form button[type=submit] {
     margin-right: 10rem;
   }
 }
+@media(max-width:470px)
+{
+  #hero{
+    height:110vh;
+  }
+}
+@media(max-width:310px)
+{
+  #hero{
+    height:116vh;
+  }
+}
 
       /* buttons design */
       .iContainer {
