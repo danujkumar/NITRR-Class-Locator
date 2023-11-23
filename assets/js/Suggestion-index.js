@@ -1,4 +1,6 @@
-import searching from "./json/searchTool.json" assert { type: "json" };
+// import searching from "./json/searchTool.json" assert { type: "json" };
+const jsonFileURL = new URL("./json/searchTool.json", import.meta.url);
+const searching = await fetch(jsonFileURL).then(r => r.json());
 import { createPopup } from "./mainDialogBox.js";
 let id = [];
 let name = new Map();
