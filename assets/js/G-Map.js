@@ -4,19 +4,12 @@
 // import exceptions from "./json/exceptionPaths.json" assert { type: "json" };
 // import searching from "./json/searchTool.json" assert { type: "json" };
 // import floorsConnect from "./json/floorsConnection.json" assert { type: "json" };
-let jsonFileURL;
-let jsonFileURLf;
-let jsonFileURLs;
-let jsonFileURL2;
-// const jsonFileURL3 = new URL("./json/searchTool.json", import.meta.url);
-// const searching = await fetch(jsonFileURL3).then((r) => r.json());
-const searching = 'nothing';
-let jsonFileURL4;
-let mapping;
-let mappingf;
-let mappings;
-let exceptions;
-let floorsConnect;
+const jsonFileURL = new URL("./json/bluetoGreen.json", import.meta.url);
+const jsonFileURLf = new URL("./json/bluetoGreen1.json", import.meta.url);
+const jsonFileURLs = new URL("./json/bluetoGreen2.json", import.meta.url);
+const jsonFileURL2 = new URL("./json/exceptionPaths.json", import.meta.url);
+const jsonFileURL4 = new URL("./json/floorsConnection.json", import.meta.url);
+const jsonFileURL3 = new URL("./json/searchTool.json", import.meta.url);
 
 import { createPopup } from "./DialogBox.js";
 
@@ -56,6 +49,7 @@ let swap = document.getElementById("swap");
 let initialFloor;
 let preinfo;
 let serviceUsed = sessionStorage.getItem("serviceUse");
+let searching, mapping, mappingf, mappings, exceptions, floorsConnect; 
 
 export { map_no, map0, map1, map2 };
 
@@ -89,16 +83,12 @@ const clearMap = () => {
 };
 
 const butControl = async () => {
-  jsonFileURL2 = new URL("./json/exceptionPaths.json", import.meta.url);
-  exceptions = await fetch(jsonFileURL2).then((r) => r.json());
-  jsonFileURL4 = new URL("./json/floorsConnection.json", import.meta.url);
-  floorsConnect = await fetch(jsonFileURL4).then((r) => r.json());
-  jsonFileURL = new URL("./json/bluetoGreen.json", import.meta.url);
-  jsonFileURLf = new URL("./json/bluetoGreen1.json", import.meta.url);
-  jsonFileURLs = new URL("./json/bluetoGreen2.json", import.meta.url);
+  
   mapping = await fetch(jsonFileURL).then((r) => r.json());
   mappingf = await fetch(jsonFileURLf).then((r) => r.json());
   mappings = await fetch(jsonFileURLs).then((r) => r.json());
+  exceptions = await fetch(jsonFileURL2).then((r) => r.json());
+  floorsConnect = await fetch(jsonFileURL4).then((r) => r.json());
 
   if (map_no == "1") {
     buttonCon[0].classList.remove("active1");
@@ -117,22 +107,33 @@ const butControl = async () => {
 
 window.addEventListener("load", async () => {
   try {
+    searching = await fetch(jsonFileURL3).then((r) => r.json());
+    for (let k in searching) {
+      if (searching[k]["details"] == "")
+        searching[k]["details"] = searching[k]["name"];
+      name.set(searching[k]["name"], k);
+      id.push([searching[k]["name"], searching[k]["details"]]);
+    }
+    // console.log(searching)
     map_no = sessionStorage.getItem("map_no");
     if (map_no == null) {
       map_no = "0";
     }
-    await butControl();
-    clearMap();
-    starts = starting = sessionStorage.getItem("start");
-    if (serviceUsed != "X") {
-      mapUse = mapUses();
-      serviceUse(serviceUsed);
-      sessionStorage.setItem("serviceUse", "X");
-    } else {
-      endd = ending = sessionStorage.getItem("end");
-      setter();
-      getsetGoo();
-    }
+    await butControl().then(() => {
+      clearMap();
+      starts = starting = sessionStorage.getItem("start");
+      if (serviceUsed != "X") {
+        mapUse = mapUses();
+        serviceUse(serviceUsed);
+        sessionStorage.setItem("serviceUse", "X");
+      } else {
+        endd = ending = sessionStorage.getItem("end");
+        setter();
+        getsetGoo();
+      }
+    }).catch((err) => {
+      console.log(err);
+    });
   } catch (error) {
     //Remember this is under try section, so for debugging always disable this try section first.
     console.log(error);
@@ -173,13 +174,6 @@ const Information = (buttonClicked) => {
     info(buttonClicked);
   }
 };
-
-for (let k in searching) {
-  if (searching[k]["details"] == "")
-    searching[k]["details"] = searching[k]["name"];
-  name.set(searching[k]["name"], k);
-  id.push([searching[k]["name"], searching[k]["details"]]);
-}
 
 const removal = (element) => {
   let e = element.lastElementChild;
