@@ -1,9 +1,9 @@
-// import mapping from "./json/bluetoGreen.json" assert { type: "json" };
-// import mappingf from "./json/bluetoGreen1.json" assert { type: "json" };
-// import mappings from "./json/bluetoGreen2.json" assert { type: "json" };
-// import exceptions from "./json/exceptionPaths.json" assert { type: "json" };
+import mapping from "./json/bluetoGreen.json" assert { type: "json" };
+import mappingf from "./json/bluetoGreen1.json" assert { type: "json" };
+import mappings from "./json/bluetoGreen2.json" assert { type: "json" };
+import exceptions from "./json/exceptionPaths.json" assert { type: "json" };
 // import searching from "./json/searchTool.json" assert { type: "json" };
-// import floorsConnect from "./json/floorsConnection.json" assert { type: "json" };
+import floorsConnect from "./json/floorsConnection.json" assert { type: "json" };
 let jsonFileURL;
 let jsonFileURLf;
 let jsonFileURLs;
@@ -89,15 +89,15 @@ const clearMap = () => {
 
 const butControl = async () => {
   jsonFileURL2 = new URL("./json/exceptionPaths.json", import.meta.url);
-  exceptions = await fetch(jsonFileURL2).then((r) => r.json());
+  // exceptions = await fetch(jsonFileURL2).then((r) => r.json());
   jsonFileURL4 = new URL("./json/floorsConnection.json", import.meta.url);
-  floorsConnect = await fetch(jsonFileURL4).then((r) => r.json());
+  // floorsConnect = await fetch(jsonFileURL4).then((r) => r.json());
   jsonFileURL = new URL("./json/bluetoGreen.json", import.meta.url);
   jsonFileURLf = new URL("./json/bluetoGreen1.json", import.meta.url);
   jsonFileURLs = new URL("./json/bluetoGreen2.json", import.meta.url);
-  mapping = await fetch(jsonFileURL).then((r) => r.json());
-  mappingf = await fetch(jsonFileURLf).then((r) => r.json());
-  mappings = await fetch(jsonFileURLs).then((r) => r.json());
+  // mapping = await fetch(jsonFileURL).then((r) => r.json());
+  // mappingf = await fetch(jsonFileURLf).then((r) => r.json());
+  // mappings = await fetch(jsonFileURLs).then((r) => r.json());
 
   if (map_no == "1") {
     buttonCon[0].classList.remove("active1");
