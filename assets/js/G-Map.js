@@ -11,11 +11,11 @@ let jsonFileURL2;
 const jsonFileURL3 = new URL("./json/searchTool.json", import.meta.url);
 const searching = await fetch(jsonFileURL3).then((r) => r.json());
 let jsonFileURL4;
-let mapping;
-let mappingf;
-let mappings;
-let exceptions;
-let floorsConnect;
+// let mapping;
+// let mappingf;
+// let mappings;
+// let exceptions;
+// let floorsConnect;
 
 import { createPopup } from "./DialogBox.js";
 
