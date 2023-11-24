@@ -88,13 +88,13 @@ const clearMap = () => {
 };
 
 const butControl = async () => {
-  jsonFileURL2 = new URL("./json/exceptionPaths.json", import.meta.url);
+  // jsonFileURL2 = new URL("./json/exceptionPaths.json", import.meta.url);
   // exceptions = await fetch(jsonFileURL2).then((r) => r.json());
-  jsonFileURL4 = new URL("./json/floorsConnection.json", import.meta.url);
+  // jsonFileURL4 = new URL("./json/floorsConnection.json", import.meta.url);
   // floorsConnect = await fetch(jsonFileURL4).then((r) => r.json());
-  jsonFileURL = new URL("./json/bluetoGreen.json", import.meta.url);
-  jsonFileURLf = new URL("./json/bluetoGreen1.json", import.meta.url);
-  jsonFileURLs = new URL("./json/bluetoGreen2.json", import.meta.url);
+  // jsonFileURL = new URL("./json/bluetoGreen.json", import.meta.url);
+  // jsonFileURLf = new URL("./json/bluetoGreen1.json", import.meta.url);
+  // jsonFileURLs = new URL("./json/bluetoGreen2.json", import.meta.url);
   // mapping = await fetch(jsonFileURL).then((r) => r.json());
   // mappingf = await fetch(jsonFileURLf).then((r) => r.json());
   // mappings = await fetch(jsonFileURLs).then((r) => r.json());
