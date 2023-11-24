@@ -1,18 +1,11 @@
 import { switchMap, resetCache, switching } from "./Zoom.js";
 import { createPopup } from "./DialogBox.js";
-
-let jsonFileURL;
-let jsonFileURLf;
-let jsonFileURLs;
-let jsonFileURL2;
-const jsonFileURL3 = new URL("./json/searchTool.json", import.meta.url);
-const searching = await fetch(jsonFileURL3).then((r) => r.json());
-let jsonFileURL4;
-let mapping;
-let mappingf;
-let mappings;
-let exceptions;
-let floorsConnect;
+let mapping = new URL("./json/bluetoGreen.json", import.meta.url);
+let mappingf = new URL("./json/bluetoGreen1.json", import.meta.url);
+let mappings = new URL("./json/bluetoGreen2.json", import.meta.url);
+let exceptions = new URL("./json/exceptionPaths.json", import.meta.url);
+let floorsConnect = new URL("./json/floorsConnection.json", import.meta.url);
+let searching = new URL("./json/searchTool.json", import.meta.url);
 
 let starting;
 let ending, map_no;
@@ -94,16 +87,6 @@ const setMap = () => {
 };
 
 const butControl = async () => {
-  jsonFileURL2 = new URL("./json/exceptionPaths.json", import.meta.url);
-  exceptions = await fetch(jsonFileURL2).then((r) => r.json());
-  jsonFileURL4 = new URL("./json/floorsConnection.json", import.meta.url);
-  floorsConnect = await fetch(jsonFileURL4).then((r) => r.json());
-  jsonFileURL = new URL("./json/bluetoGreen.json", import.meta.url);
-  jsonFileURLf = new URL("./json/bluetoGreen1.json", import.meta.url);
-  jsonFileURLs = new URL("./json/bluetoGreen2.json", import.meta.url);
-  mapping = await fetch(jsonFileURL).then((r) => r.json());
-  mappingf = await fetch(jsonFileURLf).then((r) => r.json());
-  mappings = await fetch(jsonFileURLs).then((r) => r.json());
   if (map_no == "1") {
     buttonCon[0].classList.remove("active1");
     buttonCon[1].classList.add("active1");
@@ -161,6 +144,19 @@ const reload = () => {
 
 window.addEventListener("load", async () => {
   try {
+    exceptions = await fetch(exceptions).then((r) => r.json());
+    floorsConnect = await fetch(floorsConnect).then((r) => r.json());
+    mapping = await fetch(mapping).then((r) => r.json());
+    mappingf = await fetch(mappingf).then((r) => r.json());
+    mappings = await fetch(mappings).then((r) => r.json());
+    searching = await fetch(searching).then((r) => r.json());
+    for (let k in searching) {
+      if (searching[k]["details"] == "")
+        searching[k]["details"] = searching[k]["name"];
+      name.set(searching[k]["name"], k);
+      id.push([searching[k]["name"], searching[k]["details"]]);
+    }
+
     switchMap();
     removeMap0 = removals.removeChild(map0);
     removeMap1 = removals.removeChild(map1);
@@ -216,13 +212,6 @@ const Information = (buttonClicked) => {
     info(buttonClicked);
   }
 };
-
-for (let k in searching) {
-  if (searching[k]["details"] == "")
-    searching[k]["details"] = searching[k]["name"];
-  name.set(searching[k]["name"], k);
-  id.push([searching[k]["name"], searching[k]["details"]]);
-}
 
 const removal = (element) => {
   let e = element.lastElementChild;
