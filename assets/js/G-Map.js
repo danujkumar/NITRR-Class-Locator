@@ -33,6 +33,7 @@ let details = document.getElementsByClassName("card-text");
 let namecard = document.getElementsByClassName("card-title");
 let makecurrent = document.getElementById("makecurrent");
 let makefinal = document.getElementById("makefinal");
+let quickactions = document.getElementById("quick");
 let removeMap0, removeMap1, removeMap2, lastAppended;
 let map0 = document.getElementById("groundd");
 let map1 = document.getElementById("firstt");
@@ -45,21 +46,23 @@ let initialFloor;
 let preinfo;
 let serviceUsed = sessionStorage.getItem("serviceUse");
 
-export {map0,map1,map2,map_no};
+export { map0, map1, map2, map_no };
 
-const prerequisiteTask = ()=>{
-  if (sessionStorage.getItem("mode") == null || sessionStorage.getItem("mode")==undefined) 
-  sessionStorage.setItem("mode", "S");
+const prerequisiteTask = () => {
+  if (
+    sessionStorage.getItem("mode") == null ||
+    sessionStorage.getItem("mode") == undefined
+  )
+    sessionStorage.setItem("mode", "S");
 
   if (
     sessionStorage.getItem("serviceUse") == null ||
     sessionStorage.getItem("serviceUse") == undefined
   ) {
-    serviceUsed = 'X';
+    serviceUsed = "X";
     sessionStorage.setItem("serviceUse", "X");
   }
-}
-
+};
 
 const setMap = () => {
   try {
@@ -113,18 +116,17 @@ const A = () => {
   if (serviceUsed != "X") {
     mapUse = mapUses();
     serviceUse(serviceUsed);
-    serviceUsed = 'X';
+    serviceUsed = "X";
     sessionStorage.setItem("serviceUse", "X");
   } else {
     endd = ending = sessionStorage.getItem("end");
     setter();
     getsetGoo();
   }
-}
+};
 
 const reload = () => {
-  try
-  {
+  try {
     prerequisiteTask();
     map_no = sessionStorage.getItem("map_no");
     if (map_no == null) {
@@ -137,8 +139,8 @@ const reload = () => {
     setMap();
     A();
   } catch (error) {
-  //Remember this is under try section, so for debugging always disable this try section first.
-  // console.log(error)
+    //Remember this is under try section, so for debugging always disable this try section first.
+    // console.log(error)
   }
 };
 
@@ -192,12 +194,10 @@ const Information = (buttonClicked) => {
   if (preinfo != undefined) {
     if (preinfo != starting && preinfo != ending) {
       let element = document.getElementById(preinfo);
-      if (element.querySelector("rect") != undefined)
-      {
+      if (element.querySelector("rect") != undefined) {
         element.querySelector("rect").style.fill = "rgb(212,212,212)";
         element.querySelector("rect").removeAttribute("fill-opacity");
-      }
-      else element.querySelector("path").style.fill = "rgb(219,219,219)";
+      } else element.querySelector("path").style.fill = "rgb(219,219,219)";
     }
     if (preinfo == buttonClicked) {
       preinfo = undefined;
@@ -509,12 +509,10 @@ function removeDestinationAll() {
       i != "1"
     ) {
       let element = document.getElementById(i.toString());
-      if (element.querySelector("rect") != undefined)
-      {
+      if (element.querySelector("rect") != undefined) {
         element.querySelector("rect").style.fill = "rgb(212,212,212)";
         element.querySelector("rect").removeAttribute("fill-opacity");
-      }
-      else element.querySelector("path").style.fill = "rgb(219,219,219)";
+      } else element.querySelector("path").style.fill = "rgb(219,219,219)";
     }
   }
 }
@@ -560,12 +558,10 @@ const info = (id) => {
 const removeinfo = () => {
   try {
     let element = document.getElementById(preinfo);
-    if (element.querySelector("rect") != undefined)
-    {
+    if (element.querySelector("rect") != undefined) {
       element.querySelector("rect").style.fill = "rgb(212,212,212)";
       element.querySelector("rect").removeAttribute("fill-opacity");
-    }
-    else element.querySelector("path").style.fill = "rgb(219,219,219)";
+    } else element.querySelector("path").style.fill = "rgb(219,219,219)";
   } catch (error) {}
   preinfo = undefined;
 };
@@ -819,6 +815,64 @@ const mapUses = () => {
   else return mapping;
 };
 
+const isServiceApplicable = () => {
+  if (map_no == "0") {
+    if (starts >= 115 && starts <= 204) {
+      let popup = createPopup(
+        "#popup",
+        "Quick actions are not available, as your current floor is different from destination floor, use quick actions from second floor.",
+        false
+      );
+      popup();
+      return false;
+    } else if (starts >= 205) {
+      let popup = createPopup(
+        "#popup",
+        "Quick actions are not available, as your current floor is different from destination floor, use quick actions from first floor.",
+        false
+      );
+      popup();
+      return false;
+    } else return true;
+  } else if (map_no == "1") {
+    if (starts >= 115 && starts <= 204) {
+      let popup = createPopup(
+        "#popup",
+        "Quick actions are not available, as your current floor is different from destination floor, use quick actions from second floor.",
+        false
+      );
+      popup();
+      return false;
+    } else if (starts <= 114) {
+      let popup = createPopup(
+        "#popup",
+        "Quick actions are not available, as your current floor is different from destination floor, use quick actions from ground floor.",
+        false
+      );
+      popup();
+      return false;
+    } else return true;
+  } else {
+    if (starts >= 205) {
+      let popup = createPopup(
+        "#popup",
+        "Quick actions are not available, as your current floor is different from destination floor, use quick actions from first floor.",
+        false
+      );
+      popup();
+      return false;
+    } else if (starts <= 114) {
+      let popup = createPopup(
+        "#popup",
+        "Quick actions are not available, as your current floor is different from destination floor, use quick actions from ground floor.",
+        false
+      );
+      popup();
+      return false;
+    } else return true;
+  }
+};
+
 export const serviceUse = (service_Id) => {
   let toStairs;
   if (map_no == "1") {
@@ -883,10 +937,9 @@ const getsetGoo = () => {
     } else if (map_no == "2") {
       toStairs = floorsConnect[sessionStorage.getItem("mode")]["2"];
     } else {
-      
       toStairs = floorsConnect[sessionStorage.getItem("mode")]["0"];
     }
-    
+
     let exportt = nearestDist(toStairs);
     sessionStorage.setItem("Stair", exportt[1]);
     return exportt[0];
@@ -1128,6 +1181,24 @@ const finalEnd = () => {
   }
 };
 
+quickactions.onclick = () => {
+  if (starting != null) {
+    // alert("Please first select the room, you want to make as final location.");
+    if (isServiceApplicable()) {
+      let popup = createPopup("#popup", "Quick actions are given below.", true);
+      popup();
+    }
+  } else {
+    // alert("Please first select the current location.");
+    let popup = createPopup(
+      "#popup",
+      "Please first select the nearest room.",
+      false
+    );
+    popup();
+  }
+};
+
 makefinal.onclick = () => {
   if (starting != null) {
     if (
@@ -1144,12 +1215,14 @@ makefinal.onclick = () => {
       preinfo = undefined;
     } else {
       // alert("Please first select the room, you want to make as final location.");
-      let popup = createPopup(
-        "#popup",
-        "Please first select the room, you want to make as final location, quick actions are given below.",
-        true
-      );
-      popup();
+      if (isServiceApplicable()) {
+        let popup = createPopup(
+          "#popup",
+          "Please first select the room, you want to make as final location, quick actions are given below.",
+          true
+        );
+        popup();
+      }
     }
   } else {
     // alert("Please first select the current location.");

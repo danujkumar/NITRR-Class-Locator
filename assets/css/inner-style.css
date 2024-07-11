@@ -13,7 +13,7 @@ body {
     left:0px;
     width:100%;
     height:100%;
-    z-index: 2;
+    z-index: 5;
   }
   
   .popup .overlay{
@@ -181,7 +181,7 @@ body {
   #header {
     height: 100px;
     transition: all 0.5s;
-    z-index: 997;
+    z-index: 3;
     background: linear-gradient(45deg, #1de099, #1dc8cd);
   }
   
@@ -477,10 +477,10 @@ body {
   }
   @media(max-width:750px){
     #header{
-      height: 110px !important;
+      height: 130px !important;
     }
     .containerharsh{
-      margin-top: 110px !important;
+      margin-top: 130px !important;
     }
   }
 
@@ -494,7 +494,7 @@ body {
 /* Harsh Changes for floors */
 .containerharsh{
   margin-top: 100px;
-  z-index: 997;
+  z-index: 2;
 }
 
 .containerharsh .pagination {
@@ -607,7 +607,6 @@ cursor:default;
           top: 5.7rem;
         }
         input{
-            padding: 05.rem !important;
             width: 200px !important;
         }
         .hcontainer{
@@ -653,14 +652,14 @@ cursor:default;
   position: relative;
   max-width:40vw;
 }
-svg{
+.svg_map{
   padding: 1.5rem;
 }
 @media(max-width:900px){
   .w-container{
     margin-top: 0rem;
   }
-    svg{
+    .svg_map{
         width: 100vw;
         height: 50vh;
         padding: 0 1rem;
@@ -710,6 +709,9 @@ svg{
     .initial-logo{
         display: none;
     }
+    #swap{
+      rotate:90deg;
+    }
 }
 
 .reset-btn{
@@ -758,6 +760,8 @@ svg{
 
 .cf-btn{
   padding-bottom: 1rem;
+  margin-left: 1px;
+  margin-right: 1px;
 }
 
 /* EXPANDING GRID  */

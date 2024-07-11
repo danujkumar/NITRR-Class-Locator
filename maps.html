@@ -96,15 +96,13 @@
             <div class="iContainer" id="currentdiv">
               <!-- Don't think this section useless, it is used for showing the search results -->
             </div>
-            <div>
-              <!-- This feature is completed successfully, just frontend part is left, will be completed soon -->
-              <a id="swap" class="btn-get-started" style="color:#fff;border:none;margin:0;width:50px; cursor:pointer;z-index: 2;"><svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512" height="60" fill="white">
-                <path 
-                  d="M32 96l320 0V32c0-12.9 7.8-24.6 19.8-29.6s25.7-2.2 34.9 6.9l96 96c6 6 9.4 14.1 9.4 22.6s-3.4 16.6-9.4 22.6l-96 96c-9.2 9.2-22.9 11.9-34.9 6.9s-19.8-16.6-19.8-29.6V160L32 160c-17.7 0-32-14.3-32-32s14.3-32 32-32zM480 352c17.7 0 32 14.3 32 32s-14.3 32-32 32H160v64c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-96-96c-6-6-9.4-14.1-9.4-22.6s3.4-16.6 9.4-22.6l96-96c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 64H480z" />
-              </svg></a>
-            </div>
+            <!-- This feature is completed successfully, just frontend part is left, will be completed soon -->
+            <a id="swap" class="btn-get-started" style="color:#fff;border:none;margin:0;width:20px; cursor:pointer;z-index: 2;"><svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512" fill="white"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path 
+                d="M32 96l320 0V32c0-12.9 7.8-24.6 19.8-29.6s25.7-2.2 34.9 6.9l96 96c6 6 9.4 14.1 9.4 22.6s-3.4 16.6-9.4 22.6l-96 96c-9.2 9.2-22.9 11.9-34.9 6.9s-19.8-16.6-19.8-29.6V160L32 160c-17.7 0-32-14.3-32-32s14.3-32 32-32zM480 352c17.7 0 32 14.3 32 32s-14.3 32-32 32H160v64c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-96-96c-6-6-9.4-14.1-9.4-22.6s3.4-16.6 9.4-22.6l96-96c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 64H480z" />
+            </svg></a>
             <div class="hcontainer">
               <input
                 id="final"
@@ -127,7 +125,7 @@
               </li>
               <li class="dropdown">
                 <a href="#"
-                  ><span>Select Floor</span> <i class="bi bi-chevron-down"></i
+                  ><span>Reset & Select Floor</span> <i class="bi bi-chevron-down"></i
                 ></a>
                 <ul>
                   <li>
@@ -150,7 +148,7 @@
     <!-- End Header -->
 
     <div class="containerharsh">
-      <ul class="pagination" style="position:relative;z-index:30;">
+      <ul class="pagination" style="position:relative;z-index:2;">
         <li>
           <a href="#" style="cursor: pointer">Ground</a>
         </li>
@@ -171,7 +169,7 @@
         id="groundd"
       >
         <svg
-
+          class="svg_map"
           style="transform-origin: 0% 0%;position: relative;z-index: 0;margin: auto;transition: transform 0.05s;"
           width="57vw"
           height="90vh"
@@ -1282,7 +1280,7 @@
         id="firstt"
       >
         <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-        <svg  style="transform-origin: 0% 0%;position: relative;z-index: 0;margin: auto;" width="57vw" height="90vh" viewBox="0 0 465 335" fill="none" version="1.1" id="svg1081" sodipodi:docname="f-map-ripo.svg" inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+        <svg class="svg_map" style="transform-origin: 0% 0%;position: relative;z-index: 0;margin: auto;" width="57vw" height="90vh" viewBox="0 0 465 335" fill="none" version="1.1" id="svg1081" sodipodi:docname="f-map-ripo.svg" inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
           <defs id="defs1085">
             <symbol id="ToiletsMen">
               <title id="title3289">Toilets - Men</title>
@@ -1917,6 +1915,7 @@
       >
         <?xml version="1.0" encoding="UTF-8" standalone="no"?>
         <svg
+        class="svg_map"
         style="transform-origin: 0% 0%;position: relative;z-index: 0;margin: auto;"
           width="57vw"
           height="90vh"
@@ -5048,6 +5047,7 @@
                   Make it <b>Initial</b>
                 </button>
               </div>
+              
               <div class="cf-btn">
                 <button
                   id="makefinal"
@@ -5055,6 +5055,15 @@
                   style="cursor: pointer"
                 >
                   Make it <b>Final</b>
+                </button>
+              </div>
+              <div class="cf-btn">
+                <button
+                  id="quick"
+                  class="align-middle reset-btn fin-btn m-0"
+                  style="cursor: pointer"
+                >
+                  Quick <b>Actions</b>
                 </button>
               </div>
             </div>
