@@ -116,8 +116,6 @@ const A = () => {
   if (serviceUsed != "X") {
     mapUse = mapUses();
     serviceUse(serviceUsed);
-    serviceUsed = "X";
-    sessionStorage.setItem("serviceUse", "X");
   } else {
     endd = ending = sessionStorage.getItem("end");
     setter();
@@ -137,6 +135,10 @@ const reload = () => {
     removeinfo();
     infoRemoval();
     setMap();
+    if (serviceUsed != "X") {
+      serviceUsed = "X";
+      sessionStorage.setItem("serviceUse", "X");
+    }
     A();
   } catch (error) {
     //Remember this is under try section, so for debugging always disable this try section first.
