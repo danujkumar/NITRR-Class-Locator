@@ -224,7 +224,8 @@
 
 let grounds1 = document.getElementById("grounds1");
 let firstt1 = document.getElementById("firstt1");
-let secondd1 = document.getElementById("secondd1")
+let secondd1 = document.getElementById("secondd1");
+let backyard1 = document.getElementById("backyardd1");
 const removeSess = ()=>{
   sessionStorage.removeItem("start");
   sessionStorage.removeItem("end");
@@ -232,3 +233,4 @@ const removeSess = ()=>{
 grounds1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","0");sessionStorage.setItem('serviceUse','X');}
 firstt1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","1");sessionStorage.setItem('serviceUse','X');}
 secondd1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","2");sessionStorage.setItem('serviceUse','X');}
+backyard1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","3");sessionStorage.setItem('serviceUse','X');}

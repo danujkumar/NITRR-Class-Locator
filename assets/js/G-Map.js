@@ -7,6 +7,7 @@
 const jsonFileURL = new URL("./json/bluetoGreen.json", import.meta.url);
 const jsonFileURLf = new URL("./json/bluetoGreen1.json", import.meta.url);
 const jsonFileURLs = new URL("./json/bluetoGreen2.json", import.meta.url);
+const jsonFileURLb = new URL("./json/bluetoGreen3.json", import.meta.url); //3rd change added blue to green connection
 const jsonFileURL2 = new URL("./json/exceptionPaths.json", import.meta.url);
 const jsonFileURL4 = new URL("./json/floorsConnection.json", import.meta.url);
 const jsonFileURL3 = new URL("./json/searchTool.json", import.meta.url);
@@ -42,6 +43,7 @@ let makefinal = document.getElementById("makefinal");
 let map0 = document.getElementById("groundd");
 let map1 = document.getElementById("firstt");
 let map2 = document.getElementById("secondd");
+let map3 = document.getElementById("backyardd"); //6th change added the backyard map
 let buttonCon = document.querySelectorAll(".containerharsh a");
 let removals = document.getElementById("removal");
 let modes = document.getElementById("lift");
@@ -49,9 +51,9 @@ let swap = document.getElementById("swap");
 let initialFloor;
 let preinfo;
 let serviceUsed = sessionStorage.getItem("serviceUse");
-let searching, mapping, mappingf, mappings, exceptions, floorsConnect; 
+let searching, mapping, mappingf, mappings, mappingb, exceptions, floorsConnect; //5th change added mappingb
 
-export { map_no, map0, map1, map2 };
+export { map_no, map0, map1, map2, map3 };
 
 if (sessionStorage.getItem("mode") == null) sessionStorage.setItem("mode", "S");
 
@@ -63,22 +65,32 @@ if (
   sessionStorage.setItem("serviceUse", "X");
 }
 
+//7th change added the backyard map
 const clearMap = () => {
   if (map_no == "1") {
     removals.removeChild(map0);
     removals.removeChild(map2);
+    removals.removeChild(map3);
     map1.style.opacity = 1;
     map1.style.overflow = "clip";
   } else if (map_no == "2") {
     removals.removeChild(map0);
     removals.removeChild(map1);
+    removals.removeChild(map3);
     map2.style.opacity = 1;
     map2.style.overflow = "clip";
+  } else if (map_no == "0") {
+    removals.removeChild(map1);
+    removals.removeChild(map2);
+    removals.removeChild(map3);
+    map0.style.opacity = 1;
+    map0.style.overflow = "clip";
   } else {
     removals.removeChild(map1);
     removals.removeChild(map2);
-    map0.style.opacity = 1;
-    map0.style.overflow = "clip";
+    removals.removeChild(map0);
+    map3.style.opacity = 1;
+    map3.style.overflow = "clip";
   }
 };
 
@@ -87,21 +99,32 @@ const butControl = async () => {
   mapping = await fetch(jsonFileURL).then((r) => r.json());
   mappingf = await fetch(jsonFileURLf).then((r) => r.json());
   mappings = await fetch(jsonFileURLs).then((r) => r.json());
+  mappingb = await fetch(jsonFileURLb).then((r) => r.json()); //4th change fetched the backyard map here
   exceptions = await fetch(jsonFileURL2).then((r) => r.json());
   floorsConnect = await fetch(jsonFileURL4).then((r) => r.json());
 
+  //Second change here we have another button listed so its functionality added
   if (map_no == "1") {
-    buttonCon[0].classList.remove("active1");
     buttonCon[1].classList.add("active1");
-    buttonCon[2].classList.remove("active1");
-  } else if (map_no == "2") {
-    buttonCon[1].classList.remove("active1");
-    buttonCon[2].classList.add("active1");
     buttonCon[0].classList.remove("active1");
-  } else {
     buttonCon[2].classList.remove("active1");
-    buttonCon[0].classList.add("active1");
+    buttonCon[3].classList.remove("active1");
+  } else if (map_no == "2") {
+    buttonCon[2].classList.add("active1");
     buttonCon[1].classList.remove("active1");
+    buttonCon[0].classList.remove("active1");
+    buttonCon[3].classList.remove("active1");
+  } else if (map_no == "0") {
+    buttonCon[0].classList.add("active1");
+    buttonCon[2].classList.remove("active1");
+    buttonCon[1].classList.remove("active1");
+    buttonCon[3].classList.remove("active1");
+  }
+  else {
+    buttonCon[3].classList.add("active1");
+    buttonCon[0].classList.remove("active1");
+    buttonCon[1].classList.remove("active1");
+    buttonCon[2].classList.remove("active1");
   }
 };
 
@@ -153,6 +176,12 @@ buttonCon[2].onclick = () => {
   location.reload();
 };
 
+//1st change here to have another button setting its sessionStorage to 3
+buttonCon[3].onclick = () => {
+  sessionStorage.setItem("map_no", "3");
+  location.reload();
+}
+
 const Information = (buttonClicked) => {
   if (preinfo != undefined) {
     if (preinfo != starting && preinfo != ending) {
@@ -183,8 +212,10 @@ const removal = (element) => {
   }
 };
 
+//8th change we need to reconfigure the detectfloor to detect the backyard map
 const detectFloor = () => {
-  if (Number.parseInt(starts) >= 205) sessionStorage.setItem("map_no", "1");
+  if(Number.parseInt(starts) >= 303) sessionStorage.setItem("map_no", "3");
+  else if (Number.parseInt(starts) >= 205 && Number.parseInt(starts) <= 302) sessionStorage.setItem("map_no", "1");
   else if (Number.parseInt(starts) >= 115 && Number.parseInt(starts) <= 204)
     sessionStorage.setItem("map_no", "2");
   else sessionStorage.setItem("map_no", "0");
@@ -285,13 +316,26 @@ final.onkeyup = () => {
   pointsSE(final.id);
 };
 
+//9th change to reconfigure to detect the backyard map
 swap.addEventListener("click", () => {
   let temp = (starts = sessionStorage.getItem("end"));
   sessionStorage.setItem("end", (endd = sessionStorage.getItem("start")));
   sessionStorage.setItem("start", temp);
   if (
+    starts >= 303 && 
+    endd < 303 && 
+    endd != null &&
+    endd != undefined &&
+    map_no != "3" &&
+    endd != "null" &&
+    endd != "undefined"
+  ) {
+    sessionStorage.setItem("map_no", "3");
+  }
+  else if (
     starts >= 205 &&
-    endd < 205 &&
+    starts <= 302 &&
+    !(endd >= 205 && endd <= 302) &&
     endd != null &&
     map_no != "1" &&
     endd != undefined &&
@@ -448,14 +492,18 @@ const intersectionGreen = (x, y) => {
   let test = document.getElementById(intersect(foundx, foundy)[0]);
   return test;
 };
+
+//10th change configured starl and endl
 function removeDestinationAll() {
   let startl, endl;
   if (map_no == "1") {
     (startl = 205), (endl = 302);
   } else if (map_no == "2") {
     (startl = 115), (endl = 204);
-  } else {
+  } else if (map_no == "0"){
     (startl = 1), (endl = 114);
+  } else {
+    (startl = 303), (endl = 319);
   }
 
   for (let i = startl; i <= endl; i++) {
@@ -767,12 +815,16 @@ modes.addEventListener("click", () => {
   location.reload();
 });
 
+//11th change configured the mapUses to include the backyard map
 const mapUses = () => {
   if (map_no == "1") return mappingf;
   else if (map_no == "2") return mappings;
-  else return mapping;
+  else if (map_no == "0") return mapping;
+  else return mappingb;
 };
 
+//12th change configured the serviceUse to include the backyard map
+//To be configured after we get the actual backyard map
 export const serviceUse = (service_Id) => {
   let toStairs;
   if (map_no == "1") {
@@ -822,6 +874,8 @@ const nearestDist = (toStairs) => {
   return [felement, key];
 };
 
+//13th change configured the getsetGoo to include the backyard map
+//To be configured after we get the actual backyard map
 const getsetGoo = () => {
   removeAlll();
   removeDestinationAll();
@@ -1039,10 +1093,22 @@ const infoo = () => {
   sessionStorage.setItem("end", ending);
 };
 
+//14th change to reconfigure the finalEnd to include the backyard map
 const finalEnd = () => {
-  if (
+  if (starts >= 303 && 
+    endd < 303 && 
+    endd != null &&
+    endd != undefined &&
+    map_no != "3" &&
+    endd != "null" &&
+    endd != "undefined"
+  ) {
+    sessionStorage.setItem("map_no", "3");
+    location.reload();
+  }
+  else if (
     starts >= 205 &&
-    endd < 205 &&
+    !(endd >= 205 && endd <= 302) &&
     endd != null &&
     map_no != "1" &&
     endd != undefined &&
