@@ -640,6 +640,14 @@ cursor:default;
   transition: opacity 0.5s ease-in-out;
 }
 
+.pathb rect {
+  transform-box:fill-box;
+  transform-origin:center;
+  opacity: 1;
+  
+  transition: opacity 0.5s ease-in-out;
+}
+
 .w-container{
   margin-top: 0;
   display: flex;

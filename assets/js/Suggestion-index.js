@@ -107,15 +107,19 @@ body[0].onclick = ()=>{
 
 //Implementing the onclick for the search button
 export function letsGoo() {
-  if(Number.parseInt(start) >= 205)
-      sessionStorage.setItem('map_no',"1")
-    else if(Number.parseInt(start) >= 115 && Number.parseInt(start) <= 204)
-      sessionStorage.setItem("map_no","2")
-    else 
-      sessionStorage.setItem("map_no","0")
-    search.setAttribute("href","./maps.html")
-    location.assign('./maps.html')
+  if(Number.parseInt(start) >= 303) {
+    sessionStorage.setItem('map_no',"3")
+  }
+  else if(Number.parseInt(start) >= 205 && Number.parseInt(start) <= 302)
+    sessionStorage.setItem('map_no',"1")
+  else if(Number.parseInt(start) >= 115 && Number.parseInt(start) <= 204)
+    sessionStorage.setItem("map_no","2")
+  else 
+    sessionStorage.setItem("map_no","0")
+  search.setAttribute("href","./maps.html")
+  location.assign('./maps.html')
 }
+
 try {
   swap.addEventListener('click',()=>{
     let temp = final.value;

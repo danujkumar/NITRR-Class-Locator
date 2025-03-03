@@ -1,6 +1,6 @@
 let key = sessionStorage.getItem("map_no");
 import {room_click} from './G-Map.js';
-import {map_no,map0,map1,map2} from './G-Map.js'
+import {map_no,map0,map1,map2,map3} from './G-Map.js'
 let svgMap = document.querySelectorAll("#removal div svg");
 let initialRotate = parseInt(sessionStorage.getItem("rotate"));
 let scaless = 1,pannings = false, pointXXOld=0, pointYYOld=0, pointXX = 0, pointYY = 0,starts = {x:0,y:0};
@@ -21,12 +21,16 @@ window.addEventListener("load", () => {
     rotateDeg(initialRotate);
 });
 
+//1st change selecting the backyard map also
 switch (key) {
   case "1":
     svgMap = svgMap[1];
     break;
   case "2":
     svgMap = svgMap[2];
+    break;
+  case "3":
+    svgMap = svgMap[3];
     break;
   default:
     svgMap = svgMap[0];
@@ -36,7 +40,9 @@ switch (key) {
 const rotateDeg = (degree,isCounter)=>{
   if(map_no == 1) map1.style.transform = `rotate(${degree}deg)`;
   else if(map_no == 2) map2.style.transform = `rotate(${degree}deg)`;
+  else if(map_no == 3) map3.style.transform = `rotate(${degree}deg)`;
   else map0.style.transform = `rotate(${degree}deg)`;
+  
   if(isCounter)
   {
     pointXX = -pointYYOld;

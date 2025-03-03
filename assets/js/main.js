@@ -219,6 +219,8 @@ let firstt1 = document.getElementById("firstt1");
 let firstt2 = document.getElementById("firstt2");
 let secondd1 = document.getElementById("secondd1")
 let secondd2 = document.getElementById("secondd2");
+let backyard1 = document.getElementById("backyard1")
+let backyard2 = document.getElementById("backyard2");
 
 const removeSess = ()=>{
   sessionStorage.removeItem("start");
@@ -228,10 +230,12 @@ const removeSess = ()=>{
 grounds1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","0");sessionStorage.setItem('serviceUse','X');}
 firstt1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","1");sessionStorage.setItem('serviceUse','X');}
 secondd1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","2");sessionStorage.setItem('serviceUse','X');}
+backyard1.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","3");sessionStorage.setItem('serviceUse','X');}
 try {
   grounds2.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","0");sessionStorage.setItem('serviceUse','X');}
   firstt2.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","1");sessionStorage.setItem('serviceUse','X');}
   secondd2.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","2");sessionStorage.setItem('serviceUse','X');}
+  backyard2.onclick = ()=>{removeSess();sessionStorage.setItem("map_no","3");sessionStorage.setItem('serviceUse','X');}
 } catch (error) {
   
 }
