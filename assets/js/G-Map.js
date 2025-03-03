@@ -1,9 +1,3 @@
-// import mapping from "./json/bluetoGreen.json" assert { type: "json" };
-// import mappingf from "./json/bluetoGreen1.json" assert { type: "json" };
-// import mappings from "./json/bluetoGreen2.json" assert { type: "json" };
-// import exceptions from "./json/exceptionPaths.json" assert { type: "json" };
-// import searching from "./json/searchTool.json" assert { type: "json" };
-// import floorsConnect from "./json/floorsConnection.json" assert { type: "json" };
 const jsonFileURL = new URL("./json/bluetoGreen.json", import.meta.url);
 const jsonFileURLf = new URL("./json/bluetoGreen1.json", import.meta.url);
 const jsonFileURLs = new URL("./json/bluetoGreen2.json", import.meta.url);
@@ -95,7 +89,6 @@ const clearMap = () => {
 };
 
 const butControl = async () => {
-  
   mapping = await fetch(jsonFileURL).then((r) => r.json());
   mappingf = await fetch(jsonFileURLf).then((r) => r.json());
   mappings = await fetch(jsonFileURLs).then((r) => r.json());
@@ -119,8 +112,7 @@ const butControl = async () => {
     buttonCon[2].classList.remove("active1");
     buttonCon[1].classList.remove("active1");
     buttonCon[3].classList.remove("active1");
-  }
-  else {
+  } else {
     buttonCon[3].classList.add("active1");
     buttonCon[0].classList.remove("active1");
     buttonCon[1].classList.remove("active1");
@@ -142,21 +134,23 @@ window.addEventListener("load", async () => {
     if (map_no == null) {
       map_no = "0";
     }
-    await butControl().then(() => {
-      clearMap();
-      starts = starting = sessionStorage.getItem("start");
-      if (serviceUsed != "X") {
-        mapUse = mapUses();
-        serviceUse(serviceUsed);
-        sessionStorage.setItem("serviceUse", "X");
-      } else {
-        endd = ending = sessionStorage.getItem("end");
-        setter();
-        getsetGoo();
-      }
-    }).catch((err) => {
-      console.log(err);
-    });
+    await butControl()
+      .then(() => {
+        clearMap();
+        starts = starting = sessionStorage.getItem("start");
+        if (serviceUsed != "X") {
+          mapUse = mapUses();
+          serviceUse(serviceUsed);
+          sessionStorage.setItem("serviceUse", "X");
+        } else {
+          endd = ending = sessionStorage.getItem("end");
+          setter();
+          getsetGoo();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   } catch (error) {
     //Remember this is under try section, so for debugging always disable this try section first.
     console.log(error);
@@ -180,7 +174,7 @@ buttonCon[2].onclick = () => {
 buttonCon[3].onclick = () => {
   sessionStorage.setItem("map_no", "3");
   location.reload();
-}
+};
 
 const Information = (buttonClicked) => {
   if (preinfo != undefined) {
@@ -214,8 +208,9 @@ const removal = (element) => {
 
 //8th change we need to reconfigure the detectfloor to detect the backyard map
 const detectFloor = () => {
-  if(Number.parseInt(starts) >= 303) sessionStorage.setItem("map_no", "3");
-  else if (Number.parseInt(starts) >= 205 && Number.parseInt(starts) <= 302) sessionStorage.setItem("map_no", "1");
+  if (Number.parseInt(starts) >= 303) sessionStorage.setItem("map_no", "3");
+  else if (Number.parseInt(starts) >= 205 && Number.parseInt(starts) <= 302)
+    sessionStorage.setItem("map_no", "1");
   else if (Number.parseInt(starts) >= 115 && Number.parseInt(starts) <= 204)
     sessionStorage.setItem("map_no", "2");
   else sessionStorage.setItem("map_no", "0");
@@ -322,8 +317,8 @@ swap.addEventListener("click", () => {
   sessionStorage.setItem("end", (endd = sessionStorage.getItem("start")));
   sessionStorage.setItem("start", temp);
   if (
-    starts >= 303 && 
-    endd < 303 && 
+    starts >= 303 &&
+    endd < 303 &&
     endd != null &&
     endd != undefined &&
     map_no != "3" &&
@@ -331,8 +326,7 @@ swap.addEventListener("click", () => {
     endd != "undefined"
   ) {
     sessionStorage.setItem("map_no", "3");
-  }
-  else if (
+  } else if (
     starts >= 205 &&
     starts <= 302 &&
     !(endd >= 205 && endd <= 302) &&
@@ -452,6 +446,19 @@ const intersectionGreen = (x, y) => {
         y33: ["rect825", "rect891"],
         y44: ["rect907", "rect853"],
       };
+    } else if (map_no == "3") {
+      yintersect = {
+        y11: ["rect159", "rect158"],
+        y22: ["rect129", "rect120"],
+        y33: ["rect125", "rect127"],
+        y44: ["rect161", "rect166"],
+        y55: ["rect167"],
+      };
+      xintersect = {
+        x11: ["rect120", "rect125","rect161"],
+        x22: ["rect158", "rect129", "rect126", "rect166", "rect167"],
+        x33: ["rect159"],
+      };
     } else {
       yintersect = {
         y11: ["p34", "p85", "p53"],
@@ -500,10 +507,10 @@ function removeDestinationAll() {
     (startl = 205), (endl = 302);
   } else if (map_no == "2") {
     (startl = 115), (endl = 204);
-  } else if (map_no == "0"){
+  } else if (map_no == "0") {
     (startl = 1), (endl = 114);
   } else {
-    (startl = 303), (endl = 319);
+    (startl = 303), (endl = 321);
   }
 
   for (let i = startl; i <= endl; i++) {
@@ -891,27 +898,35 @@ const getsetGoo = () => {
       toStairs = floorsConnect[sessionStorage.getItem("mode")]["1"];
     } else if (map_no == "2") {
       toStairs = floorsConnect[sessionStorage.getItem("mode")]["2"];
+    } else if (map_no == "3") {
+      toStairs = floorsConnect[sessionStorage.getItem("mode")]["3"];
     } else {
       toStairs = floorsConnect[sessionStorage.getItem("mode")]["0"];
     }
 
     let exportt = nearestDist(toStairs);
     sessionStorage.setItem("Stair", exportt[1]);
+    console.log("getsetgoo->starttostairs", exportt);
     return exportt[0];
   };
 
   const detectfinalFloor = () => {
-    if (endd >= 205) return "First";
+    if (endd >= 303) return "Back";
+    else if (endd >= 205 && endd <= 302) return "First";
     else if (endd >= 115 && endd <= 204) return "Second";
     else return "Ground";
   };
 
   const moveToFloors = () => {
+    console.log("getSetGoo->moveToFloors", detectfinalFloor());
     if (detectfinalFloor() == "First") {
       sessionStorage.setItem("map_no", "1");
       location.reload();
     } else if (detectfinalFloor() == "Second") {
       sessionStorage.setItem("map_no", "2");
+      location.reload();
+    } else if (detectfinalFloor() == "Back") {
+      sessionStorage.setItem("map_no", "3");
       location.reload();
     } else {
       sessionStorage.setItem("map_no", "0");
@@ -920,12 +935,30 @@ const getsetGoo = () => {
   };
 
   const detectInterFloorStarts = () => {
+    console.log("GetSetgoo->detectInterFloorStarts", starts, endd, map_no);
+
     if (
-      starts >= 205 &&
-      endd < 205 &&
+      starts >= 303 &&
+      endd < 303 &&
       endd != null &&
       endd != undefined &&
+      map_no == "3" &&
+      endd != "null" &&
+      endd != "undefined"
+    ) {
+      starting = starts;
+      ending = startToStairs();
+      alertt.style.display = "block";
+      modes.style.display = "inline";
+      initialFloor = "Back";
+      return true;
+    } else if (
+      starts >= 205 &&
+      starts <= 302 &&
+      !(endd >= 205 && endd <= 302) &&
+      endd != null &&
       map_no == "1" &&
+      endd != undefined &&
       endd != "null" &&
       endd != "undefined"
     ) {
@@ -976,24 +1009,19 @@ const getsetGoo = () => {
   };
 
   const detectInterFloorEnds = () => {
-    if (starts < 205 && endd >= 205 && map_no == "1") {
-      ending = endd;
-      starting =
-        floorsConnect[sessionStorage.getItem("mode")][map_no][
-          sessionStorage.getItem("Stair")
-        ][0];
-    } else if (
-      !(starts >= 115 && starts <= 204) &&
-      endd >= 115 &&
-      endd <= 204 &&
-      map_no == "2"
+    if (
+      (!(starts >= 205 && starts <= 302) &&
+        endd >= 205 &&
+        endd <= 302 &&
+        map_no == "1") ||
+      (!(starts >= 115 && starts <= 204) &&
+        endd >= 115 &&
+        endd <= 204 &&
+        map_no == "2") ||
+      (starts > 114 && endd <= 114 && map_no == "0") ||
+      (starts < 303 && endd >= 303 && map_no == "3")
     ) {
-      ending = endd;
-      starting =
-        floorsConnect[sessionStorage.getItem("mode")][map_no][
-          sessionStorage.getItem("Stair")
-        ][0];
-    } else if (starts > 114 && endd <= 114 && map_no == "0") {
+      console.log("GetSetGoo->detectInterFloorEnds", starts, endd, map_no);
       ending = endd;
       starting =
         floorsConnect[sessionStorage.getItem("mode")][map_no][
@@ -1002,7 +1030,7 @@ const getsetGoo = () => {
     }
   };
 
-  if (detectInterFloorStarts() == false) detectInterFloorEnds();
+  if (!detectInterFloorStarts()) detectInterFloorEnds();
   else {
     document.getElementById("finalFloor").innerHTML =
       detectfinalFloor() + " floor";
@@ -1095,8 +1123,9 @@ const infoo = () => {
 
 //14th change to reconfigure the finalEnd to include the backyard map
 const finalEnd = () => {
-  if (starts >= 303 && 
-    endd < 303 && 
+  if (
+    starts >= 303 &&
+    endd < 303 &&
     endd != null &&
     endd != undefined &&
     map_no != "3" &&
@@ -1105,9 +1134,9 @@ const finalEnd = () => {
   ) {
     sessionStorage.setItem("map_no", "3");
     location.reload();
-  }
-  else if (
+  } else if (
     starts >= 205 &&
+    starts <= 302 &&
     !(endd >= 205 && endd <= 302) &&
     endd != null &&
     map_no != "1" &&
