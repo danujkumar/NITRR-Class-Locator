@@ -1,0 +1,1 @@
+//This is automated test for paths in the app
