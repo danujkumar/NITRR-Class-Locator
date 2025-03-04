@@ -5,6 +5,8 @@ const jsonFileURLb = new URL("./json/bluetoGreen3.json", import.meta.url); //3rd
 const jsonFileURL2 = new URL("./json/exceptionPaths.json", import.meta.url);
 const jsonFileURL4 = new URL("./json/floorsConnection.json", import.meta.url);
 const jsonFileURL3 = new URL("./json/searchTool.json", import.meta.url);
+let greenConnection = new URL("./json/greenConnection.json", import.meta.url);
+let addON = new URL("./json/additionalPaths.json", import.meta.url);
 
 import { createPopup } from "./DialogBox.js";
 
@@ -14,7 +16,6 @@ let mapUse;
 let starts, endd;
 let inUse = [];
 let id = [];
-let additionalInfo = [];
 let name = new Map();
 let bluetoblue = new Set();
 let xstartss,
@@ -25,6 +26,7 @@ let xstartss,
   ygreenstartss,
   xintersectss,
   yintersectss;
+let additionalPaths = [];
 let divControl;
 let alertt = document.getElementById("alertt");
 let current = document.getElementById("current");
@@ -46,6 +48,10 @@ let initialFloor;
 let preinfo;
 let serviceUsed = sessionStorage.getItem("serviceUse");
 let searching, mapping, mappingf, mappings, mappingb, exceptions, floorsConnect; //5th change added mappingb
+
+
+//testing section
+let addtest = document.getElementById("addtest");
 
 export { map_no, map0, map1, map2, map3 };
 
@@ -123,6 +129,8 @@ const butControl = async () => {
 window.addEventListener("load", async () => {
   try {
     searching = await fetch(jsonFileURL3).then((r) => r.json());
+    greenConnection = await fetch(greenConnection).then((r) => r.json());
+    addON = await fetch(addON).then((r) => r.json());
     for (let k in searching) {
       if (searching[k]["details"] == "")
         searching[k]["details"] = searching[k]["name"];
@@ -241,9 +249,9 @@ const pointsSE = (textId) => {
   else if (textId == "final") divControl = document.getElementById("finaldiv");
   removal(divControl);
 
-  for (let i = 0; i < id.length; i++) {
-    let fromIdName = id[i][0];
-    let fromIdDetails = id[i][1];
+  for (const element of id) {
+    let fromIdName = element[0];
+    let fromIdDetails = element[1];
     if (
       fromIdName != undefined &&
       newWord != undefined &&
@@ -256,21 +264,20 @@ const pointsSE = (textId) => {
         fromIdsDetails.indexOf(newWord.toUpperCase()) > -1
       ) {
         const para = document.createElement("button");
-        para.innerHTML = `${id[i][0]} (${currentText.value})`;
+        para.innerHTML = `${element[0]} (${currentText.value})`;
         para.classList.add("ibutton");
         divControl.appendChild(para);
         para.onclick = () => {
-          document.getElementById(textId).value = id[i][0];
+          document.getElementById(textId).value = element[0];
           if (textId == "current") {
             if (name.get(current.value) != null) {
-              starts = starting = name.get(id[i][0]);
+              starts = starting = name.get(element[0]);
               sessionStorage.setItem("start", starting);
             }
             detectFloor();
             location.reload();
-          } else {
-            if (name.get(final.value) != null) {
-              endd = ending = name.get(id[i][0]);
+          } else if (name.get(final.value) != null) {
+              endd = ending = name.get(element[0]);
               sessionStorage.setItem("end", ending);
               if (
                 starting != undefined &&
@@ -290,7 +297,6 @@ const pointsSE = (textId) => {
                 sessionStorage.removeItem("end");
               }
             }
-          }
           removal(divControl);
         };
       }
@@ -313,9 +319,10 @@ final.onkeyup = () => {
 
 //9th change to reconfigure to detect the backyard map
 swap.addEventListener("click", () => {
-  let temp = (starts = sessionStorage.getItem("end"));
-  sessionStorage.setItem("end", (endd = sessionStorage.getItem("start")));
-  sessionStorage.setItem("start", temp);
+  let temps = (starts = sessionStorage.getItem("end"));
+  let tempe = (endd = sessionStorage.getItem("start"));
+  sessionStorage.setItem("end", tempe);
+  sessionStorage.setItem("start", temps);
   if (
     starts >= 303 &&
     endd < 303 &&
@@ -410,6 +417,7 @@ function createLine(x1, y1, x2, y2, lineId) {
   line.style.transform = `rotate(${salopeInDegrees}deg)`;
   if (map_no == "1") line.style.width = distance + 4 + "px";
   else if (map_no == "2") line.style.width = distance + 15 + "px";
+  else if (map_no == "3") line.style.width = distance + 22 + "px";
   else line.style.width = distance + 3 + "px";
 }
 
@@ -422,59 +430,10 @@ const intersectionGreen = (x, y) => {
     map_no != "undefined" &&
     map_no != undefined
   ) {
-    if (map_no == "1") {
-      xintersect = {
-        x11: ["rect887", "rect917", "rect855", "rect837"],
-        x22: ["rect913", "rect947", "rect867", "rect975"],
-        x33: ["rect903", "rect937", "rect971"],
-      };
-      yintersect = {
-        y11: ["rect887", "rect913", "rect903"],
-        y22: ["rect917", "rect947", "rect937"],
-        y33: ["rect855", "rect867", "rect971"],
-        y44: ["rect837", "rect975"],
-      };
-    } else if (map_no == "2") {
-      xintersect = {
-        x11: ["rect765", "rect823", "rect825", "rect907"],
-        x22: ["rect785", "rect813", "rect891", "rect853"],
-        x33: ["rect801", "rect811"],
-      };
-      yintersect = {
-        y11: ["rect765", "rect785", "rect801"],
-        y22: ["rect823", "rect813", "rect811"],
-        y33: ["rect825", "rect891"],
-        y44: ["rect907", "rect853"],
-      };
-    } else if (map_no == "3") {
-      yintersect = {
-        y11: ["rect159", "rect158"],
-        y22: ["rect129", "rect120"],
-        y33: ["rect125", "rect127"],
-        y44: ["rect161", "rect166"],
-        y55: ["rect167"],
-      };
-      xintersect = {
-        x11: ["rect120", "rect125","rect161"],
-        x22: ["rect158", "rect129", "rect126", "rect166", "rect167"],
-        x33: ["rect159"],
-      };
-    } else {
-      yintersect = {
-        y11: ["p34", "p85", "p53"],
-        y22: ["p86", "p87", "p63"],
-        y33: ["p70", "p79", "p88", "p111"],
-        y44: ["p110", "p90", "p108"],
-      };
-      xintersect = {
-        x11: ["p111", "p110"],
-        x22: ["p34", "p86", "p88", "p90"],
-        x33: ["p85", "p87", "p79", "p108"],
-        x44: ["p53", "p63", "p70"],
-      };
-    }
+    xintersect = greenConnection[map_no]["x"];
+    yintersect = greenConnection[map_no]["y"];
   }
-
+  
   for (let i in yintersect) {
     if (yintersect[i].includes(y)) {
       foundy = yintersect[i];
@@ -490,7 +449,9 @@ const intersectionGreen = (x, y) => {
 
   function intersect(a, b) {
     let t;
-    if (b.length > a.length) (t = b), (b = a), (a = t);
+    if (b.length > a.length) {
+      (t = b); (b = a); (a = t);
+    } 
     return a.filter(function (e) {
       return b.indexOf(e) > -1;
     });
@@ -504,13 +465,13 @@ const intersectionGreen = (x, y) => {
 function removeDestinationAll() {
   let startl, endl;
   if (map_no == "1") {
-    (startl = 205), (endl = 302);
+    (startl = 205); (endl = 302);
   } else if (map_no == "2") {
-    (startl = 115), (endl = 204);
+    (startl = 115); (endl = 204);
   } else if (map_no == "0") {
-    (startl = 1), (endl = 114);
+    (startl = 1); (endl = 114);
   } else {
-    (startl = 303), (endl = 321);
+    (startl = 303); (endl = 321);
   }
 
   for (let i = startl; i <= endl; i++) {
@@ -534,6 +495,7 @@ function removeDestinationAll() {
 }
 
 const removeAlll = () => {
+  console.log("Inuse:",inUse)
   if (
     xstartss != null &&
     ystartss != null &&
@@ -557,8 +519,24 @@ const removeAlll = () => {
     inUse[1].setAttribute("y", ygreenstartss);
     inUse[0].setAttribute("x", xstartss);
     inUse[0].setAttribute("y", ystartss);
+    resetExtraLining();
   }
 };
+
+const resetExtraLining = () => {
+  for (let room in additionalPaths) {
+    additionalPaths[room][0]["p1"].style.transform = null;
+    additionalPaths[room][0]["p1"].style.width = null;
+    additionalPaths[room][0]["p1"].style.opacity = 0;
+    additionalPaths[room][1]["p2"].style.transform = null;
+    additionalPaths[room][1]["p2"].style.width = null;
+    additionalPaths[room][1]["p2"].style.opacity = 0;
+    additionalPaths[room][0]["p1"].setAttribute("x", additionalPaths[room][0]["p1x"]);
+    additionalPaths[room][0]["p1"].setAttribute("y", additionalPaths[room][0]["p1y"]);
+    additionalPaths[room][1]["p2"].setAttribute("x", additionalPaths[room][1]["p2x"]);
+    additionalPaths[room][1]["p2"].setAttribute("y", additionalPaths[room][1]["p2y"]);
+  }
+}
 
 const info = (id) => {
   if (id != starting && id != ending) {
@@ -609,6 +587,36 @@ document.getElementById("reset").onclick = () => {
   location.reload();
 };
 
+addtest.onclick = () => {
+  console.log("addtest clicked");
+  starting = 319;
+  if(addON[starting] != undefined) {
+    //First create the path from exceptions
+    additionalPathsLining(addON[starting]);
+  }
+}
+
+function additionalPathsLining(params) {
+  for(let i in params) {
+    const p1 = document.getElementById(params[i][0]);
+    const p2 = document.getElementById(params[i][1]);
+    p1.style.opacity = 1;
+    p2.style.opacity = 1;
+    const p1x = p1.getAttribute("x");
+    const p1y = p1.getAttribute("y");
+    const p2x = p2.getAttribute("x");
+    const p2y = p2.getAttribute("y");
+    additionalPaths.push([{p1,p1x, p1y}, {p2, p2x, p2y}]);
+      createLine(
+        Number.parseFloat(p1x),
+        Number.parseFloat(p1y),
+        Number.parseFloat(p2x),
+        Number.parseFloat(p2y),
+        params[i][0]
+      );
+  }
+}
+
 const greenDecider = () => {
   let greenStart = [];
   let start;
@@ -630,6 +638,7 @@ const greenDecider = () => {
     }
   };
 
+  //Normal algorithm for locations
   const comparison = () => {
     let xblueEnd = Number.parseInt(end.getAttribute("x"));
     let yblueEnd = Number.parseInt(end.getAttribute("y"));
@@ -658,56 +667,51 @@ const greenDecider = () => {
       );
     }
 
-    if (distanceEnd[0] > distanceEnd[1]) {
-      if (greenEnd[0] == null) additionalInfo[0] = greenEnd[1];
-      else additionalInfo[0] = greenEnd[0];
-      transport.push(greenEnd[1]);
-    } else {
-      if (greenEnd[1] == null) additionalInfo[0] = greenEnd[0];
-      else additionalInfo[0] = greenEnd[1];
-      transport.push(greenEnd[0]);
-    }
+    distanceEnd[0] > distanceEnd[1] ? transport.push(greenEnd[1]) : transport.push(greenEnd[0]);
     transport.push(end);
-
-    if (distanceStart[0] > distanceStart[1]) {
-      if (greenStart[0] == null) additionalInfo[1] = greenStart[1];
-      else additionalInfo[1] = greenStart[0];
-      transport.push(greenStart[1]);
-    } else {
-      if (greenStart[1] == null) additionalInfo[1] = greenStart[0];
-      else additionalInfo[1] = greenStart[1];
-      transport.push(greenStart[0]);
-    }
+    distanceStart[0] > distanceStart[1] ? transport.push(greenStart[1]) : transport.push(greenStart[0]);
     transport.push(start);
   };
 
   mappp();
-  for (let k in exceptions) {
-    if (starting == k) {
-      for (let l in exceptions[k]) {
-        if (ending == l) {
-          transport.push(document.getElementById(exceptions[k][l][1]));
-          transport.push(end);
-          transport.push(document.getElementById(exceptions[k][l][0]));
-          transport.push(start);
-          flags = false;
-          break;
-        }
-      }
-    }
+  
+  //Handling exception paths failed by original algorithm
+  if(exceptions[starting] != undefined && exceptions[starting][ending] != undefined) {
+    transport.push(document.getElementById(exceptions[starting][ending][1]));
+    transport.push(end);
+    transport.push(document.getElementById(exceptions[starting][ending][0]));
+    transport.push(start);
+    console.log(transport, exceptions[starting][ending][1], end, start, exceptions[starting][ending][0]);
+    flags = false;
   }
-  if (flags) {
-    comparison();
+
+  //Additional joinings which is not possible by original algorithm
+  if(starting == "318" && ending == "319") {
+    additionalPathsLining(addON["#318"]);
+    return null;
   }
-  return transport;
+  else if(starting == "319" && ending == "318") {
+    additionalPathsLining(addON["#319"]);
+    return null;
+  }
+  else {
+    if(addON[starting] != undefined) { additionalPathsLining(addON[starting]); }
+    if(addON[ending] != undefined) { additionalPathsLining(addON[ending]); }
+    if(flags) { comparison(); }
+    return transport;
+  }
 };
 
 const locates = () => {
   let infoReceived = greenDecider();
+
+  if(infoReceived == null) return;
+  
   let startsss = infoReceived[3];
   let greenStarts = infoReceived[2];
   let ends = infoReceived[1];
   let greenEnds = infoReceived[0];
+
   xstartss = startsss.getAttribute("x");
   ystartss = startsss.getAttribute("y");
 
@@ -727,6 +731,7 @@ const locates = () => {
   let yintersecteds = Number.parseInt(intersecteds.getAttribute("y"));
 
   let a = [];
+
   if (bluetoblue.size <= 2 && (xstartss == xend || ystartss == yend)) {
     createLine(
       Number.parseFloat(xstartss),
@@ -762,6 +767,7 @@ const locates = () => {
     );
     a.push(startsss, greenStarts, intersecteds, greenEnds);
   }
+
   turnUp(a);
   inUse[0] = startsss;
   inUse[1] = greenStarts;
@@ -1086,8 +1092,9 @@ const getsetGoo = () => {
     ending != "undefined" &&
     starting != undefined &&
     ending != undefined
-  )
+  ){
     locates();
+  }
 };
 
 makecurrent.onclick = () => {
@@ -1191,7 +1198,6 @@ makefinal.onclick = () => {
       finalEnd();
       preinfo = undefined;
     } else {
-      // alert("Please first select the room, you want to make as final location.");
       let popup = createPopup(
         "#popup",
         "Please first select the room, you want to make as final location, quick actions are given below.",
@@ -1200,7 +1206,6 @@ makefinal.onclick = () => {
       popup();
     }
   } else {
-    // alert("Please first select the current location.");
     let popup = createPopup(
       "#popup",
       "Please first select the nearest room.",
