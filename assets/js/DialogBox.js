@@ -13,7 +13,7 @@ export function createPopup(id,para,serviceRequired){
     let exitService = popupNode.querySelector("#services5");
     let serviceEnability = popupNode.querySelector(".popup-content .service")
     info.innerHTML = para;
-    serviceRequired == false ? serviceEnability.classList.add('noservice') : serviceEnability.classList.remove('noservice');
+    !serviceRequired ? serviceEnability.classList.add('noservice') : serviceEnability.classList.remove('noservice');
     function openPopup(){
       popupNode.classList.add('active');
     }

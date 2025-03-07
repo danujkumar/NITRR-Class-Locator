@@ -643,8 +643,8 @@ cursor:default;
 .pathb rect {
   transform-box:fill-box;
   transform-origin:center;
-  opacity: 1;
-  
+  opacity: 0;
+  background-color: #00A3FF;
   transition: opacity 0.5s ease-in-out;
 }
 

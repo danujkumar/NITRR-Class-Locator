@@ -46,7 +46,7 @@ let swap = document.getElementById("swap");
 let initialFloor;
 let preinfo;
 let serviceUsed = sessionStorage.getItem("serviceUse");
-let searching, mapping, mappingf, mappings, mappingb, exceptions, floorsConnect; //5th change added mappingb
+let searching, mapping, mappingf, mappings, mappingb, floorsConnect; //5th change added mappingb
 
 //testing section
 let addtest = document.getElementById("addtest");
@@ -182,7 +182,6 @@ buttonCon[3].onclick = () => {
 };
 
 const Information = (buttonClicked) => {
-  console.log(preinfo, typeof preinfo);
   if (preinfo != undefined) {
     if (preinfo != starting && preinfo != ending) {
       let element = document.getElementById(preinfo);
@@ -498,7 +497,6 @@ function removeDestinationAll() {
 }
 
 const removeAlll = () => {
-  console.log("Inuse:", inUse);
   if (
     xstartss != null &&
     ystartss != null &&
@@ -631,16 +629,16 @@ function additionalPathsLining(params) {
 }
 
 //Function to determine the distances
-const nearestDistance = () => {
+const nearestDistance = (source, destination) => {
   let start;
   let end;
   let distances = [];
 
-  for (let i in mapUse[starting]) {
-    for (let j in mapUse[ending]) {
+  for (let i in mapUse[source]) {
+    for (let j in mapUse[destination]) {
 
-      start = document.getElementById(mapUse[starting][i]);
-      end = document.getElementById(mapUse[ending][j]);
+      start = document.getElementById(mapUse[source][i]);
+      end = document.getElementById(mapUse[destination][j]);
       let ss = document.getElementById(i);
       let ee = document.getElementById(j);
       let intersecteds = intersectionGreenClone(i, j);
@@ -653,16 +651,14 @@ const nearestDistance = () => {
     }
   }
 
-  const singleLine = new Set([...Object.keys(mapUse[starting]), ...Object.keys(mapUse[ending])]);
-  console.log(mapUse[starting], mapUse[ending], new Set([...Object.keys(mapUse[starting]), ...Object.keys(mapUse[ending])]));
-  console.log("Distance calculator:", distances, start, end);
+  const singleLine = new Set([...Object.keys(mapUse[source]), ...Object.keys(mapUse[destination])]);
   
   distances.sort((a, b) => a.dist - b.dist);
-  return {start: start,middle:distances[0],end:end, line: singleLine};
+  return {start: start,middle:distances[0],end:end, line: singleLine, distance: distances[0].dist};
 };
 
 const greenDecider = () => {
-  const info = nearestDistance();
+  const info = nearestDistance(starting, ending);
   const transport = [];
   
   transport.push(info.start);
@@ -726,7 +722,6 @@ const locates = () => {
   let yintersecteds = Number.parseInt(intersecteds.getAttribute("y"));
 
   let a = [];
-  console.log(infoReceived[5]);
   if (infoReceived[5].size <= 2 && (xstartss == xend || ystartss == yend)) {
     createLine(
       Number.parseFloat(xstartss),
@@ -833,15 +828,9 @@ const mapUses = () => {
 //12th change configured the serviceUse to include the backyard map
 //To be configured after we get the actual backyard map
 export const serviceUse = (service_Id) => {
-  let toStairs;
-  if (map_no == "1") {
-    toStairs = floorsConnect[service_Id]["1"];
-  } else if (map_no == "2") {
-    toStairs = floorsConnect[service_Id]["2"];
-  } else {
-    toStairs = floorsConnect[service_Id]["0"];
-  }
+  const toStairs = floorsConnect[service_Id][map_no];
   removeAlll();
+
   if (service_Id == "G" && (map_no == "1" || map_no == "2")) {
     let temp_end = nearestDist(toStairs)[1];
     ending = endd = floorsConnect[service_Id]["0"][temp_end][0];
@@ -855,22 +844,9 @@ export const serviceUse = (service_Id) => {
 };
 
 const nearestDist = (toStairs) => {
-  let distance,
-    x = Number.MAX_VALUE,
-    starterss,
-    felement,
-    key;
-  for (let i in mapUse[starting]) {
-    starterss = document.getElementById(mapUse[starting][i]);
-  }
+  let distance, x = Number.MAX_VALUE, felement, key;
   for (let i in toStairs) {
-    let star = document.getElementById(toStairs[i][1]);
-    distance = displacementCalculator(
-      starterss.getAttribute("x"),
-      starterss.getAttribute("y"),
-      star.getAttribute("x"),
-      star.getAttribute("y")
-    );
+    distance = nearestDistance(starting, toStairs[i][0]).distance;
     if (x > distance) {
       x = distance;
       //These two parameters needs to be exported
@@ -878,6 +854,8 @@ const nearestDist = (toStairs) => {
       key = i;
     }
   }
+
+  console.log("nearestDist->distance", distance);
   return [felement, key];
 };
 
@@ -895,17 +873,7 @@ const getsetGoo = () => {
 
   mapUse = mapUses();
   const startToStairs = () => {
-    let toStairs;
-
-    if (map_no == "1") {
-      toStairs = floorsConnect[sessionStorage.getItem("mode")]["1"];
-    } else if (map_no == "2") {
-      toStairs = floorsConnect[sessionStorage.getItem("mode")]["2"];
-    } else if (map_no == "3") {
-      toStairs = floorsConnect[sessionStorage.getItem("mode")]["3"];
-    } else {
-      toStairs = floorsConnect[sessionStorage.getItem("mode")]["0"];
-    }
+    const toStairs = floorsConnect[sessionStorage.getItem("mode")][map_no];
 
     let exportt = nearestDist(toStairs);
     sessionStorage.setItem("Stair", exportt[1]);
@@ -938,8 +906,6 @@ const getsetGoo = () => {
   };
 
   const detectInterFloorStarts = () => {
-    console.log("GetSetgoo->detectInterFloorStarts", starts, endd, map_no);
-
     if (
       starts >= 303 &&
       endd < 303 &&
