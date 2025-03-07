@@ -2,7 +2,6 @@ const jsonFileURL = new URL("./json/bluetoGreen.json", import.meta.url);
 const jsonFileURLf = new URL("./json/bluetoGreen1.json", import.meta.url);
 const jsonFileURLs = new URL("./json/bluetoGreen2.json", import.meta.url);
 const jsonFileURLb = new URL("./json/bluetoGreen3.json", import.meta.url); //3rd change added blue to green connection
-const jsonFileURL2 = new URL("./json/exceptionPaths.json", import.meta.url);
 const jsonFileURL4 = new URL("./json/floorsConnection.json", import.meta.url);
 const jsonFileURL3 = new URL("./json/searchTool.json", import.meta.url);
 let greenConnection = new URL("./json/greenConnection.json", import.meta.url);
@@ -18,7 +17,6 @@ let starts, endd;
 let inUse = [];
 let id = [];
 let name = new Map();
-let bluetoblue = new Set();
 let xstartss,
   ystartss,
   xgreenendss,
@@ -49,7 +47,6 @@ let initialFloor;
 let preinfo;
 let serviceUsed = sessionStorage.getItem("serviceUse");
 let searching, mapping, mappingf, mappings, mappingb, exceptions, floorsConnect; //5th change added mappingb
-
 
 //testing section
 let addtest = document.getElementById("addtest");
@@ -100,7 +97,6 @@ const butControl = async () => {
   mappingf = await fetch(jsonFileURLf).then((r) => r.json());
   mappings = await fetch(jsonFileURLs).then((r) => r.json());
   mappingb = await fetch(jsonFileURLb).then((r) => r.json()); //4th change fetched the backyard map here
-  exceptions = await fetch(jsonFileURL2).then((r) => r.json());
   floorsConnect = await fetch(jsonFileURL4).then((r) => r.json());
 
   //Second change here we have another button listed so its functionality added
@@ -235,7 +231,6 @@ const refinedString = (word) => {
       (word[i] < "0" || word[i] > "9")
     ) {
       word = word.substring(0, i) + word.substring(i + 1);
-      i--;
     }
     newWord = word;
   }
@@ -279,26 +274,26 @@ const pointsSE = (textId) => {
             detectFloor();
             location.reload();
           } else if (name.get(final.value) != null) {
-              endd = ending = name.get(element[0]);
-              sessionStorage.setItem("end", ending);
-              if (
-                starting != undefined &&
-                starting != "undefined" &&
-                starting != "null" &&
-                starting != null
-              ) {
-                detectFloor();
-                location.reload();
-              } else {
-                let popup = createPopup(
-                  "#popup",
-                  "Please first select the nearest room.",
-                  false
-                );
-                popup();
-                sessionStorage.removeItem("end");
-              }
+            endd = ending = name.get(element[0]);
+            sessionStorage.setItem("end", ending);
+            if (
+              starting != undefined &&
+              starting != "undefined" &&
+              starting != "null" &&
+              starting != null
+            ) {
+              detectFloor();
+              location.reload();
+            } else {
+              let popup = createPopup(
+                "#popup",
+                "Please first select the nearest room.",
+                false
+              );
+              popup();
+              sessionStorage.removeItem("end");
             }
+          }
           removal(divControl);
         };
       }
@@ -400,14 +395,14 @@ function setter() {
   }
 }
 
-const distanceCalculator = (x1, y1, x2, y2) => {
+const displacementCalculator = (x1, y1, x2, y2) => {
   return Number.parseInt(
     Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)).toString()
   );
 };
 
 function createLine(x1, y1, x2, y2, lineId) {
-  let distance = distanceCalculator(x1, y1, x2, y2);
+  let distance = displacementCalculator(x1, y1, x2, y2);
   let xMid = (x1 + x2) / 2;
   let yMid = (y1 + y2) / 2;
   let salopeInRadian = Math.atan2(y1 - y2, x1 - x2);
@@ -423,7 +418,7 @@ function createLine(x1, y1, x2, y2, lineId) {
   else line.style.width = distance + 3 + "px";
 }
 
-const intersectionGreen = (x, y) => {
+const intersectionGreenClone = (x, y) => {
   let foundx, foundy;
   let yintersect, xintersect;
   if (
@@ -435,7 +430,7 @@ const intersectionGreen = (x, y) => {
     xintersect = greenConnection[map_no]["x"];
     yintersect = greenConnection[map_no]["y"];
   }
-  
+
   for (let i in yintersect) {
     if (yintersect[i].includes(y)) {
       foundy = yintersect[i];
@@ -449,18 +444,19 @@ const intersectionGreen = (x, y) => {
     }
   }
 
-  function intersect(a, b) {
+  function commonNode(a, b) {
     let t;
     if (b.length > a.length) {
-      (t = b); (b = a); (a = t);
-    } 
+      t = b;
+      b = a;
+      a = t;
+    }
     return a.filter(function (e) {
       return b.indexOf(e) > -1;
     });
   }
 
-  let test = document.getElementById(intersect(foundx, foundy)[0]);
-  console.log("IntersectionGreen", intersect(foundx, foundy));
+  let test = document.getElementById(commonNode(foundx, foundy)[0]);
   return test;
 };
 
@@ -468,13 +464,17 @@ const intersectionGreen = (x, y) => {
 function removeDestinationAll() {
   let startl, endl;
   if (map_no == "1") {
-    (startl = 205); (endl = 302);
+    startl = 205;
+    endl = 302;
   } else if (map_no == "2") {
-    (startl = 115); (endl = 204);
+    startl = 115;
+    endl = 204;
   } else if (map_no == "0") {
-    (startl = 1); (endl = 114);
+    startl = 1;
+    endl = 114;
   } else {
-    (startl = 303); (endl = 321);
+    startl = 303;
+    endl = 321;
   }
 
   for (let i = startl; i <= endl; i++) {
@@ -498,7 +498,7 @@ function removeDestinationAll() {
 }
 
 const removeAlll = () => {
-  console.log("Inuse:",inUse)
+  console.log("Inuse:", inUse);
   if (
     xstartss != null &&
     ystartss != null &&
@@ -534,12 +534,24 @@ const resetExtraLining = () => {
     additionalPaths[room][1]["p2"].style.transform = null;
     additionalPaths[room][1]["p2"].style.width = null;
     additionalPaths[room][1]["p2"].style.opacity = 0;
-    additionalPaths[room][0]["p1"].setAttribute("x", additionalPaths[room][0]["p1x"]);
-    additionalPaths[room][0]["p1"].setAttribute("y", additionalPaths[room][0]["p1y"]);
-    additionalPaths[room][1]["p2"].setAttribute("x", additionalPaths[room][1]["p2x"]);
-    additionalPaths[room][1]["p2"].setAttribute("y", additionalPaths[room][1]["p2y"]);
+    additionalPaths[room][0]["p1"].setAttribute(
+      "x",
+      additionalPaths[room][0]["p1x"]
+    );
+    additionalPaths[room][0]["p1"].setAttribute(
+      "y",
+      additionalPaths[room][0]["p1y"]
+    );
+    additionalPaths[room][1]["p2"].setAttribute(
+      "x",
+      additionalPaths[room][1]["p2x"]
+    );
+    additionalPaths[room][1]["p2"].setAttribute(
+      "y",
+      additionalPaths[room][1]["p2y"]
+    );
   }
-}
+};
 
 const info = (id) => {
   if (id != starting && id != ending) {
@@ -591,17 +603,11 @@ document.getElementById("reset").onclick = () => {
 };
 
 addtest.onclick = () => {
-  console.log("addtest clicked");
-  // starting = 319;
-  // if(addON[starting] != undefined) {
-  //   //First create the path from exceptions
-  //   additionalPathsLining(addON[starting]);
-  // }
   testPath();
-}
+};
 
 function additionalPathsLining(params) {
-  for(let i in params) {
+  for (let i in params) {
     const p1 = document.getElementById(params[i][0]);
     const p2 = document.getElementById(params[i][1]);
     p1.style.opacity = 1;
@@ -610,113 +616,85 @@ function additionalPathsLining(params) {
     const p1y = p1.getAttribute("y");
     const p2x = p2.getAttribute("x");
     const p2y = p2.getAttribute("y");
-    additionalPaths.push([{p1,p1x, p1y}, {p2, p2x, p2y}]);
-      createLine(
-        Number.parseFloat(p1x),
-        Number.parseFloat(p1y),
-        Number.parseFloat(p2x),
-        Number.parseFloat(p2y),
-        params[i][0]
-      );
+    additionalPaths.push([
+      { p1, p1x, p1y },
+      { p2, p2x, p2y },
+    ]);
+    createLine(
+      Number.parseFloat(p1x),
+      Number.parseFloat(p1y),
+      Number.parseFloat(p2x),
+      Number.parseFloat(p2y),
+      params[i][0]
+    );
   }
 }
 
-const greenDecider = () => {
-  let greenStart = [];
+//Function to determine the distances
+const nearestDistance = () => {
   let start;
-  let greenEnd = [];
   let end;
-  let transport = [];
-  let flags = true;
+  let distances = [];
 
-  const mappp = () => {
-    for (let i in mapUse[starting]) {
-      greenStart.push(document.getElementById(i));
-      start = document.getElementById(mapUse[starting][i]);
-      bluetoblue.add(i);
-    }
+  for (let i in mapUse[starting]) {
     for (let j in mapUse[ending]) {
-      greenEnd.push(document.getElementById(j));
+
+      start = document.getElementById(mapUse[starting][i]);
       end = document.getElementById(mapUse[ending][j]);
-      bluetoblue.add(j);
-    }
-  };
+      let ss = document.getElementById(i);
+      let ee = document.getElementById(j);
+      let intersecteds = intersectionGreenClone(i, j);
+      if (intersecteds == null) intersecteds = intersectionGreenClone(j, i);
 
-  //Normal algorithm for locations
-  const comparison = () => {
-    let xblueEnd = Number.parseInt(end.getAttribute("x"));
-    let yblueEnd = Number.parseInt(end.getAttribute("y"));
-    let xblueStart = Number.parseInt(start.getAttribute("x"));
-    let yblueStart = Number.parseInt(start.getAttribute("y"));
-    let distanceStart = [Number.MAX_VALUE, Number.MAX_VALUE];
-    let distanceEnd = [Number.MAX_VALUE, Number.MAX_VALUE];
-    for (let k = 0; k < greenStart.length; k++) {
-      let xgreenStart = Number.parseInt(greenStart[k].getAttribute("x"));
-      let ygreenStart = Number.parseInt(greenStart[k].getAttribute("y"));
-      distanceStart[k] = distanceCalculator(
-        xblueEnd,
-        yblueEnd,
-        xgreenStart,
-        ygreenStart
-      );
-    }
-    for (let l = 0; l < greenEnd.length; l++) {
-      let xgreenEnd = Number.parseInt(greenEnd[l].getAttribute("x"));
-      let ygreenEnd = Number.parseInt(greenEnd[l].getAttribute("y"));
-      distanceEnd[l] = distanceCalculator(
-        xblueStart,
-        yblueStart,
-        xgreenEnd,
-        ygreenEnd
-      );
-    }
-
-    distanceEnd[0] > distanceEnd[1] ? transport.push(greenEnd[1]) : transport.push(greenEnd[0]);
-    transport.push(end);
-    distanceStart[0] > distanceStart[1] ? transport.push(greenStart[1]) : transport.push(greenStart[0]);
-    transport.push(start);
-  };
-
-  mappp();
-  
-  //Handling exception paths failed by original algorithm
-  if(exceptions[starting] != undefined) {
-    if(exceptions[starting][ending] != undefined)
-    {
-      transport.push(document.getElementById(exceptions[starting][ending][1]));
-      transport.push(end);
-      transport.push(document.getElementById(exceptions[starting][ending][0]));
-      transport.push(start);
-      console.log(transport, exceptions[starting][ending][1], end, start, exceptions[starting][ending][0]);
-      flags = false;
+      let distance1 = displacementCalculator(start.getAttribute("x"), start.getAttribute("y"), ss.getAttribute("x"), ss.getAttribute("y"));
+      let distance2 = displacementCalculator(ss.getAttribute("x"), ss.getAttribute("y"), intersecteds.getAttribute("x"), intersecteds.getAttribute("y"));
+      let distance3 = displacementCalculator(intersecteds.getAttribute("x"), intersecteds.getAttribute("y"), ee.getAttribute("x"), ee.getAttribute("y"));
+      distances.push({ dist: distance1 + distance2 + distance3, gStart: ss, intersect:intersecteds, gEnd: ee });
     }
   }
 
+  const singleLine = new Set([...Object.keys(mapUse[starting]), ...Object.keys(mapUse[ending])]);
+  console.log(mapUse[starting], mapUse[ending], new Set([...Object.keys(mapUse[starting]), ...Object.keys(mapUse[ending])]));
+  console.log("Distance calculator:", distances, start, end);
+  
+  distances.sort((a, b) => a.dist - b.dist);
+  return {start: start,middle:distances[0],end:end, line: singleLine};
+};
+
+const greenDecider = () => {
+  const info = nearestDistance();
+  const transport = [];
+  
+  transport.push(info.start);
+  transport.push(info.middle.gStart)
+  transport.push(info.middle.intersect);
+  transport.push(info.middle.gEnd)
+  transport.push(info.end);
+  transport.push(info.line);
+  
   //Additional joinings which is not possible by original algorithm
-  if(starting == "318" && ending == "319") {
+  if (starting == "318" && ending == "319") {
     additionalPathsLining(addON["#318"]);
     return null;
-  }
-  else if(starting == "319" && ending == "318") {
+  } else if (starting == "319" && ending == "318") {
     additionalPathsLining(addON["#319"]);
     return null;
-  }
-  else if(starting == "319" && ending == "319") {
+  } else if (starting == "319" && ending == "319") {
     additionalPathsLining(addON["#319319"]);
     return null;
-  }
-  else if(starting == "318" && ending == "318") {
+  } else if (starting == "318" && ending == "318") {
     additionalPathsLining(addON["#318318"]);
     return null;
-  }
-  else if(starting == "320" && ending == "320") {
+  } else if (starting == "320" && ending == "320") {
     additionalPathsLining(addON["#320320"]);
     return null;
-  }
-  else {
-    if(addON[starting] != undefined) { additionalPathsLining(addON[starting]); }
-    if(addON[ending] != undefined) { additionalPathsLining(addON[ending]); }
-    if(flags) { comparison(); }
+  } else {
+    if (addON[starting] != undefined) {
+      additionalPathsLining(addON[starting]);
+    }
+    if (addON[ending] != undefined) {
+      additionalPathsLining(addON[ending]);
+    }
     return transport;
   }
 };
@@ -724,12 +702,13 @@ const greenDecider = () => {
 const locates = () => {
   let infoReceived = greenDecider();
 
-  if(infoReceived == null) return;
-  
-  let startsss = infoReceived[3];
-  let greenStarts = infoReceived[2];
-  let ends = infoReceived[1];
-  let greenEnds = infoReceived[0];
+  if (infoReceived == null) return;
+
+  let startsss = infoReceived[0];
+  let greenStarts = infoReceived[1];
+  let intersecteds = infoReceived[2];
+  let greenEnds = infoReceived[3];
+  let ends = infoReceived[4];
 
   xstartss = startsss.getAttribute("x");
   ystartss = startsss.getAttribute("y");
@@ -742,16 +721,13 @@ const locates = () => {
   xgreenendss = greenEnds.getAttribute("x");
   ygreenendss = greenEnds.getAttribute("y");
 
-  let intersecteds = intersectionGreen(greenStarts.id, greenEnds.id);
-  if (intersecteds == null)
-    intersecteds = intersectionGreen(greenEnds.id, greenStarts.id);
 
   let xintersecteds = Number.parseInt(intersecteds.getAttribute("x"));
   let yintersecteds = Number.parseInt(intersecteds.getAttribute("y"));
 
   let a = [];
-
-  if (bluetoblue.size <= 2 && (xstartss == xend || ystartss == yend)) {
+  console.log(infoReceived[5]);
+  if (infoReceived[5].size <= 2 && (xstartss == xend || ystartss == yend)) {
     createLine(
       Number.parseFloat(xstartss),
       Number.parseFloat(ystartss),
@@ -793,7 +769,6 @@ const locates = () => {
   inUse[2] = intersecteds;
   inUse[3] = greenEnds;
   inUse[4] = ends;
-  bluetoblue.clear();
 };
 
 function turnUp(parameters) {
@@ -890,7 +865,7 @@ const nearestDist = (toStairs) => {
   }
   for (let i in toStairs) {
     let star = document.getElementById(toStairs[i][1]);
-    distance = distanceCalculator(
+    distance = displacementCalculator(
       starterss.getAttribute("x"),
       starterss.getAttribute("y"),
       star.getAttribute("x"),
@@ -911,9 +886,12 @@ const nearestDist = (toStairs) => {
 const getsetGoo = () => {
   removeAlll();
   removeDestinationAll();
-  sessionStorage.getItem("mode") == "L"
-    ? (modes.innerText = "From stairs")
-    : (modes.innerText = "From lift");
+  
+  if(sessionStorage.getItem("mode") == "L") {
+    modes.innerText = "From stairs";
+  } else {
+    modes.innerText = "From lift";
+  }
 
   mapUse = mapUses();
   const startToStairs = () => {
@@ -1111,7 +1089,7 @@ const getsetGoo = () => {
     ending != "undefined" &&
     starting != undefined &&
     ending != undefined
-  ){
+  ) {
     locates();
   }
 };
@@ -1202,7 +1180,7 @@ const finalEnd = () => {
   }
 };
 
-export function testUnitEnd (destination) {
+export function testUnitEnd(destination) {
   preinfo = destination;
   if (starting != null) {
     if (
@@ -1238,7 +1216,7 @@ export function testUnitEnd (destination) {
 
 export function testUnitStart(start) {
   preinfo = start;
-  console.log(start, preinfo)
+  console.log(start, preinfo);
   if (
     preinfo != "undefined" &&
     preinfo != "null" &&
