@@ -9,6 +9,7 @@ let greenConnection = new URL("./json/greenConnection.json", import.meta.url);
 let addON = new URL("./json/additionalPaths.json", import.meta.url);
 
 import { createPopup } from "./DialogBox.js";
+import { testPath } from "./tests/path.js";
 
 let starting;
 let ending, map_no;
@@ -185,6 +186,7 @@ buttonCon[3].onclick = () => {
 };
 
 const Information = (buttonClicked) => {
+  console.log(preinfo, typeof preinfo);
   if (preinfo != undefined) {
     if (preinfo != starting && preinfo != ending) {
       let element = document.getElementById(preinfo);
@@ -458,6 +460,7 @@ const intersectionGreen = (x, y) => {
   }
 
   let test = document.getElementById(intersect(foundx, foundy)[0]);
+  console.log("IntersectionGreen", intersect(foundx, foundy));
   return test;
 };
 
@@ -589,11 +592,12 @@ document.getElementById("reset").onclick = () => {
 
 addtest.onclick = () => {
   console.log("addtest clicked");
-  starting = 319;
-  if(addON[starting] != undefined) {
-    //First create the path from exceptions
-    additionalPathsLining(addON[starting]);
-  }
+  // starting = 319;
+  // if(addON[starting] != undefined) {
+  //   //First create the path from exceptions
+  //   additionalPathsLining(addON[starting]);
+  // }
+  testPath();
 }
 
 function additionalPathsLining(params) {
@@ -676,13 +680,16 @@ const greenDecider = () => {
   mappp();
   
   //Handling exception paths failed by original algorithm
-  if(exceptions[starting] != undefined && exceptions[starting][ending] != undefined) {
-    transport.push(document.getElementById(exceptions[starting][ending][1]));
-    transport.push(end);
-    transport.push(document.getElementById(exceptions[starting][ending][0]));
-    transport.push(start);
-    console.log(transport, exceptions[starting][ending][1], end, start, exceptions[starting][ending][0]);
-    flags = false;
+  if(exceptions[starting] != undefined) {
+    if(exceptions[starting][ending] != undefined)
+    {
+      transport.push(document.getElementById(exceptions[starting][ending][1]));
+      transport.push(end);
+      transport.push(document.getElementById(exceptions[starting][ending][0]));
+      transport.push(start);
+      console.log(transport, exceptions[starting][ending][1], end, start, exceptions[starting][ending][0]);
+      flags = false;
+    }
   }
 
   //Additional joinings which is not possible by original algorithm
@@ -692,6 +699,18 @@ const greenDecider = () => {
   }
   else if(starting == "319" && ending == "318") {
     additionalPathsLining(addON["#319"]);
+    return null;
+  }
+  else if(starting == "319" && ending == "319") {
+    additionalPathsLining(addON["#319319"]);
+    return null;
+  }
+  else if(starting == "318" && ending == "318") {
+    additionalPathsLining(addON["#318318"]);
+    return null;
+  }
+  else if(starting == "320" && ending == "320") {
+    additionalPathsLining(addON["#320320"]);
     return null;
   }
   else {
@@ -1182,6 +1201,67 @@ const finalEnd = () => {
     alertt.style.display = "none";
   }
 };
+
+export function testUnitEnd (destination) {
+  preinfo = destination;
+  if (starting != null) {
+    if (
+      preinfo != "undefined" &&
+      preinfo != "null" &&
+      preinfo != null &&
+      preinfo != undefined
+    ) {
+      namecard[0].innerHTML = "Information";
+      details[0].innerHTML = "Press Any Room in the Map to Get It's Info Here.";
+      endd = ending = preinfo;
+      console.log(destination);
+      sessionStorage.setItem("end", ending);
+      finalEnd();
+      preinfo = undefined;
+    } else {
+      let popup = createPopup(
+        "#popup",
+        "Please first select the room, you want to make as final location, quick actions are given below.",
+        true
+      );
+      popup();
+    }
+  } else {
+    let popup = createPopup(
+      "#popup",
+      "Please first select the nearest room.",
+      false
+    );
+    popup();
+  }
+}
+
+export function testUnitStart(start) {
+  preinfo = start;
+  console.log(start, preinfo)
+  if (
+    preinfo != "undefined" &&
+    preinfo != "null" &&
+    preinfo != null &&
+    preinfo != undefined
+  ) {
+    namecard[0].innerHTML = "Information";
+    details[0].innerHTML = "Press Any Room in the Map to Get It's Info Here.";
+    starts = starting = preinfo;
+    sessionStorage.setItem("start", starting);
+    setter();
+    getsetGoo();
+    preinfo = undefined;
+  } else {
+    // alert("Please first select the room, you want to make as current location.")
+    let popup = createPopup(
+      "#popup",
+      "Please first select the room, you want to make as current location.",
+      false
+    );
+    popup();
+  }
+}
 
 makefinal.onclick = () => {
   if (starting != null) {
