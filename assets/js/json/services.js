@@ -1,4 +1,4 @@
-{
+export const services = {
   "S": {
     "0": {
       "L1": ["14", "p34"],

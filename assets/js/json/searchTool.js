@@ -1,4 +1,4 @@
-{
+export const searchTool = {
     "1": {
       "name": "Stage Ground",
       "details": ""
@@ -1255,4 +1255,4 @@
       "p34": "p40",
       "p85": "p40"
     }
-  }
+}
