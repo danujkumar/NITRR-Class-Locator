@@ -2,7 +2,6 @@ import { additionalPaths, map, greenConnections } from "./json/constants.js";
 import { services } from "./json/services.js";
 import { searchTool } from "./json/searchTool.js";
 import { createPopup } from "./DialogBox.js";
-import { testPath } from "./tests/path.js";
 
 let starting;
 let ending, map_no;
@@ -39,9 +38,6 @@ let swap = document.getElementById("swap");
 let initialFloor;
 let preinfo;
 let serviceUsed = sessionStorage.getItem("serviceUse");
-
-//testing section
-let addtest = document.getElementById("addtest");
 
 export { map_no, map0, map1, map2, map3 };
 
@@ -139,7 +135,6 @@ window.addEventListener("load", async () => {
       });
   } catch (error) {
     //Remember this is under try section, so for debugging always disable this try section first.
-    console.log(error);
   }
 });
 
@@ -576,10 +571,6 @@ document.getElementById("reset").onclick = () => {
   location.reload();
 };
 
-addtest.onclick = () => {
-  testPath();
-};
-
 function additionalPathsLining(params) {
   for (let i in params) {
     const p1 = document.getElementById(params[i][0]);
@@ -855,13 +846,10 @@ const nearestDist = (toStairs) => {
       key = i;
     }
   }
-
-  console.log("nearestDist->distance", distance);
   return [felement, key];
 };
 
 const detectfinalFloor = (value) => {
-  console.log("GetSetGoo->detectfinalFloor", value);
   if (value >= 303) return ["Back", "3"];
   else if (value >= 205 && value <= 302) return ["First", "1"];
   else if (value >= 115 && value <= 204) return ["Second", "2"];
@@ -873,7 +861,6 @@ const detectfinalFloor = (value) => {
 const getsetGoo = () => {
   removeAlll();
   removeDestinationAll();
-  console.log("GetSetGoo->getsetGoo", starting, ending);
   if (sessionStorage.getItem("mode") == "L") {
     modes.innerText = "From stairs";
   } else if(detectfinalFloor(endd)[1] == "3") {
@@ -890,12 +877,10 @@ const getsetGoo = () => {
         : services[sessionStorage.getItem("mode")][map_no];
     let exportt = nearestDist(toStairs);
     sessionStorage.setItem("Stair", exportt[1]);
-    console.log("getsetgoo->starttostairs", exportt, detectfinalFloor(endd)[0]);
     return exportt[0];
   };
 
   const detectInterFloorStarts = () => {
-    console.log("GetSetGoo->detectInterFloorStarts", starts, endd, map_no);
     if (
       starts >= 303 &&
       endd < 303 &&
@@ -969,7 +954,6 @@ const getsetGoo = () => {
   };
 
   const detectInterFloorEnds = () => {
-    console.log("GetSetGoo->detectInterFloorEnds", starts, endd, map_no);
     if (
       (!(starts >= 205 && starts <= 302) &&
         endd >= 205 &&
@@ -1124,7 +1108,6 @@ export function testUnitEnd(destination) {
       namecard[0].innerHTML = "Information";
       details[0].innerHTML = "Press Any Room in the Map to Get It's Info Here.";
       endd = ending = preinfo;
-      console.log(destination);
       sessionStorage.setItem("end", ending);
       finalEnd();
       preinfo = undefined;
@@ -1148,7 +1131,6 @@ export function testUnitEnd(destination) {
 
 export function testUnitStart(start) {
   preinfo = start;
-  console.log(start, preinfo);
   if (
     preinfo != "undefined" &&
     preinfo != "null" &&
