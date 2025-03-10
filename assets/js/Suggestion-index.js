@@ -1,6 +1,4 @@
-// import searching from "./json/searchTool.json" assert { type: "json" };
-const jsonFileURL = new URL("./json/searchTool.json", import.meta.url);
-const searching = await fetch(jsonFileURL).then(r => r.json());
+import { searchTool } from "./json/searchTool.js";
 import { createPopup } from "./mainDialogBox.js";
 let id = [];
 let name = new Map();
@@ -8,11 +6,11 @@ let start,end;
 let divControl;
 
 //Assigning all the names, details and department information into the array id;
-for (let k in searching) {
-  if(searching[k]["details"] == "")
-    searching[k]["details"] = searching[k]["name"];
-  name.set(searching[k]["name"], k);
-  id.push([searching[k]["name"],searching[k]["details"]]);
+for (let k in searchTool) {
+  if(searchTool[k]["details"] == "")
+    searchTool[k]["details"] = searchTool[k]["name"];
+  name.set(searchTool[k]["name"], k);
+  id.push([searchTool[k]["name"],searchTool[k]["details"]]);
 }
 
 //Getting the element of input current, input final and search box
@@ -38,7 +36,6 @@ const refinedString = (word)=>{
     if((word[i]<'A' || word[i] > 'Z') && (word[i]<'a' || word[i]>'z') && (word[i]<'0' || word[i]>'9'))
       {
         word = word.substring(0,i)+word.substring(i+1);
-        i--;
       }
       newWord = word;
   }
