@@ -194,12 +194,7 @@ const removal = (element) => {
 
 //8th change we need to reconfigure the detectfloor to detect the backyard map
 const detectFloor = () => {
-  if (Number.parseInt(starts) >= 303) sessionStorage.setItem("map_no", "3");
-  else if (Number.parseInt(starts) >= 205 && Number.parseInt(starts) <= 302)
-    sessionStorage.setItem("map_no", "1");
-  else if (Number.parseInt(starts) >= 115 && Number.parseInt(starts) <= 204)
-    sessionStorage.setItem("map_no", "2");
-  else sessionStorage.setItem("map_no", "0");
+  sessionStorage.setItem("map_no", detectfinalFloor(starts)[1]);
 };
 
 const refinedString = (word) => {
@@ -617,7 +612,6 @@ const nearestDistance = (source, destination) => {
 
   for (let i in map[map_no][source]) {
     for (let j in map[map_no][destination]) {
-
       start = document.getElementById(map[map_no][source][i]);
       end = document.getElementById(map[map_no][destination][j]);
       let ss = document.getElementById(i);
@@ -625,30 +619,59 @@ const nearestDistance = (source, destination) => {
       let intersecteds = intersectionGreenClone(i, j);
       if (intersecteds == null) intersecteds = intersectionGreenClone(j, i);
 
-      let distance1 = displacementCalculator(start.getAttribute("x"), start.getAttribute("y"), ss.getAttribute("x"), ss.getAttribute("y"));
-      let distance2 = displacementCalculator(ss.getAttribute("x"), ss.getAttribute("y"), intersecteds.getAttribute("x"), intersecteds.getAttribute("y"));
-      let distance3 = displacementCalculator(intersecteds.getAttribute("x"), intersecteds.getAttribute("y"), ee.getAttribute("x"), ee.getAttribute("y"));
-      distances.push({ dist: distance1 + distance2 + distance3, gStart: ss, intersect:intersecteds, gEnd: ee });
+      let distance1 = displacementCalculator(
+        start.getAttribute("x"),
+        start.getAttribute("y"),
+        ss.getAttribute("x"),
+        ss.getAttribute("y")
+      );
+      let distance2 = displacementCalculator(
+        ss.getAttribute("x"),
+        ss.getAttribute("y"),
+        intersecteds.getAttribute("x"),
+        intersecteds.getAttribute("y")
+      );
+      let distance3 = displacementCalculator(
+        intersecteds.getAttribute("x"),
+        intersecteds.getAttribute("y"),
+        ee.getAttribute("x"),
+        ee.getAttribute("y")
+      );
+      distances.push({
+        dist: distance1 + distance2 + distance3,
+        gStart: ss,
+        intersect: intersecteds,
+        gEnd: ee,
+      });
     }
   }
 
-  const singleLine = new Set([...Object.keys(map[map_no][source]), ...Object.keys(map[map_no][destination])]);
-  
+  const singleLine = new Set([
+    ...Object.keys(map[map_no][source]),
+    ...Object.keys(map[map_no][destination]),
+  ]);
+
   distances.sort((a, b) => a.dist - b.dist);
-  return {start: start,middle:distances[0],end:end, line: singleLine, distance: distances[0].dist};
+  return {
+    start: start,
+    middle: distances[0],
+    end: end,
+    line: singleLine,
+    distance: distances[0].dist,
+  };
 };
 
 const greenDecider = () => {
   const info = nearestDistance(starting, ending);
   const transport = [];
-  
+
   transport.push(info.start);
-  transport.push(info.middle.gStart)
+  transport.push(info.middle.gStart);
   transport.push(info.middle.intersect);
-  transport.push(info.middle.gEnd)
+  transport.push(info.middle.gEnd);
   transport.push(info.end);
   transport.push(info.line);
-  
+
   //Additional joinings which is not possible by original algorithm
   if (starting == "318" && ending == "319") {
     additionalPathsLining(additionalPaths["#318"]);
@@ -697,7 +720,6 @@ const locates = () => {
   let yend = ends.getAttribute("y");
   xgreenendss = greenEnds.getAttribute("x");
   ygreenendss = greenEnds.getAttribute("y");
-
 
   let xintersecteds = Number.parseInt(intersecteds.getAttribute("x"));
   let yintersecteds = Number.parseInt(intersecteds.getAttribute("y"));
@@ -805,8 +827,11 @@ export const serviceUse = (service_Id) => {
   removeAlll();
 
   if (service_Id == "G" && (map_no == "1" || map_no == "2")) {
-    let temp_end = nearestDist(toStairs)[1];
-    ending = endd = services[service_Id]["0"][temp_end][0];
+    ending = endd = services[service_Id]["0"][nearestDist(toStairs)[1]][0];
+    sessionStorage.setItem("end", ending);
+    location.reload();
+  } else if ((service_Id == "S" || service_Id == "L") && map_no == "3") {
+    ending = endd = services["B"][service_Id][nearestDist(toStairs)[0]];
     sessionStorage.setItem("end", ending);
     location.reload();
   } else {
@@ -817,7 +842,10 @@ export const serviceUse = (service_Id) => {
 };
 
 const nearestDist = (toStairs) => {
-  let distance, x = Number.MAX_VALUE, felement, key;
+  let distance,
+    x = Number.MAX_VALUE,
+    felement,
+    key;
   for (let i in toStairs) {
     distance = nearestDistance(starting, toStairs[i][0]).distance;
     if (x > distance) {
@@ -832,52 +860,42 @@ const nearestDist = (toStairs) => {
   return [felement, key];
 };
 
+const detectfinalFloor = (value) => {
+  console.log("GetSetGoo->detectfinalFloor", value);
+  if (value >= 303) return ["Back", "3"];
+  else if (value >= 205 && value <= 302) return ["First", "1"];
+  else if (value >= 115 && value <= 204) return ["Second", "2"];
+  else return ["Ground", "0"];
+};
+
 //13th change configured the getsetGoo to include the backyard map
 //To be configured after we get the actual backyard map
 const getsetGoo = () => {
   removeAlll();
   removeDestinationAll();
-  
-  if(sessionStorage.getItem("mode") == "L") {
+  console.log("GetSetGoo->getsetGoo", starting, ending);
+  if (sessionStorage.getItem("mode") == "L") {
     modes.innerText = "From stairs";
+  } else if(detectfinalFloor(endd)[1] == "3") {
+    //Alternate room left for the backyard map
+    modes.remove();
   } else {
     modes.innerText = "From lift";
   }
 
   const startToStairs = () => {
-    const toStairs = services[sessionStorage.getItem("mode")][map_no];
-
+    const toStairs =
+      detectfinalFloor(endd)[1] == "3"
+        ? services["G"]["Back"][map_no]
+        : services[sessionStorage.getItem("mode")][map_no];
     let exportt = nearestDist(toStairs);
     sessionStorage.setItem("Stair", exportt[1]);
-    console.log("getsetgoo->starttostairs", exportt);
+    console.log("getsetgoo->starttostairs", exportt, detectfinalFloor(endd)[0]);
     return exportt[0];
   };
 
-  const detectfinalFloor = () => {
-    if (endd >= 303) return "Back";
-    else if (endd >= 205 && endd <= 302) return "First";
-    else if (endd >= 115 && endd <= 204) return "Second";
-    else return "Ground";
-  };
-
-  const moveToFloors = () => {
-    console.log("getSetGoo->moveToFloors", detectfinalFloor());
-    if (detectfinalFloor() == "First") {
-      sessionStorage.setItem("map_no", "1");
-      location.reload();
-    } else if (detectfinalFloor() == "Second") {
-      sessionStorage.setItem("map_no", "2");
-      location.reload();
-    } else if (detectfinalFloor() == "Back") {
-      sessionStorage.setItem("map_no", "3");
-      location.reload();
-    } else {
-      sessionStorage.setItem("map_no", "0");
-      location.reload();
-    }
-  };
-
   const detectInterFloorStarts = () => {
+    console.log("GetSetGoo->detectInterFloorStarts", starts, endd, map_no);
     if (
       starts >= 303 &&
       endd < 303 &&
@@ -946,10 +964,12 @@ const getsetGoo = () => {
   };
 
   alertt.querySelector("a").onclick = () => {
-    moveToFloors();
+    sessionStorage.setItem("map_no", detectfinalFloor(endd)[1]);
+    location.reload();
   };
 
   const detectInterFloorEnds = () => {
+    console.log("GetSetGoo->detectInterFloorEnds", starts, endd, map_no);
     if (
       (!(starts >= 205 && starts <= 302) &&
         endd >= 205 &&
@@ -962,7 +982,6 @@ const getsetGoo = () => {
       (starts > 114 && endd <= 114 && map_no == "0") ||
       (starts < 303 && endd >= 303 && map_no == "3")
     ) {
-      console.log("GetSetGoo->detectInterFloorEnds", starts, endd, map_no);
       ending = endd;
       starting =
         services[sessionStorage.getItem("mode")][map_no][
@@ -974,7 +993,7 @@ const getsetGoo = () => {
   if (!detectInterFloorStarts()) detectInterFloorEnds();
   else {
     document.getElementById("finalFloor").innerHTML =
-      detectfinalFloor() + " floor";
+      detectfinalFloor(endd)[0] + " floor";
     document.getElementById("initialFloor").innerHTML = initialFloor + " floor";
   }
 
@@ -1029,31 +1048,6 @@ const getsetGoo = () => {
     ending != undefined
   ) {
     locates();
-  }
-};
-
-makecurrent.onclick = () => {
-  if (
-    preinfo != "undefined" &&
-    preinfo != "null" &&
-    preinfo != null &&
-    preinfo != undefined
-  ) {
-    namecard[0].innerHTML = "Information";
-    details[0].innerHTML = "Press Any Room in the Map to Get It's Info Here.";
-    starts = starting = preinfo;
-    sessionStorage.setItem("start", starting);
-    setter();
-    getsetGoo();
-    preinfo = undefined;
-  } else {
-    // alert("Please first select the room, you want to make as current location.")
-    let popup = createPopup(
-      "#popup",
-      "Please first select the room, you want to make as current location.",
-      false
-    );
-    popup();
   }
 };
 
@@ -1178,6 +1172,31 @@ export function testUnitStart(start) {
     popup();
   }
 }
+
+makecurrent.onclick = () => {
+  if (
+    preinfo != "undefined" &&
+    preinfo != "null" &&
+    preinfo != null &&
+    preinfo != undefined
+  ) {
+    namecard[0].innerHTML = "Information";
+    details[0].innerHTML = "Press Any Room in the Map to Get It's Info Here.";
+    starts = starting = preinfo;
+    sessionStorage.setItem("start", starting);
+    setter();
+    getsetGoo();
+    preinfo = undefined;
+  } else {
+    // alert("Please first select the room, you want to make as current location.")
+    let popup = createPopup(
+      "#popup",
+      "Please first select the room, you want to make as current location.",
+      false
+    );
+    popup();
+  }
+};
 
 makefinal.onclick = () => {
   if (starting != null) {
