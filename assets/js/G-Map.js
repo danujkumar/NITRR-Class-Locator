@@ -863,7 +863,7 @@ const getsetGoo = () => {
   removeDestinationAll();
   if (sessionStorage.getItem("mode") == "L") {
     modes.innerText = "From stairs";
-  } else if(detectfinalFloor(endd)[1] == "3") {
+  } else if(detectfinalFloor(endd)[1] == "3" || map_no == "3") {
     //Alternate room left for the backyard map
     modes.remove();
   } else {
