@@ -856,16 +856,31 @@ const detectfinalFloor = (value) => {
   else return ["Ground", "0"];
 };
 
+const showAlertAndModes = (floor, toDisplay) => {
+  alertt.style.display = "block";
+  if (toDisplay) {
+    modes.style.display = "inline";
+  } else {
+    modes.style.display = "none";
+  }
+  initialFloor = floor;
+};
+
+const isValidEnd = (end) => end !== null && end !== undefined && end !== "null" && end !== "undefined";
+
 //13th change configured the getsetGoo to include the backyard map
 //To be configured after we get the actual backyard map
 const getsetGoo = () => {
   removeAlll();
   removeDestinationAll();
+  let toDisplay = true;
+
   if (sessionStorage.getItem("mode") == "L") {
     modes.innerText = "From stairs";
   } else if(detectfinalFloor(endd)[1] == "3" || map_no == "3") {
     //Alternate room left for the backyard map
-    modes.remove();
+    modes.style.display = "none";
+    toDisplay = false;
   } else {
     modes.innerText = "From lift";
   }
@@ -881,69 +896,23 @@ const getsetGoo = () => {
   };
 
   const detectInterFloorStarts = () => {
-    if (
-      starts >= 303 &&
-      endd < 303 &&
-      endd != null &&
-      endd != undefined &&
-      map_no == "3" &&
-      endd != "null" &&
-      endd != "undefined"
-    ) {
-      starting = starts;
-      ending = startToStairs();
-      alertt.style.display = "block";
-      modes.style.display = "inline";
-      initialFloor = "Back";
-      return true;
-    } else if (
-      starts >= 205 &&
-      starts <= 302 &&
-      !(endd >= 205 && endd <= 302) &&
-      endd != null &&
-      map_no == "1" &&
-      endd != undefined &&
-      endd != "null" &&
-      endd != "undefined"
-    ) {
-      starting = starts;
-      ending = startToStairs();
-      alertt.style.display = "block";
-      modes.style.display = "inline";
-      initialFloor = "First";
-      return true;
-    } else if (
-      starts >= 115 &&
-      starts <= 204 &&
-      !(endd >= 115 && endd <= 204) &&
-      endd != undefined &&
-      endd != null &&
-      map_no == "2" &&
-      endd != "null" &&
-      endd != "undefined"
-    ) {
-      starting = starts;
-      ending = startToStairs();
-      alertt.style.display = "block";
-      modes.style.display = "inline";
-      initialFloor = "Second";
-      return true;
-    } else if (
-      starts <= 114 &&
-      endd > 114 &&
-      endd != null &&
-      endd != undefined &&
-      map_no == "0" &&
-      endd != "null" &&
-      endd != "undefined"
-    ) {
-      starting = starts;
-      ending = startToStairs();
-      alertt.style.display = "block";
-      modes.style.display = "inline";
-      initialFloor = "Ground";
-      return true;
+    const floorMappings = [
+      { min: 303, max: Infinity, mapNo: "3", label: "Back" },
+      { min: 205, max: 302, mapNo: "1", label: "First" },
+      { min: 115, max: 204, mapNo: "2", label: "Second" },
+      { min: -Infinity, max: 114, mapNo: "0", label: "Ground" }
+    ];
+  
+    for (const { min, max, mapNo, label } of floorMappings) {
+      if (starts >= min && starts <= max && map_no == mapNo && isValidEnd(endd) && !(endd >= min && endd <= max)) {
+        starting = starts;
+        ending = startToStairs();
+        showAlertAndModes(label, toDisplay);
+        return true;
+      }
     }
+  
+    alertt.style.display = "none";
     modes.style.display = "none";
     return false;
   };
@@ -954,85 +923,45 @@ const getsetGoo = () => {
   };
 
   const detectInterFloorEnds = () => {
-    if (
-      (!(starts >= 205 && starts <= 302) &&
-        endd >= 205 &&
-        endd <= 302 &&
-        map_no == "1") ||
-      (!(starts >= 115 && starts <= 204) &&
-        endd >= 115 &&
-        endd <= 204 &&
-        map_no == "2") ||
-      (starts > 114 && endd <= 114 && map_no == "0") ||
-      (starts < 303 && endd >= 303 && map_no == "3")
-    ) {
-      ending = endd;
-      starting =
-        services[sessionStorage.getItem("mode")][map_no][
-          sessionStorage.getItem("Stair")
-        ][0];
+    const floorMappings = [
+      { min: 205, max: 302, mapNo: "1" },
+      { min: 115, max: 204, mapNo: "2" },
+      { min: -Infinity, max: 114, mapNo: "0" },
+      { min: 303, max: Infinity, mapNo: "3" }
+    ];
+  
+    for (const { min, max, mapNo } of floorMappings) {
+      if (!(starts >= min && starts <= max) && endd >= min && endd <= max && map_no == mapNo) {
+        ending = endd;
+        starting = services[sessionStorage.getItem("mode")][map_no][sessionStorage.getItem("Stair")][0];
+        return;
+      }
+    }
+  };
+  
+  if (!detectInterFloorStarts()) detectInterFloorEnds();
+  else {
+    document.getElementById("finalFloor").innerText = `${detectfinalFloor(endd)[0]} floor`;
+    document.getElementById("initialFloor").innerText = `${initialFloor} floor`;
+  }
+
+  const highlightRoom = (roomId, opacity, color) => {
+    if (!isValidEnd(roomId)) return;
+    
+    let roomElement = document.getElementById(roomId);
+    let shape = roomElement.querySelector("rect") || roomElement.querySelector("path");
+  
+    if (shape) {
+      shape.setAttribute("fill-opacity", opacity);
+      shape.style.fill = color;
     }
   };
 
-  if (!detectInterFloorStarts()) detectInterFloorEnds();
-  else {
-    document.getElementById("finalFloor").innerHTML =
-      detectfinalFloor(endd)[0] + " floor";
-    document.getElementById("initialFloor").innerHTML = initialFloor + " floor";
-  }
+  highlightRoom(starting, "0.5", "#63e6beff");
+  highlightRoom(ending, "0.7", "#ffd43cff");
 
-  if (
-    starting != null &&
-    starting != "null" &&
-    starting != "undefined" &&
-    starting != undefined
-  ) {
-    let getsetRoom1 = document.getElementById(starting);
-    if (
-      getsetRoom1.querySelector("rect") != undefined &&
-      getsetRoom1.querySelector("rect") != null
-    ) {
-      getsetRoom1.querySelector("rect").setAttribute("fill-opacity", "0.5");
-      getsetRoom1.querySelector("rect").style.fill = "#63e6beff";
-    } else {
-      getsetRoom1.querySelector("path").setAttribute("fill-opacity", "0.5");
-      getsetRoom1.querySelector("path").style.fill = "#63e6beff";
-    }
-    starting = getsetRoom1.id;
-  }
-
-  if (
-    ending != null &&
-    ending != "null" &&
-    ending != "undefined" &&
-    ending != undefined
-  ) {
-    let getsetRoom2 = document.getElementById(ending);
-    if (
-      getsetRoom2.querySelector("rect") != undefined &&
-      getsetRoom2.querySelector("rect") != null
-    ) {
-      getsetRoom2.querySelector("rect").setAttribute("fill-opacity", "0.7");
-      getsetRoom2.querySelector("rect").style.fill = "#ffd43cff";
-    } else {
-      getsetRoom2.querySelector("path").setAttribute("fill-opacity", "0.7");
-      getsetRoom2.querySelector("path").style.fill = "#ffd43cff";
-    }
-    ending = getsetRoom2.id;
-  }
-
-  if (
-    starting != null &&
-    ending != null &&
-    starting != "null" &&
-    ending != "null" &&
-    starting != "undefined" &&
-    ending != "undefined" &&
-    starting != undefined &&
-    ending != undefined
-  ) {
+  if (isValidEnd(starting) && isValidEnd(ending))
     locates();
-  }
 };
 
 const infoo = () => {
